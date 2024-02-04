@@ -1,5 +1,7 @@
 # My personal website
 
+**Website: [jfraoua.vercel.app](https://www.jfraoua.vercel.app/)**
+
 This is the source code for my personal website.
 
 It is built using [Astro](https://astro.build/), a static site generator.
@@ -17,5 +19,5 @@ bun install
 
 To start the development server, run:
 ```bash
-bun run dev
+bunx --bun astro dev
 ```
