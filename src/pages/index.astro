@@ -1,0 +1,83 @@
+---
+import ProjectCard from "../components/ProjectCard.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Home">
+  <main class="flex-1">
+    <section id="resume" class="w-full py-12 md:py-24 lg:py-32">
+      <div class="container px-4 md:px-6">
+        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          Resume
+        </h2><p
+          class="mt-4 text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400"
+        >
+          Brief description about your professional experience, skills, and
+          education.
+        </p><div class="mt-8">
+          <h3 class="text-2xl font-bold">Experience</h3><h4
+            class="mt-2 text-xl font-semibold"
+          >
+            Google, 2022 - Present
+          </h4><p class="mt-2 text-gray-500">
+            Description of your role and responsibilities at Google.
+          </p><h4 class="mt-2 text-xl font-semibold">Uber, 2020 - 2022</h4><p
+            class="mt-2 text-gray-500"
+          >
+            Description of your role and responsibilities at Uber.
+          </p>
+        </div><div class="mt-8">
+          <h3 class="text-2xl font-bold">Education</h3><h4
+            class="mt-2 text-xl font-semibold"
+          >
+            New York University, 2019 - 2020
+          </h4><p class="mt-2 text-gray-500">
+            Description of your course and achievements at New York University.
+          </p><h4 class="mt-2 text-xl font-semibold">
+            Princeton University, 2017 - 2019
+          </h4><p class="mt-2 text-gray-500">
+            Description of your course and achievements at Princeton University.
+          </p>
+        </div><div class="mt-8">
+          <h3 class="text-2xl font-bold">Skills</h3><h4
+            class="mt-2 text-xl font-semibold"
+          >
+            Soft Skills
+          </h4><p class="mt-2 text-gray-500">
+            Description of your soft skills.
+          </p><h4 class="mt-2 text-xl font-semibold">
+            Programming Languages
+          </h4><p class="mt-2 text-gray-500">
+            Description of your proficiency in programming languages.
+          </p>
+        </div>
+      </div>
+    </section><section
+      id="projects"
+      class="w-full py-12 md:py-24 lg:py-32 bg-gray-100"
+    >
+      <div class="container px-4 md:px-6">
+        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          Projects
+        </h2>
+        <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ProjectCard
+            title="Project 1"
+            description="Description of your project."
+            link="#"
+          />
+          <ProjectCard
+            title="Project 2"
+            description="Description of your project."
+            link="#"
+          />
+          <ProjectCard
+            title="Project 3"
+            description="Description of your project."
+            link="#"
+          />
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>
