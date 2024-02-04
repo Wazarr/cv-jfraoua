@@ -19,5 +19,5 @@ bun install
 
 To start the development server, run:
 ```bash
-bun run dev
+bunx --bun astro dev
 ```
