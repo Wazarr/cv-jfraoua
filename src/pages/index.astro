@@ -1,6 +1,7 @@
 ---
 import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
+import Badge from "../components/Badge.astro";
 ---
 
 <Layout title="Home">
@@ -42,40 +43,89 @@ import Layout from "../layouts/Layout.astro";
             Description of your course and achievements at Princeton University.
           </p>
         </div>
-        <div class="mt-8">
+        <div class="my-8">
           <h3 class="text-2xl font-bold">Skills</h3>
-          <h4 class="mt-2 text-xl font-semibold">Soft Skills</h4>
-          <p class="mt-2 text-gray-500">Description of your soft skills.</p>
-          <h4 class="mt-2 text-xl font-semibold">Programming Languages</h4>
-          <p class="mt-2 text-gray-500">
-            Description of your proficiency in programming languages.
-          </p>
+          <div class="lg:grid grid-cols-6 items-center">
+            <h4 class="text-md font-semibold py-1">Programming languages:</h4>
+            <div class="col-span-5">
+              <Badge>Python</Badge>
+              <Badge>SQL</Badge>
+              <Badge>R</Badge>
+              <Badge>JavaScript</Badge>
+              <Badge>VBA</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Data Science:</h4>
+            <div class="col-span-5">
+              <Badge>pandas</Badge>
+              <Badge>polars</Badge>
+              <Badge>tidyverse</Badge>
+              <Badge>matplotlib</Badge>
+              <Badge>plotly</Badge>
+              <Badge>Jupyter</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Data Visualization:</h4>
+            <div class="col-span-5">
+              <Badge>Streamlit</Badge>
+              <Badge>Metabase</Badge>
+              <Badge>RShiny</Badge>
+              <Badge>PowerBI</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Machine Learning:</h4>
+            <div class="col-span-5">
+              <Badge>PyTorch</Badge>
+              <Badge>scikit-learn</Badge>
+              <Badge>XGBoost</Badge>
+              <Badge>CatBoost</Badge>
+              <Badge>Hugging Face</Badge>
+              <Badge>langchain</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Tools:</h4>
+            <div class="col-span-5">
+              <Badge>Git</Badge>
+              <Badge>Docker</Badge>
+              <Badge>UNIX</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Web:</h4>
+            <div class="col-span-5">
+              <Badge>Svelte</Badge>
+              <Badge>Astro</Badge>
+              <Badge>React</Badge>
+              <Badge>Tailwind</Badge>
+            </div>
+            <h4 class="text-md font-semibold py-1">Languages:</h4>
+            <div class="col-span-5">
+              <Badge>French (native)</Badge>
+              <Badge>English (fluent)</Badge>
+            </div>
+          </div>
         </div>
       </div>
-    </section>
-    <section id="projects" class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-      <div class="container px-4 md:px-6">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Projects
-        </h2>
-        <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
-          <ProjectCard
-            title="Project 1"
-            description="Description of your project."
-            link="#"
-          />
-          <ProjectCard
-            title="Project 2"
-            description="Description of your project."
-            link="#"
-          />
-          <ProjectCard
-            title="Project 3"
-            description="Description of your project."
-            link="#"
-          />
+      <section id="projects" class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
+        <div class="container px-4 md:px-6">
+          <h2
+            class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
+          >
+            Projects
+          </h2>
+          <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
+            <ProjectCard
+              title="Project 1"
+              description="Description of your project."
+              link="#"
+            />
+            <ProjectCard
+              title="Project 2"
+              description="Description of your project."
+              link="#"
+            />
+            <ProjectCard
+              title="Project 3"
+              description="Description of your project."
+              link="#"
+            />
+          </div>
         </div>
-      </div>
+      </section>
     </section>
   </main>
 </Layout>
