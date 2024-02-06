@@ -112,16 +112,18 @@ function getCurrentYear() {
           class="flex flex-col items-center gap-y-4 py-4 md:justify-between lg:flex-row px-4 sm:px-6 lg:px-8"
         >
           <div class="text-center font-medium text-gray-400">
-            Generated with <span class="text-gray-200">v0.dev</span>
+            Created with <span class="text-gray-200"></span>
+            <a href="https://v0.dev" aria-label="v0.dev website">v0.dev</a>
           </div>
-          <p class="text-center text-gray-400">
-            © {getCurrentYear()} Jérémy Fraoua
-          </p>
         </div>
+        <p class="text-center text-gray-400">
+          © {getCurrentYear()} Jérémy Fraoua
+        </p>
       </footer>
     </div>
   </body>
 </html>
+
 <style is:global>
   html {
     font-family: system-ui, sans-serif;
