@@ -19,16 +19,93 @@ import Badge from "../components/Badge.astro";
         </p>
         <div id="experience" class="mt-8">
           <h3 class="text-2xl font-bold">Experience</h3>
-          <h4 class="mt-2 text-xl font-semibold">Google, 2022 - Present</h4>
-          <p class="mt-2 text-gray-500">
-            Description of your role and responsibilities at Google.
-          </p>
-          <h4 class="mt-2 text-xl font-semibold">Uber, 2020 - 2022</h4>
-          <p class="mt-2 text-gray-500">
-            Description of your role and responsibilities at Uber.
-          </p>
+          <div id="qonto" class="pt-2">
+            <div class="flex flex-row items-baseline">
+              <h4 class="mt-2 text-xl font-semibold pr-2">Qonto</h4>
+              <span class="text-gray-500 italic">2023 - Present</span>
+            </div>
+            <div class="font-semibold text-slate-600 pt-1">
+              Quantitative Risk Analyst
+            </div>
+            <ul class="list-disc list-inside ml-4 py-2">
+              <li>Reviewed and helped optimize ML models for fighting fraud</li>
+              <li>Developed the German credit risk model from end to end</li>
+              <li>
+                Assisted multiple departments on data wrangling and dataviz
+              </li>
+            </ul>
+            <div class="flex flex-row flex-wrap gap-2 items-baseline">
+              <p class="font-mono text-sm text-slate-600 pl-2">Skills used:</p>
+              <div class="gap-2">
+                <Badge>Python</Badge>
+                <Badge>SQL</Badge>
+                <Badge>Machine Learning</Badge>
+                <Badge>Streamlit</Badge>
+                <Badge>Metabase</Badge>
+              </div>
+            </div>
+          </div>
+          <div id="bnp-rse" class="pt-2">
+            <div class="flex flex-row items-baseline">
+              <h4 class="mt-2 text-xl font-semibold pr-2">
+                BNP Paribas, Groupe RSE
+              </h4>
+              <span class="text-gray-500 italic">2021 - 2023</span>
+            </div>
+            <div class="font-semibold text-slate-600 pt-1">Data Scientist</div>
+            <ul class="list-disc list-inside ml-4 py-2">
+              <li>
+                Developed dashboards within the group for portfolio steering
+              </li>
+              <li>
+                Participated in the creation of methodologies and calculation of
+                net zero targets published in the alignment report
+              </li>
+              <li>
+                Assessed the flood and drought risk on the electricity
+                generation portfolio
+              </li>
+            </ul>
+            <div class="flex flex-row flex-wrap gap-2 items-baseline">
+              <p class="font-mono text-sm text-slate-600 pl-2">Skills used:</p>
+              <div class="gap-2">
+                <Badge>R</Badge>
+                <Badge>RShiny</Badge>
+                <Badge>Streamlit</Badge>
+                <Badge>Mathematical modelling</Badge>
+              </div>
+            </div>
+          </div>
+          <div id="bnp-ny" class="pt-2">
+            <div class="flex flex-row items-baseline">
+              <h4 class="mt-2 text-xl font-semibold pr-2">
+                BNP Paribas, RISK Americas
+              </h4>
+              <span class="text-gray-500 italic">2020</span>
+            </div>
+            <div class="font-semibold text-slate-600 pt-1">
+              Credit Risk analyst
+            </div>
+            <ul class="list-disc list-inside ml-4 py-2">
+              <li>
+                Drafted a report on the impact of climate change on credit risk
+              </li>
+              <li>
+                Delivered a case study on the California wildfires and the
+                bankruptcy of PG&E
+              </li>
+            </ul>
+            <div class="flex flex-row flex-wrap gap-2 items-baseline">
+              <p class="font-mono text-sm text-slate-600 pl-2">Skills used:</p>
+              <div class="gap-2">
+                <Badge>Quantitative Finance</Badge>
+                <Badge>Python</Badge>
+                <Badge>Geospatial data</Badge>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="education" class="mt-8">
+        <div id="education" class="my-4">
           <h3 class="text-2xl font-bold">Education</h3>
           <h4 class="mt-2 text-xl font-semibold">
             New York University, 2019 - 2020
@@ -43,11 +120,11 @@ import Badge from "../components/Badge.astro";
             Description of your course and achievements at Princeton University.
           </p>
         </div>
-        <div id="skills" class="my-8">
+        <div id="skills" class="my-4">
           <h3 class="text-2xl font-bold">Skills</h3>
-          <div class="lg:grid grid-cols-6 items-center">
+          <div class="lg:grid grid-cols-5 items-center">
             <h4 class="text-md font-semibold py-1">Programming languages:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>Python</Badge>
               <Badge>SQL</Badge>
               <Badge>R</Badge>
@@ -55,7 +132,7 @@ import Badge from "../components/Badge.astro";
               <Badge>VBA</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Data Science:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>pandas</Badge>
               <Badge>polars</Badge>
               <Badge>tidyverse</Badge>
@@ -64,14 +141,14 @@ import Badge from "../components/Badge.astro";
               <Badge>Jupyter</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Data Visualization:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>Streamlit</Badge>
               <Badge>Metabase</Badge>
               <Badge>RShiny</Badge>
               <Badge>PowerBI</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Machine Learning:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>PyTorch</Badge>
               <Badge>scikit-learn</Badge>
               <Badge>XGBoost</Badge>
@@ -80,20 +157,20 @@ import Badge from "../components/Badge.astro";
               <Badge>langchain</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Tools:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>Git</Badge>
               <Badge>Docker</Badge>
               <Badge>UNIX</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Web:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>Svelte</Badge>
               <Badge>Astro</Badge>
               <Badge>React</Badge>
               <Badge>Tailwind</Badge>
             </div>
             <h4 class="text-md font-semibold py-1">Languages:</h4>
-            <div class="col-span-5">
+            <div class="col-span-4">
               <Badge>French (native)</Badge>
               <Badge>English (fluent)</Badge>
             </div>
