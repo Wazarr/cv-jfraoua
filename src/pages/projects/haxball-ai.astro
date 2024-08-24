@@ -5,210 +5,162 @@ import Badge from "../../components/Badge.astro";
 
 <ProjectLayout title="Haxball AI">
   <div class="max-w-4xl mx-auto px-4 py-8">
-    <main>
+    <main class="font-sans leading-relaxed">
       <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4">Haxball AI</h2>
-        <p class="text-gray-700 mb-4">
-          A machine learning-powered search bot that helps users find the best
-          products within a category based on their criteria.
+        <h2 class="text-3xl font-extrabold mb-4 text-gray-900">Haxball AI</h2>
+        <div class="mb-4">
+          <a
+            href="https://github.com/HaxballGym"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-5 h-5"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <span>View project on GitHub</span>
+          </a>
+        </div>
+        <p class="text-gray-800 mb-4 text-lg">
+          A comprehensive framework for training AI bots to play <a
+            href="https://www.haxball.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 font-semibold">Haxball</a
+          >, a popular online 2D soccer game.
         </p>
-        <img
-          alt="LLM Search Bot"
-          src="/placeholder.svg"
-          width="600"
-          height="200"
-          class="w-full aspect-[3/1] object-cover"
-        />
-        <p class="text-gray-700 mb-4">
-          The LLM Search Bot is designed to simplify the product search process
-          by understanding natural language inputs and providing personalized
-          recommendations. The bot utilizes a large language model to interpret
-          user queries and match them with the most relevant products from a
-          comprehensive database.
+        <p class="text-gray-800 mb-4 text-lg">
+          This project provides a complete ecosystem for developing and training
+          AI agents to play Haxball. It includes a Python recreation of the
+          game, an OpenAI Gym environment with built-in reward functions and
+          terminal conditions, as well as integration with state-of-the-art
+          reinforcement learning algorithms.
         </p>
       </section>
+
       <section class="mb-12">
-        <h3 class="text-xl font-bold mb-4">How It Works</h3>
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">AI in Action</h3>
+        <video controls width="600" class="w-full mb-4 shadow-lg">
+          <source src="/ai_vs_chaser.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p class="text-gray-700 text-sm italic">
+          Watch the AI bot (in red) defeat a simple chase bot with a score of
+          6-1, demonstrating its basic understanding of the game and ability to
+          play.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Key Components</h3>
         <div class="grid grid-cols-2 gap-6">
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h4 class="text-lg font-bold mb-2">Natural Language Processing</h4>
-            <p class="text-gray-700 mb-4">
-              The bot processes the user's search query using advanced natural
-              language processing techniques to understand the intent and
-              context behind the request.
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">Ursinaxball</h4>
+            <p class="text-gray-800 mb-4">
+              A Python recreation of Haxball using the Ursina game engine, based
+              on the deobfuscated JavaScript code from the original online game.
             </p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h4 class="text-lg font-bold mb-2">Product Matching</h4>
-            <p class="text-gray-700 mb-4">
-              The bot then searches a curated database of products to find the
-              best matches based on the user's criteria, leveraging machine
-              learning algorithms to rank and prioritize the results.
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">HaxballGym</h4>
+            <p class="text-gray-800 mb-4">
+              A custom Gym environment that defines the game state, action
+              space, observation space, reward functions, and terminal
+              conditions for AI agents to learn and interact with the Haxball
+              game.
             </p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h4 class="text-lg font-bold mb-2">Personalized Recommendations</h4>
-            <p class="text-gray-700 mb-4">
-              Finally, the bot presents the user with a list of products that
-              best fit their needs, taking into account their previous
-              preferences and behavior to provide personalized suggestions.
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">
+              HaxballGym-tools
+            </h4>
+            <p class="text-gray-800 mb-4">
+              Integration with the Stable-Baselines3 library, implementing the
+              PPO (Proximal Policy Optimization) algorithm for training AI
+              agents.
             </p>
           </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h4 class="text-lg font-bold mb-2">Continuous Improvement</h4>
-            <p class="text-gray-700 mb-4">
-              The bot's algorithms are constantly being refined and updated to
-              improve the accuracy and relevance of the search results, ensuring
-              an ever-better user experience.
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">WazBot</h4>
+            <p class="text-gray-800 mb-4">
+              A quick start repository containing all the necessary components
+              and basic documentation for users to quickly set up and start
+              training their own Haxball AI agents.
             </p>
           </div>
         </div>
       </section>
+
       <section class="mb-12">
-        <h3 class="text-xl font-bold mb-4">Technologies Used</h3>
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Technologies Used</h3>
         <div class="flex flex-wrap gap-2">
           <Badge>Python</Badge>
-          <Badge>Machine Learning</Badge>
-          <Badge>NLP</Badge>
-          <Badge>scikit-learn</Badge>
-          <Badge>Django</Badge>
-          <Badge>PostgreSQL</Badge>
+          <Badge>Game Engine</Badge>
+          <Badge>Reinforcement Learning</Badge>
+          <Badge>Library publishing</Badge>
+          <Badge>Versioning</Badge>
         </div>
       </section>
+
       <section class="mb-12">
-        <h3 class="text-xl font-bold mb-4">Challenges Faced</h3>
-        <p class="text-gray-700 mb-4">
-          One of the main challenges was optimizing the search algorithm to
-          handle ambiguous queries and still provide accurate results. Another
-          challenge was ensuring the bot could scale to accommodate a growing
-          product database without compromising performance.
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Challenges Faced</h3>
+        <div class="space-y-4">
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">Game Rewrite</h4>
+            <p class="text-gray-800">
+              Deobfuscating and understanding the original JavaScript code was
+              time-consuming. Implementing a clean Python version posed
+              challenges, but significantly improved Python coding skills.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">
+              Adapting from Rocket League
+            </h4>
+            <p class="text-gray-800">
+              The project was inspired by a similar Rocket League AI project.
+              Adapting the codebase for Haxball required extensive effort and
+              deep understanding of the foreign codebase.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">AI Performance</h3>
+        <p class="text-gray-800 mb-4">
+          The best-performing model, trained for one week, can consistently beat
+          beginner-level players. It excels in defensive play but struggles with
+          open goal shots. With more diverse training, it could potentially
+          challenge intermediate players.
+        </p>
+
+        <p class="text-gray-800">
+          The AI demonstrates a good understanding of duels but hasn't mastered
+          complex techniques like double shots.
         </p>
       </section>
+
       <section class="mb-12">
-        <h3 class="text-xl font-bold mb-4">Outcome</h3>
-        <p class="text-gray-700 mb-4">
-          The LLM Search Bot successfully launched and has been helping users
-          make informed purchasing decisions. Feedback has been overwhelmingly
-          positive, with users appreciating the ease of use and accuracy of the
-          search results.
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Project Impact</h3>
+        <p class="text-gray-800">
+          The Haxball AI framework has attracted some interest from students,
+          with a few college students reaching out with questions about how to
+          run the code for their course projects.
         </p>
-      </section>
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4">Project Roadmap</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h3 class="text-xl font-bold mb-4">Short-Term Goals</h3>
-            <ul class="list-disc pl-6 text-gray-700 space-y-2">
-              <li>Improve natural language processing capabilities</li>
-              <li>Expand product database coverage</li>
-              <li>Enhance user interface and user experience</li>
-              <li>Implement real-time product updates</li>
-            </ul>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h3 class="text-xl font-bold mb-4">Long-Term Goals</h3>
-            <ul class="list-disc pl-6 text-gray-700 space-y-2">
-              <li>Integrate with e-commerce platforms</li>
-              <li>Develop mobile applications</li>
-              <li>Implement personalized recommendations</li>
-              <li>Expand to international markets</li>
-            </ul>
-          </div>
-        </div>
-      </section>
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4">Project Highlights</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h3 class="text-xl font-bold mb-4">Accurate Search Results</h3>
-            <p class="text-gray-700 mb-4">
-              The LLM Search Bot's advanced natural language processing
-              capabilities allow it to understand complex queries and provide
-              highly accurate product recommendations.
-            </p>
-            <div class="flex items-center space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="h-5 w-5 text-green-500"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="m9 12 2 2 4-4"></path>
-              </svg>
-              <span class="text-green-500 font-medium">Verified by users</span>
-            </div>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <h3 class="text-xl font-bold mb-4">Scalable Infrastructure</h3>
-            <p class="text-gray-700 mb-4">
-              The bot's underlying infrastructure is designed to handle a
-              growing product database and user base without compromising
-              performance.
-            </p>
-            <div class="flex items-center space-x-2">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                class="h-5 w-5 text-green-500"
-              >
-                <circle cx="12" cy="12" r="10"></circle>
-                <path d="m9 12 2 2 4-4"></path>
-              </svg>
-              <span class="text-green-500 font-medium"
-                >Tested for high-volume usage</span
-              >
-            </div>
-          </div>
-        </div>
-      </section>
-      <section class="mb-12">
-        <h2 class="text-2xl font-bold mb-4">User Testimonials</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <blockquote class="text-gray-700">
-              "The LLM Search Bot has completely transformed my product search
-              experience. I'm able to find exactly what I need with just a few
-              natural language queries."
-            </blockquote>
-            <div class="flex items-center mt-4 space-x-2">
-              <img
-                alt="User Avatar"
-                class="w-8 h-8 rounded-full"
-                src="/placeholder.svg"
-              />
-              <span class="text-gray-700 font-medium">Jane Doe</span>
-            </div>
-          </div>
-          <div class="bg-gray-100 p-6 rounded-lg">
-            <blockquote class="text-gray-700">
-              "I'm amazed by the accuracy of the LLM Search Bot's
-              recommendations. It's saved me so much time and hassle in finding
-              the perfect products for my needs."
-            </blockquote>
-            <div class="flex items-center mt-4 space-x-2">
-              <img
-                alt="User Avatar"
-                class="w-8 h-8 rounded-full"
-                src="/placeholder.svg"
-              />
-              <span class="text-gray-700 font-medium">John Smith</span>
-            </div>
-          </div>
-        </div>
       </section>
     </main>
   </div>
