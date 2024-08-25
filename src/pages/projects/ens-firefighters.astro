@@ -1,0 +1,158 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import Badge from "../../components/Badge.astro";
+---
+
+<ProjectLayout title="ENS ChallengeData">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <main class="font-sans leading-relaxed">
+      <section class="mb-12">
+        <h2 class="text-3xl font-extrabold mb-4 text-gray-900">
+          ENS ChallengeData
+        </h2>
+        <div class="mb-4">
+          <a
+            href="https://colab.research.google.com/drive/1hxfGWHfhmVgTBQtqmUxPn98GT9B7P4Ze"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-5 h-5"
+            >
+              <circle cx="8" cy="12" r="5"></circle>
+              <circle cx="16" cy="12" r="5"></circle>
+              <path d="M12 7v10"></path>
+            </svg>
+            <span>Explore on Colab</span>
+          </a>
+        </div>
+        <p class="text-gray-800 mb-4 text-lg">
+          A machine learning project for a course, focusing on predicting the
+          response time of firefighters in Paris.
+        </p>
+        <p class="text-gray-800 mb-4 text-lg">
+          This group project applied the standard machine learning project
+          pipeline and performed data cleaning, feature engineering, exploratory
+          data analysis (EDA), feature selection, and implemented different
+          models to achieve a top 10% ranking in the competition.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+          Project Highlights
+        </h3>
+        <ul class="list-disc pl-6 space-y-2 text-gray-800">
+          <li>
+            Conducted research on firefighting operations to better understand
+            the dataset and its nuances.
+          </li>
+          <li>
+            Identified and cleaned impossible data points, improving the overall
+            data quality.
+          </li>
+          <li>
+            Implemented a clustering approach to understand zones where
+            firefighters were faster, significantly improving the model's
+            performance.
+          </li>
+          <li>
+            Experimented with various models including Linear Regression and
+            Neural Networks before settling on XGBoost, which provided the best
+            results.
+          </li>
+        </ul>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+          Clustering Analysis
+        </h3>
+        <img
+          src="/clustering_ens.png"
+          alt="Clustering analysis of firefighter response times"
+          class="w-3/5 mx-auto mb-4 rounded-lg shadow-md"
+        />
+        <p class="text-gray-700 text-sm italic">
+          Visualization of the clustering approach used to identify zones with
+          similar firefighter response times.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Technologies Used</h3>
+        <div class="flex flex-wrap gap-2">
+          <Badge>Python</Badge>
+          <Badge>scikit-learn</Badge>
+          <Badge>pandas</Badge>
+          <Badge>matplotlib</Badge>
+          <Badge>XGBoost</Badge>
+          <Badge>Machine Learning</Badge>
+          <Badge>Data Analysis</Badge>
+          <Badge>Feature Engineering</Badge>
+          <Badge>Clustering</Badge>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Challenges Faced</h3>
+        <div class="space-y-4">
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">
+              First ML Project
+            </h4>
+            <p class="text-gray-800">
+              As the team's first machine learning project, there was a steep
+              learning curve in applying theoretical knowledge to a practical
+              challenge.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">
+              Domain Knowledge Acquisition
+            </h4>
+            <p class="text-gray-800">
+              Researching firefighting operations and understanding the specific
+              context of Paris to interpret the data accurately and create
+              meaningful features.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Project Outcome</h3>
+        <p class="text-gray-800 mb-4">
+          The team successfully applied various machine learning techniques,
+          with clustering and XGBoost playing crucial roles in improving the
+          model's performance. This effort resulted in a top 10% ranking in the
+          competition, which was a good results for a first project, especially
+          for an ENS ChallengeData competition.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+          Learning Experience
+        </h3>
+        <p class="text-gray-800">
+          This project provided hands-on experience with the entire machine
+          learning pipeline, from data preprocessing to model evaluation. It
+          served as a valuable introduction to practical machine learning and
+          data science techniques in a competitive environment, while also
+          highlighting the importance of domain knowledge in data analysis.
+        </p>
+      </section>
+    </main>
+  </div>
+</ProjectLayout>

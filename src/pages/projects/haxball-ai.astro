@@ -1,0 +1,167 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+import Badge from "../../components/Badge.astro";
+---
+
+<ProjectLayout title="Haxball AI">
+  <div class="max-w-4xl mx-auto px-4 py-8">
+    <main class="font-sans leading-relaxed">
+      <section class="mb-12">
+        <h2 class="text-3xl font-extrabold mb-4 text-gray-900">Haxball AI</h2>
+        <div class="mb-4">
+          <a
+            href="https://github.com/HaxballGym"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-semibold"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="w-5 h-5"
+            >
+              <path
+                d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
+              ></path>
+            </svg>
+            <span>View project on GitHub</span>
+          </a>
+        </div>
+        <p class="text-gray-800 mb-4 text-lg">
+          A comprehensive framework for training AI bots to play <a
+            href="https://www.haxball.com"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-blue-600 hover:text-blue-800 font-semibold">Haxball</a
+          >, a popular online 2D soccer game.
+        </p>
+        <p class="text-gray-800 mb-4 text-lg">
+          This project provides a complete ecosystem for developing and training
+          AI agents to play Haxball. It includes a Python recreation of the
+          game, an OpenAI Gym environment with built-in reward functions and
+          terminal conditions, as well as integration with state-of-the-art
+          reinforcement learning algorithms.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">AI in Action</h3>
+        <video controls width="600" class="w-full mb-4 shadow-lg">
+          <source src="/ai_vs_chaser.mov" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <p class="text-gray-700 text-sm italic">
+          Watch the AI bot (in red) defeat a simple chase bot with a score of
+          6-1, demonstrating its basic understanding of the game and ability to
+          play.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Key Components</h3>
+        <div class="grid grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">Ursinaxball</h4>
+            <p class="text-gray-800 mb-4">
+              A Python recreation of Haxball using the Ursina game engine, based
+              on the deobfuscated JavaScript code from the original online game.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">HaxballGym</h4>
+            <p class="text-gray-800 mb-4">
+              A custom Gym environment that defines the game state, action
+              space, observation space, reward functions, and terminal
+              conditions for AI agents to learn and interact with the Haxball
+              game.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">
+              HaxballGym-tools
+            </h4>
+            <p class="text-gray-800 mb-4">
+              Integration with the Stable-Baselines3 library, implementing the
+              PPO (Proximal Policy Optimization) algorithm for training AI
+              agents.
+            </p>
+          </div>
+          <div class="bg-white p-6 rounded-lg shadow-md">
+            <h4 class="text-xl font-bold mb-2 text-gray-900">WazBot</h4>
+            <p class="text-gray-800 mb-4">
+              A quick start repository containing all the necessary components
+              and basic documentation for users to quickly set up and start
+              training their own Haxball AI agents.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Technologies Used</h3>
+        <div class="flex flex-wrap gap-2">
+          <Badge>Python</Badge>
+          <Badge>Game Engine</Badge>
+          <Badge>Reinforcement Learning</Badge>
+          <Badge>Library publishing</Badge>
+          <Badge>Versioning</Badge>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Challenges Faced</h3>
+        <div class="space-y-4">
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">Game Rewrite</h4>
+            <p class="text-gray-800">
+              Deobfuscating and understanding the original JavaScript code was
+              time-consuming. Implementing a clean Python version posed
+              challenges, but significantly improved Python coding skills.
+            </p>
+          </div>
+          <div>
+            <h4 class="text-xl font-semibold text-gray-900">
+              Adapting from Rocket League
+            </h4>
+            <p class="text-gray-800">
+              The project was inspired by a similar Rocket League AI project.
+              Adapting the codebase for Haxball required extensive effort and
+              deep understanding of the foreign codebase.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">AI Performance</h3>
+        <p class="text-gray-800 mb-4">
+          The best-performing model, trained for one week, can consistently beat
+          beginner-level players. It excels in defensive play but struggles with
+          open goal shots. With more diverse training, it could potentially
+          challenge intermediate players.
+        </p>
+
+        <p class="text-gray-800">
+          The AI demonstrates a good understanding of duels but hasn't mastered
+          complex techniques like double shots.
+        </p>
+      </section>
+
+      <section class="mb-12">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900">Project Impact</h3>
+        <p class="text-gray-800">
+          The Haxball AI framework has attracted some interest from students,
+          with a few college students reaching out with questions about how to
+          run the code for their course projects.
+        </p>
+      </section>
+    </main>
+  </div>
+</ProjectLayout>
