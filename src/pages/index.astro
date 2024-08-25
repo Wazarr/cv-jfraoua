@@ -6,7 +6,7 @@ import Badge from "../components/Badge.astro";
 
 <Layout title="Home">
   <main class="flex-1">
-    <section id="resume" class="w-full py-12 md:py-24 lg:py-32">
+    <section id="resume" class="w-full py-8 md:py-12 lg:py-16">
       <div class="container px-4 md:px-6">
         <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
           Resume
@@ -201,32 +201,33 @@ import Badge from "../components/Badge.astro";
           </div>
         </div>
       </div>
-      <section id="projects" class="w-full py-12 md:py-24 lg:py-32 bg-gray-100">
-        <div class="container px-4 md:px-6">
-          <h2
-            class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl"
-          >
-            Projects
-          </h2>
-          <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
-            <ProjectCard
-              title="Haxball AI"
-              description="Creation of the `HaxballGym` library to train AI agents for the Haxball game."
-              link="/projects/haxball-ai"
-            />
-            <ProjectCard
-              title="Haxball Dashboard"
-              description="Dashboard for Haxball game competitions"
-              link="/projects/haxball-dashboard"
-            />
-            <ProjectCard
-              title="ENS ChallengeData"
-              description="Prediction of the response time of firefighters in Paris"
-              link="/projects/ens-firefighters"
-            />
-          </div>
+    </section>
+    <section
+      id="projects"
+      class="w-full py-12 md:py-24 lg:py-32 bg-gray-50 dark:bg-gray-900"
+    >
+      <div class="container mx-auto px-4 md:px-6">
+        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
+          Projects
+        </h2>
+        <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
+          <ProjectCard
+            title="Haxball AI"
+            description="Creation of the `HaxballGym` library to train AI agents for the Haxball game."
+            link="/projects/haxball-ai"
+          />
+          <ProjectCard
+            title="Haxball Dashboard"
+            description="Dashboard for Haxball game competitions"
+            link="/projects/haxball-dashboard"
+          />
+          <ProjectCard
+            title="ENS ChallengeData"
+            description="Prediction of the response time of firefighters in Paris"
+            link="/projects/ens-firefighters"
+          />
         </div>
-      </section>
+      </div>
     </section>
   </main>
 </Layout>
