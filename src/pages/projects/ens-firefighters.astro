@@ -7,7 +7,9 @@ import Badge from "../../components/Badge.astro";
   <div class="max-w-4xl mx-auto px-4 py-8">
     <main class="font-sans leading-relaxed">
       <section class="mb-12">
-        <h2 class="text-3xl font-extrabold mb-4 text-gray-900">
+        <h2
+          class="text-3xl font-extrabold mb-4 text-gray-900 dark:text-gray-100"
+        >
           ENS ChallengeData
         </h2>
         <div class="mb-4">
@@ -15,7 +17,7 @@ import Badge from "../../components/Badge.astro";
             href="https://colab.research.google.com/drive/1hxfGWHfhmVgTBQtqmUxPn98GT9B7P4Ze"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 font-semibold"
+            class="inline-flex items-center space-x-2 text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300 font-semibold"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -36,11 +38,11 @@ import Badge from "../../components/Badge.astro";
             <span>Explore on Colab</span>
           </a>
         </div>
-        <p class="text-gray-800 mb-4 text-lg">
+        <p class="text-gray-800 dark:text-gray-200 mb-4 text-lg">
           A machine learning project for a course, focusing on predicting the
           response time of firefighters in Paris.
         </p>
-        <p class="text-gray-800 mb-4 text-lg">
+        <p class="text-gray-800 dark:text-gray-200 mb-4 text-lg">
           This group project applied the standard machine learning project
           pipeline and performed data cleaning, feature engineering, exploratory
           data analysis (EDA), feature selection, and implemented different
@@ -49,10 +51,10 @@ import Badge from "../../components/Badge.astro";
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
           Project Highlights
         </h3>
-        <ul class="list-disc pl-6 space-y-2 text-gray-800">
+        <ul class="list-disc pl-6 space-y-2 text-gray-800 dark:text-gray-200">
           <li>
             Conducted research on firefighting operations to better understand
             the dataset and its nuances.
@@ -75,7 +77,7 @@ import Badge from "../../components/Badge.astro";
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
           Clustering Analysis
         </h3>
         <img
@@ -83,14 +85,16 @@ import Badge from "../../components/Badge.astro";
           alt="Clustering analysis of firefighter response times"
           class="w-3/5 mx-auto mb-4 rounded-lg shadow-md"
         />
-        <p class="text-gray-700 text-sm italic">
+        <p class="text-gray-700 dark:text-gray-300 text-sm italic">
           Visualization of the clustering approach used to identify zones with
           similar firefighter response times.
         </p>
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">Technologies Used</h3>
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Technologies Used
+        </h3>
         <div class="flex flex-wrap gap-2">
           <Badge>Python</Badge>
           <Badge>scikit-learn</Badge>
@@ -105,23 +109,25 @@ import Badge from "../../components/Badge.astro";
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">Challenges Faced</h3>
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Challenges Faced
+        </h3>
         <div class="space-y-4">
           <div>
-            <h4 class="text-xl font-semibold text-gray-900">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
               First ML Project
             </h4>
-            <p class="text-gray-800">
+            <p class="text-gray-800 dark:text-gray-200">
               As the team's first machine learning project, there was a steep
               learning curve in applying theoretical knowledge to a practical
               challenge.
             </p>
           </div>
           <div>
-            <h4 class="text-xl font-semibold text-gray-900">
+            <h4 class="text-xl font-semibold text-gray-900 dark:text-gray-100">
               Domain Knowledge Acquisition
             </h4>
-            <p class="text-gray-800">
+            <p class="text-gray-800 dark:text-gray-200">
               Researching firefighting operations and understanding the specific
               context of Paris to interpret the data accurately and create
               meaningful features.
@@ -131,21 +137,23 @@ import Badge from "../../components/Badge.astro";
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">Project Outcome</h3>
-        <p class="text-gray-800 mb-4">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
+          Project Outcome
+        </h3>
+        <p class="text-gray-800 dark:text-gray-200 mb-4">
           The team successfully applied various machine learning techniques,
           with clustering and XGBoost playing crucial roles in improving the
           model's performance. This effort resulted in a top 10% ranking in the
-          competition, which was a good results for a first project, especially
+          competition, which was a good result for a first project, especially
           for an ENS ChallengeData competition.
         </p>
       </section>
 
       <section class="mb-12">
-        <h3 class="text-2xl font-bold mb-4 text-gray-900">
+        <h3 class="text-2xl font-bold mb-4 text-gray-900 dark:text-gray-100">
           Learning Experience
         </h3>
-        <p class="text-gray-800">
+        <p class="text-gray-800 dark:text-gray-200">
           This project provided hands-on experience with the entire machine
           learning pipeline, from data preprocessing to model evaluation. It
           served as a valuable introduction to practical machine learning and
