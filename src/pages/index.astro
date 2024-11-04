@@ -3,36 +3,74 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Home">
-  <main class="container mx-auto px-4 py-8">
-    <div class="text-center">
-      <h1 class="text-4xl font-bold mb-4">Welcome to my personal website</h1>
-      <p class="text-xl mb-8">Data Scientist | AI Enthusiast | Web Developer</p>
+  <main class="container mx-auto px-4 py-12 sm:py-16">
+    <div class="text-center mb-12 sm:mb-16">
+      <h1 class="text-4xl font-bold mb-4 sm:mb-8">
+        Welcome to my personal website
+      </h1>
+      <div
+        class="hidden sm:flex flex-row justify-center items-center text-lg font-semibold"
+      >
+        <span class="text-gray-600 dark:text-gray-300"
+          >Machine Learning Engineer</span
+        >
+        <span class="text-gray-400 dark:text-gray-500 px-2 text-xl">•</span>
+        <span class="text-gray-600 dark:text-gray-300">AI Enthusiast</span>
+        <span class="text-gray-400 dark:text-gray-500 px-2 text-xl">•</span>
+        <span class="text-gray-600 dark:text-gray-300">Web Developer</span>
+      </div>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
       <a
         href="/resume"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
       >
-        <h2 class="text-2xl font-semibold mb-2">Resume</h2>
-        <p>View my professional experience and skills</p>
+        <h2
+          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
+        >
+          Resume
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          View my professional experience and skills
+        </p>
       </a>
       <a
         href="/projects"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
       >
-        <h2 class="text-2xl font-semibold mb-2">Projects</h2>
-        <p>Explore my projects and achievements</p>
+        <h2
+          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
+        >
+          Projects
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Explore my projects and achievements
+        </p>
       </a>
       <a
         href="/blog"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow"
+        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
       >
-        <h2 class="text-2xl font-semibold mb-2">Blog</h2>
-        <p>Read my thoughts on data science, AI, and web technologies</p>
+        <h2
+          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
+        >
+          Blog
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Read my thoughts on data science, AI, and web technologies
+        </p>
       </a>
-      <div class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
-        <h2 class="text-2xl font-semibold mb-2">Contact</h2>
-        <p>Get in touch with me, using the icons on the top bar</p>
+      <div
+        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-100 dark:border-gray-700"
+      >
+        <h2
+          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
+        >
+          Contact
+        </h2>
+        <p class="text-gray-600 dark:text-gray-300">
+          Get in touch with me, using the icons on the top bar
+        </p>
       </div>
     </div>
   </main>
