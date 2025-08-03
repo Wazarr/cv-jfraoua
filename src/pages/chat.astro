@@ -1,0 +1,259 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="AI Chat Assistant - Jérémy Fraoua">
+  <div class="min-h-screen bg-gradient-to-br from-light-50 via-light-100 to-light-50 dark:from-dark-950 dark:via-dark-900 dark:to-dark-950">
+    <!-- Claude Code Style Header -->
+    <div class="container mx-auto px-4 py-8">
+      <div class="max-w-4xl mx-auto">
+        <!-- Chat Interface Header -->
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center space-x-3 mb-4">
+            <div class="w-3 h-3 bg-terminal-500 rounded-full animate-pulse"></div>
+            <h1 class="text-3xl font-bold text-light-900 dark:text-dark-100">AI Chat Assistant</h1>
+            <div class="w-3 h-3 bg-primary-500 rounded-full animate-pulse"></div>
+          </div>
+          <p class="text-light-600 dark:text-dark-400 font-mono text-sm">
+            <span class="text-terminal-400">jeremy@portfolio:~$</span> 
+            <span class="text-code-400">chat_assistant.py</span> 
+            <span class="text-light-600 dark:text-dark-400">--interactive</span>
+          </p>
+        </div>
+
+        <!-- Main Chat Container -->
+        <div class="bg-light-100/80 dark:bg-dark-800/50 backdrop-blur-sm rounded-xl border border-light-300 dark:border-dark-600 shadow-2xl overflow-hidden">
+          <!-- Chat Window Header -->
+          <div class="bg-light-200/80 dark:bg-dark-700/80 px-6 py-4 border-b border-light-300 dark:border-dark-600 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+              <div class="flex space-x-2">
+                <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+                <div class="w-3 h-3 bg-terminal-500 rounded-full"></div>
+              </div>
+              <span class="text-light-700 dark:text-dark-300 text-sm font-mono">chat_session.ai</span>
+            </div>
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
+              <span class="text-terminal-400 text-xs font-mono">ONLINE</span>
+            </div>
+          </div>
+
+          <!-- Chat Messages Area -->
+          <div id="chat-container" class="h-96 overflow-y-auto p-6 space-y-4 bg-light-50/30 dark:bg-dark-900/30">
+            <!-- Initial System Message -->
+            <div class="flex items-start space-x-3">
+              <div class="w-8 h-8 bg-terminal-600 rounded-lg flex items-center justify-center">
+                <span class="text-white text-sm font-mono">AI</span>
+              </div>
+              <div class="flex-1">
+                <div class="bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600">
+                  <p class="text-light-800 dark:text-dark-200 font-mono text-sm leading-relaxed">
+                    <span class="text-terminal-400">➜</span> AI Assistant initialized successfully<br>
+                    <span class="text-light-600 dark:text-dark-400">// Ready to answer questions about Jérémy's experience, projects, and expertise</span>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Suggestion Pills -->
+          <div class="px-4 md:px-6 py-3 border-t border-light-300 dark:border-dark-600 bg-light-150/60 dark:bg-dark-750/60">
+            <div class="flex flex-wrap gap-2">
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-primary-100 dark:hover:bg-primary-900 border border-light-300 dark:border-dark-600 hover:border-primary-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-text="What's your ML experience?">
+                💡 ML experience
+              </button>
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-code-100 dark:hover:bg-code-900 border border-light-300 dark:border-dark-600 hover:border-code-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-code-600 dark:hover:text-code-400 transition-colors" data-text="What programming languages do you work with?">
+                💻 Programming
+              </button>
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-terminal-100 dark:hover:bg-terminal-900 border border-light-300 dark:border-dark-600 hover:border-terminal-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-terminal-600 dark:hover:text-terminal-400 transition-colors" data-text="Tell me about your projects">
+                🚀 Projects
+              </button>
+            </div>
+          </div>
+
+          <!-- Input Area -->
+          <div class="bg-light-200/80 dark:bg-dark-800/80 px-4 md:px-6 py-4">
+            <div class="flex items-center space-x-2 md:space-x-3">
+              <span class="text-terminal-400 font-mono text-sm hidden sm:inline">you@chat:~$</span>
+              <input
+                type="text"
+                id="chat-input"
+                placeholder="Ask me anything about Jérémy's work..."
+                class="flex-1 min-w-0 bg-transparent text-light-900 dark:text-dark-200 placeholder-light-500 dark:placeholder-dark-500 border-none outline-none font-mono text-sm"
+              >
+              <button
+                id="send-button"
+                class="bg-primary-600 hover:bg-primary-500 text-white px-3 md:px-4 py-2 rounded-lg font-mono text-sm transition-colors flex-shrink-0 min-w-0"
+              >
+                <span class="hidden sm:inline">send()</span>
+                <span class="sm:hidden">→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Options -->
+        <div class="mt-8 max-w-2xl mx-auto">
+          <h3 class="text-lg font-semibold text-light-800 dark:text-dark-200 mb-4 font-mono text-center">
+            <span class="text-primary-400">❯</span> Get in Touch
+          </h3>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <a 
+              href="mailto:jeremy.fraoua@gmail.com"
+              class="block w-full text-center bg-light-100 dark:bg-dark-800 hover:bg-light-200 dark:hover:bg-dark-700 border border-light-300 dark:border-dark-600 hover:border-primary-500 rounded-lg p-4 transition-all"
+            >
+              <div class="flex flex-col items-center space-y-2">
+                <span class="text-primary-400">📧</span>
+                <span class="text-primary-400 font-mono text-sm">send_email()</span>
+              </div>
+            </a>
+
+            <a 
+              href="https://www.linkedin.com/in/jérémy-fraoua/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block w-full text-center bg-light-100 dark:bg-dark-800 hover:bg-light-200 dark:hover:bg-dark-700 border border-light-300 dark:border-dark-600 hover:border-code-500 rounded-lg p-4 transition-all"
+            >
+              <div class="flex flex-col items-center space-y-2">
+                <span class="text-code-400">💼</span>
+                <span class="text-code-400 font-mono text-sm">connect_linkedin()</span>
+              </div>
+            </a>
+
+            <a 
+              href="/resume"
+              class="block w-full text-center bg-light-100 dark:bg-dark-800 hover:bg-light-200 dark:hover:bg-dark-700 border border-light-300 dark:border-dark-600 hover:border-terminal-500 rounded-lg p-4 transition-all"
+            >
+              <div class="flex flex-col items-center space-y-2">
+                <span class="text-terminal-400">📄</span>
+                <span class="text-terminal-400 font-mono text-sm">view_resume()</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Streaming response simulation
+    function typeWriter(element, text, speed = 30) {
+      return new Promise((resolve) => {
+        let i = 0;
+        element.innerHTML = '';
+        const timer = setInterval(() => {
+          if (i < text.length) {
+            element.innerHTML += text.charAt(i);
+            i++;
+          } else {
+            clearInterval(timer);
+            resolve();
+          }
+        }, speed);
+      });
+    }
+
+    function addMessage(isUser, content, shouldStream = false) {
+      const chatContainer = document.getElementById('chat-container');
+      const messageDiv = document.createElement('div');
+      messageDiv.className = 'flex items-start space-x-3';
+
+      const avatar = document.createElement('div');
+      avatar.className = `w-8 h-8 rounded-lg flex items-center justify-center ${
+        isUser ? 'bg-primary-600' : 'bg-terminal-600'
+      }`;
+      avatar.innerHTML = `<span class="text-white text-sm font-mono">${isUser ? 'YOU' : 'AI'}</span>`;
+
+      const messageContent = document.createElement('div');
+      messageContent.className = 'flex-1';
+
+      const messageBubble = document.createElement('div');
+      messageBubble.className = `bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600`;
+
+      const messageText = document.createElement('p');
+      messageText.className = 'text-light-800 dark:text-dark-200 font-mono text-sm leading-relaxed';
+
+      if (shouldStream) {
+        messageText.innerHTML = '<span class="text-terminal-400">➜</span> <span class="animate-pulse">Thinking...</span>';
+        messageBubble.appendChild(messageText);
+        messageContent.appendChild(messageBubble);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(messageContent);
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+
+        // Simulate loading time
+        setTimeout(async () => {
+          messageText.innerHTML = '<span class="text-terminal-400">➜</span> ';
+          const contentSpan = document.createElement('span');
+          messageText.appendChild(contentSpan);
+          await typeWriter(contentSpan, content);
+        }, 1000);
+      } else {
+        messageText.innerHTML = content;
+        messageBubble.appendChild(messageText);
+        messageContent.appendChild(messageBubble);
+        messageDiv.appendChild(avatar);
+        messageDiv.appendChild(messageContent);
+        chatContainer.appendChild(messageDiv);
+        chatContainer.scrollTop = chatContainer.scrollHeight;
+      }
+    }
+
+    // Define responses for questions
+    const responses = {
+      "What's your ML experience?": "I have 4+ years of experience in ML, working with PyTorch, XGBoost, and scikit-learn. At Qonto, I develop and optimize ML models for fraud detection and credit risk assessment, handling millions of transactions daily.",
+      "What programming languages do you work with?": "My primary languages are Python and SQL for data science work, with additional experience in R for statistical analysis and JavaScript for web development. I'm particularly strong with PyTorch, pandas, and scikit-learn for ML workflows.",
+      "Tell me about your projects": "I've built several exciting projects: VibeTrip (AI travel planning platform), HaxballGym (reinforcement learning environment), and various data dashboards. Each project combines machine learning with practical applications to solve real-world problems."
+    };
+
+    // Handle suggestion pills and input
+    document.addEventListener('DOMContentLoaded', () => {
+      const chatInput = document.getElementById('chat-input');
+      const sendButton = document.getElementById('send-button');
+      const suggestionPills = document.querySelectorAll('.suggestion-pill');
+      
+      // Suggestion pill handlers
+      suggestionPills.forEach(pill => {
+        pill.addEventListener('click', () => {
+          const text = pill.dataset.text;
+          chatInput.value = text;
+          chatInput.focus();
+        });
+      });
+
+      // Send button handler
+      function handleSend() {
+        const message = chatInput.value.trim();
+        if (message) {
+          // Add user message
+          addMessage(true, message);
+          
+          // Get response
+          const response = responses[message] || "I'm currently a demo AI assistant. For real conversations, please reach out via email or LinkedIn!";
+          
+          // Clear input
+          chatInput.value = '';
+          
+          // Add AI response with streaming
+          setTimeout(() => {
+            addMessage(false, response, true);
+          }, 500);
+        }
+      }
+
+      // Send button click
+      sendButton.addEventListener('click', handleSend);
+      
+      // Enter key handler
+      chatInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          handleSend();
+        }
+      });
+    });
+  </script>
+</Layout>

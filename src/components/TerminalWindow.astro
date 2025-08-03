@@ -1,0 +1,85 @@
+---
+interface Props {
+	title?: string;
+	className?: string;
+	contentClassName?: string;
+	showHeader?: boolean;
+	headerColor?: "default" | "primary" | "terminal" | "code";
+}
+
+const {
+	title = "terminal",
+	className = "",
+	contentClassName = "",
+	showHeader = true,
+	headerColor = "default",
+} = Astro.props;
+
+const headerColors = {
+	default: "bg-light-300 dark:bg-dark-700 border-light-400 dark:border-dark-600",
+	primary: "bg-primary-600 border-primary-500",
+	terminal: "bg-terminal-600 border-terminal-500",
+	code: "bg-code-600 border-code-500",
+};
+---
+
+<div class={`bg-light-200 dark:bg-dark-800 border border-light-300 dark:border-dark-600 rounded-lg shadow-xl overflow-hidden ${className}`}>
+  {showHeader && (
+    <div class={`px-4 py-3 border-b ${headerColors[headerColor]} flex items-center justify-between`}>
+      <div class="flex items-center space-x-2">
+        <div class="flex space-x-2">
+          <div class="w-3 h-3 bg-red-500 rounded-full"></div>
+          <div class="w-3 h-3 bg-yellow-500 rounded-full"></div>
+          <div class="w-3 h-3 bg-terminal-500 rounded-full"></div>
+        </div>
+        <span class="text-light-800 dark:text-dark-300 text-sm font-mono ml-4">{title}</span>
+      </div>
+      <div class="text-light-600 dark:text-dark-400 text-xs font-mono">
+        <span class="opacity-60">✓</span>
+      </div>
+    </div>
+  )}
+  <div class={`p-6 font-mono text-light-900 dark:text-dark-100 ${contentClassName}`}>
+    <slot />
+  </div>
+</div>
+
+<style>
+  /* Terminal-specific styles */
+  .terminal-cursor::after {
+    content: '▌';
+    animation: blink 1s infinite step-end;
+    color: #22c55e;
+  }
+  
+  /* Light mode terminal colors */
+  .terminal-prompt {
+    color: #15803d;
+  }
+  
+  .terminal-path {
+    color: #1e40af;
+  }
+  
+  .terminal-command {
+    color: #d35400;
+  }
+  
+  /* Dark mode terminal colors */
+  .dark .terminal-prompt {
+    color: #22c55e;
+  }
+  
+  .dark .terminal-path {
+    color: #3b82f6;
+  }
+  
+  .dark .terminal-command {
+    color: #f97316;
+  }
+  
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+</style>

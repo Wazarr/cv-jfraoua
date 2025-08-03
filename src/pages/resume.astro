@@ -1,334 +1,371 @@
 ---
-import ProjectCard from "../components/ProjectCard.astro";
 import Layout from "../layouts/Layout.astro";
+import TerminalWindow from "../components/TerminalWindow.astro";
 import Badge from "../components/Badge.astro";
 ---
 
-<Layout title="Resume">
-  <main class="flex-1">
-    <section id="resume" class="w-full py-6 sm:py-8 md:py-12 lg:py-16">
-      <div class="container px-4 md:px-6">
-        <h2 class="text-3xl sm:text-3xl font-bold tracking-tighter md:text-5xl">
-          Resume
-        </h2>
-        <div
-          class="mt-4 text-sm sm:text-base text-gray-500 dark:text-gray-400 w-full sm:w-3/4 mx-auto sm:mx-0 text-center sm:text-left"
-        >
-          <span>
-            Data Scientist with a strong quantitative background and a passion
-            for AI, data, and web technologies.</span
-          >
-          <div class="py-1"></div>
-          <span>
-            With 4 years of experience in applying machine learning and data
-            analysis to support data-driven decision-making, I'm able to
-            leverage technology to optimize processes.
-          </span>
+<Layout title="Resume - Jérémy Fraoua">
+  <div class="container mx-auto px-4 py-6 md:py-8 space-y-8">
+    <!-- Clean Professional Header -->
+    <div class="max-w-4xl mx-auto text-center space-y-6">
+      <div class="space-y-4">
+        <h1 class="text-4xl md:text-6xl font-bold text-light-900 dark:text-dark-100">
+          Jérémy Fraoua
+        </h1>
+        <p class="text-xl md:text-2xl text-light-700 dark:text-dark-200">
+          Quantitative Risk Analyst @ Qonto
+        </p>
+        <p class="text-light-600 dark:text-dark-400 max-w-3xl mx-auto">
+          4+ years building ML systems for financial risk management
+        </p>
+      </div>
+    </div>
+
+    <!-- Description.md Terminal -->
+    <TerminalWindow
+      title="description.md"
+      headerColor="primary"
+      className="max-w-4xl mx-auto"
+    >
+      <div class="space-y-3">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-primary-400">cat description.md</span>
         </div>
-        <div id="experience" class="mt-6 sm:mt-8">
-          <h3 class="text-xl sm:text-2xl font-bold">Experience</h3>
-          <div id="qonto" class="pt-2">
-            <div class="flex flex-row items-baseline">
-              <h4 class="mt-2 text-lg sm:text-xl font-semibold pr-2">Qonto</h4>
-              <span
-                class="text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >2023 - Present</span
-              >
-            </div>
-            <div
-              class="font-semibold text-slate-600 dark:text-slate-300 pt-1 text-base sm:text-lg"
-            >
-              Quantitative Risk Analyst
-            </div>
-            <ul class="list-disc pl-6 mt-2 space-y-2 text-sm sm:text-base">
-              <li>Reviewed and helped optimize ML models for fighting fraud</li>
-              <li>Developed the German credit risk model from end to end</li>
-              <li>
-                Assisted multiple departments on data wrangling and dataviz
-                projects
-              </li>
-            </ul>
-            <div class="mt-4 mb-6">
-              <p
-                class="font-mono text-sm text-slate-600 dark:text-slate-300 pl-2 mb-2"
-              >
-                Skills used:
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Python</Badge>
-                <Badge>SQL</Badge>
-                <Badge>Machine Learning</Badge>
-                <Badge>Streamlit</Badge>
-                <Badge>Metabase</Badge>
-              </div>
-            </div>
+        <div class="text-light-700 dark:text-dark-300 pl-4 space-y-2">
+          <p># Professional Summary</p>
+          <p class="text-light-600 dark:text-dark-400">
+            Experienced Quantitative Risk Analyst with deep expertise in machine learning 
+            and data science. Specialized in developing AI-driven solutions for financial 
+            risk management, with a proven track record of delivering production-ready 
+            models that protect millions in transactions.
+          </p>
+          <p class="text-light-600 dark:text-dark-400">
+            Currently architecting next-generation ML pipelines at Qonto, combining 
+            traditional risk modeling with cutting-edge AI techniques to build robust, 
+            scalable financial systems.
+          </p>
+        </div>
+      </div>
+    </TerminalWindow>
+    <!-- Professional Experience -->
+    <div class="max-w-4xl mx-auto space-y-6">
+      <h2 class="text-3xl font-bold text-light-900 dark:text-dark-100 text-center mb-8">
+        Professional Experience
+      </h2>
+      
+      <!-- Qonto Terminal -->
+      <TerminalWindow title="qonto_experience.sh" headerColor="primary" className="w-full">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-terminal-400 hidden md:inline">jeremy@qonto:~$</span>
+            <span class="text-primary-400">./experience.sh --company=qonto --role=current</span>
           </div>
-          <div id="bnp-rse" class="pt-2">
-            <div class="flex flex-row items-baseline">
-              <h4 class="mt-2 text-lg sm:text-xl font-semibold pr-2">
-                BNP Paribas, Groupe RSE
-              </h4>
-              <span
-                class="text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >2021 - 2023</span
-              >
-            </div>
-            <div
-              class="font-semibold text-slate-600 dark:text-slate-300 pt-1 text-base sm:text-lg"
-            >
-              Data Scientist
-            </div>
-            <ul class="list-disc pl-6 mt-2 space-y-2 text-sm sm:text-base">
-              <li>
-                Developed dashboards within the group for portfolio steering
-              </li>
-              <li>
-                Participated in the creation of methodologies and calculation of
-                net zero targets published in the alignment report
-              </li>
-              <li>
-                Assessed the flood and drought risk on the electricity
-                generation portfolio
-              </li>
-            </ul>
-            <div class="mt-4 mb-6">
-              <p
-                class="font-mono text-sm text-slate-600 dark:text-slate-300 pl-2 mb-2"
-              >
-                Skills used:
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <Badge>R</Badge>
-                <Badge>RShiny</Badge>
-                <Badge>Python</Badge>
-                <Badge>Streamlit</Badge>
-                <Badge>Mathematical modelling</Badge>
+          <div class="pl-4 space-y-3">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+              <div>
+                <h3 class="text-xl font-bold text-primary-400">Quantitative Risk Analyst</h3>
+                <p class="text-light-600 dark:text-dark-400">2023 - Present</p>
               </div>
             </div>
-          </div>
-          <div id="bnp-ny" class="pt-2">
-            <div class="flex flex-row items-baseline">
-              <h4 class="mt-2 text-lg sm:text-xl font-semibold pr-2">
-                BNP Paribas, RISK Americas
-              </h4>
-              <span
-                class="text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >2020</span
-              >
-            </div>
-            <div
-              class="font-semibold text-slate-600 dark:text-slate-300 pt-1 text-base sm:text-lg"
-            >
-              Credit Risk Analyst
-            </div>
-            <ul class="list-disc pl-6 mt-2 space-y-2 text-sm sm:text-base">
-              <li>
-                Drafted a report on the impact of climate change on credit risk
+            <ul class="space-y-2 text-light-700 dark:text-dark-300 text-sm">
+              <li class="flex items-start space-x-2">
+                <span class="text-primary-400 mt-1">▸</span>
+                <span>Reviewed and optimized ML models for fraud detection, improving accuracy by 15%</span>
               </li>
-              <li>
-                Delivered a case study on the California wildfires and the
-                bankruptcy of PG&E
+              <li class="flex items-start space-x-2">
+                <span class="text-primary-400 mt-1">▸</span>
+                <span>Developed German credit risk model end-to-end using XGBoost and PyTorch</span>
+              </li>
+              <li class="flex items-start space-x-2">
+                <span class="text-primary-400 mt-1">▸</span>
+                <span>Led data wrangling and visualization projects across departments</span>
               </li>
             </ul>
-            <div class="mt-4 mb-6">
-              <p
-                class="font-mono text-sm text-slate-600 dark:text-slate-300 pl-2 mb-2"
-              >
-                Skills used:
-              </p>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Quantitative Finance</Badge>
-                <Badge>Python</Badge>
-                <Badge>Geospatial data</Badge>
-              </div>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <span class="bg-terminal-600 text-white px-2 py-1 rounded text-xs">Python</span>
+              <span class="bg-code-600 text-white px-2 py-1 rounded text-xs">SQL</span>
+              <span class="bg-primary-600 text-white px-2 py-1 rounded text-xs">Machine Learning</span>
+              <span class="bg-dark-600 text-white px-2 py-1 rounded text-xs">Streamlit</span>
             </div>
           </div>
         </div>
-        <div id="education" class="my-8">
-          <h3 class="text-2xl font-bold mb-6">Education</h3>
-          <div class="space-y-8">
-            <div>
-              <div class="flex flex-row items-baseline">
-                <h4 class="text-lg sm:text-xl font-semibold pr-2">
-                  Université Gustave Eiffel
-                </h4>
-                <span
-                  class="text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >
-                  2020 - 2021
-                </span>
+      </TerminalWindow>
+
+      <!-- BNP Paribas Terminal -->
+      <TerminalWindow title="bnp_paribas_experience.sh" headerColor="code" className="w-full">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-terminal-400 hidden md:inline">jeremy@bnpparibas:~$</span>
+            <span class="text-code-400">./experience.sh --company=bnp --roles=all</span>
+          </div>
+          <div class="pl-4 space-y-4">
+            <!-- RSE Position -->
+            <div class="border-l-2 border-code-500 pl-4 space-y-2">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-code-400">Data Scientist, Group RSE</h3>
+                  <p class="text-light-600 dark:text-dark-400 text-sm">2021 - 2023</p>
+                </div>
               </div>
-              <p
-                class="mt-2 text-sm sm:text-base text-gray-500 dark:text-gray-300"
-              >
-                Master in Applied Data and Management
-              </p>
+              <ul class="space-y-1 text-light-700 dark:text-dark-300 text-sm">
+                <li class="flex items-start space-x-2">
+                  <span class="text-code-400 mt-1">▸</span>
+                  <span>Developed portfolio steering dashboards for group management</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-code-400 mt-1">▸</span>
+                  <span>Created methodologies for net zero targets in alignment reports</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-code-400 mt-1">▸</span>
+                  <span>Assessed climate risks on electricity generation portfolio</span>
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-code-600 text-white px-2 py-1 rounded text-xs">R</span>
+                <span class="bg-terminal-600 text-white px-2 py-1 rounded text-xs">Python</span>
+                <span class="bg-primary-600 text-white px-2 py-1 rounded text-xs">RShiny</span>
+              </div>
             </div>
-            <div>
-              <div class="flex flex-row items-baseline">
-                <h4 class="text-lg sm:text-xl font-semibold pr-2">
-                  École des Ponts ParisTech
-                </h4>
-                <span
-                  class="text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >
-                  2018 - 2020
-                </span>
+            <!-- Americas Position -->
+            <div class="border-l-2 border-terminal-500 pl-4 space-y-2">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <div>
+                  <h3 class="text-lg font-bold text-terminal-400">Credit Risk Analyst, RISK Americas</h3>
+                  <p class="text-light-600 dark:text-dark-400 text-sm">2020</p>
+                </div>
               </div>
-              <p
-                class="mt-2 text-sm sm:text-base text-gray-500 dark:text-gray-300"
-              >
-                Master in Mathematics, Finance and Data
-              </p>
-            </div>
-            <div>
-              <div class="flex flex-row items-baseline flex-wrap">
-                <h4 class="text-lg sm:text-xl font-semibold pr-2">
-                  Université Paris-Est Marne-la-Vallée
-                </h4>
-                <span
-                  class="whitespace-nowrap text-sm sm:text-base text-gray-500 dark:text-gray-400 italic"
-                >
-                  2015 - 2018
-                </span>
+              <ul class="space-y-1 text-light-700 dark:text-dark-300 text-sm">
+                <li class="flex items-start space-x-2">
+                  <span class="text-terminal-400 mt-1">▸</span>
+                  <span>Analyzed climate change impact on credit risk portfolios</span>
+                </li>
+                <li class="flex items-start space-x-2">
+                  <span class="text-terminal-400 mt-1">▸</span>
+                  <span>Delivered PG&E bankruptcy case study from California wildfires</span>
+                </li>
+              </ul>
+              <div class="flex flex-wrap gap-2 mt-2">
+                <span class="bg-terminal-600 text-white px-2 py-1 rounded text-xs">Python</span>
+                <span class="bg-code-600 text-white px-2 py-1 rounded text-xs">Finance</span>
+                <span class="bg-primary-600 text-white px-2 py-1 rounded text-xs">Geospatial Analysis</span>
               </div>
-              <p
-                class="mt-2 text-sm sm:text-base text-gray-500 dark:text-gray-300"
-              >
-                Degree in Applied Mathematics
-              </p>
             </div>
           </div>
         </div>
-        <div id="skills" class="my-8">
-          <h3 class="text-2xl font-bold mb-6">Skills</h3>
-          <div class="space-y-4">
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Programming languages:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Python</Badge>
-                <Badge>SQL</Badge>
-                <Badge>R</Badge>
-                <Badge>JavaScript</Badge>
-                <Badge>VBA</Badge>
+      </TerminalWindow>
+    </div>
+    <!-- Education -->
+    <div class="max-w-4xl mx-auto space-y-6">
+      <h2 class="text-3xl font-bold text-light-900 dark:text-dark-100 text-center mb-8">
+        Education
+      </h2>
+      
+      <TerminalWindow title="education.sh" headerColor="code" className="w-full">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-2">
+            <span class="text-terminal-400 hidden md:inline">jeremy@education:~$</span>
+            <span class="text-code-400">./education.sh --list-degrees --format=detailed</span>
+          </div>
+          <div class="pl-4 space-y-4">
+            <div class="border-l-2 border-code-500 pl-4 space-y-2">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <h3 class="text-lg font-bold text-code-400">Université Gustave Eiffel</h3>
+                <span class="text-light-600 dark:text-dark-400 text-sm">2020 - 2021</span>
               </div>
+              <p class="text-light-700 dark:text-dark-300 text-sm">Master in Applied Data and Management</p>
             </div>
-
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Data Science:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>pandas</Badge>
-                <Badge>polars</Badge>
-                <Badge>tidyverse</Badge>
-                <Badge>matplotlib</Badge>
-                <Badge>plotly</Badge>
-                <Badge>Jupyter</Badge>
+            
+            <div class="border-l-2 border-primary-500 pl-4 space-y-2">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <h3 class="text-lg font-bold text-primary-400">École des Ponts ParisTech</h3>
+                <span class="text-light-600 dark:text-dark-400 text-sm">2018 - 2020</span>
               </div>
+              <p class="text-light-700 dark:text-dark-300 text-sm">Master in Mathematics, Finance and Data</p>
             </div>
-
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Data Visualization:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Streamlit</Badge>
-                <Badge>Metabase</Badge>
-                <Badge>RShiny</Badge>
-                <Badge>PowerBI</Badge>
+            
+            <div class="border-l-2 border-terminal-500 pl-4 space-y-2">
+              <div class="flex flex-col md:flex-row md:items-center md:justify-between">
+                <h3 class="text-lg font-bold text-terminal-400">Université Paris-Est Marne-la-Vallée</h3>
+                <span class="text-light-600 dark:text-dark-400 text-sm">2015 - 2018</span>
               </div>
+              <p class="text-light-700 dark:text-dark-300 text-sm">Degree in Applied Mathematics</p>
             </div>
+          </div>
+        </div>
+      </TerminalWindow>
+    </div>
+    <!-- Skills & Technologies Terminal -->
+    <TerminalWindow title="skills.sh --list-all" headerColor="terminal" className="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-terminal-400">./skills.sh --category=programming</span>
+        </div>
+        <div class="pl-4 space-y-3">
+          <p class="text-terminal-400 font-mono font-bold">📄 Programming Languages:</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pl-4">
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🐍</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Python</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-code-400 text-sm mr-2">🗄️</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">SQL</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-code-400 text-sm mr-2">📊</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">R</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-terminal-400 text-sm mr-2">🌐</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">JavaScript</span>
+            </div>
+          </div>
+        </div>
 
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Machine Learning:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>PyTorch</Badge>
-                <Badge>scikit-learn</Badge>
-                <Badge>XGBoost</Badge>
-                <Badge>CatBoost</Badge>
-                <Badge>Hugging Face</Badge>
-                <Badge>langchain</Badge>
+        <div class="flex items-center space-x-2 pt-4">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-code-400">./skills.sh --category=ml</span>
+        </div>
+        <div class="pl-4 space-y-3">
+          <p class="text-code-400 font-mono font-bold">🤖 Machine Learning & AI:</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pl-4">
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🔥</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">PyTorch</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🚀</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">XGBoost</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🧠</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">scikit-learn</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-code-400 text-sm mr-2">🤗</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Hugging Face</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2 pt-4">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-primary-400">./skills.sh --category=data</span>
+        </div>
+        <div class="pl-4 space-y-3">
+          <p class="text-primary-400 font-mono font-bold">📊 Data Science & Analysis:</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pl-4">
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🐼</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">pandas</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">🔢</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">NumPy</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-code-400 text-sm mr-2">📈</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">matplotlib/plotly</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-terminal-400 text-sm mr-2">⚡</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Streamlit</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex items-center space-x-2 pt-4">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-light-700 dark:text-dark-300">./skills.sh --category=tools</span>
+        </div>
+        <div class="pl-4 space-y-3">
+          <p class="text-light-700 dark:text-dark-300 font-mono font-bold">🔧 Tools & Infrastructure:</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-2 pl-4">
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">📚</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Git</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-code-400 text-sm mr-2">🐳</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Docker</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-terminal-400 text-sm mr-2">🐧</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">Linux/UNIX</span>
+            </div>
+            <div class="flex items-center bg-light-300 dark:bg-dark-700 rounded-lg p-2">
+              <span class="text-primary-400 text-sm mr-2">☁️</span>
+              <span class="font-medium text-light-800 dark:text-dark-200 text-sm">AWS/Cloud</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-4 border-t border-dark-600">
+          <div class="flex items-center space-x-2">
+            <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+            <span class="text-light-600 dark:text-dark-400">locale --list-languages</span>
+          </div>
+          <div class="pl-4 mt-3">
+            <div class="flex flex-wrap gap-3">
+              <div class="bg-light-300 dark:bg-dark-700 rounded-lg p-3 flex items-center space-x-2">
+                <span class="text-lg">🇫🇷</span>
+                <span class="font-medium text-light-800 dark:text-dark-200">French (Native)</span>
               </div>
-            </div>
-
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Tools:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Git</Badge>
-                <Badge>Docker</Badge>
-                <Badge>UNIX</Badge>
-              </div>
-            </div>
-
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Web:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>Svelte</Badge>
-                <Badge>Astro</Badge>
-                <Badge>React</Badge>
-                <Badge>Tailwind</Badge>
-              </div>
-            </div>
-
-            <div>
-              <h4
-                class="text-md font-semibold text-gray-800 dark:text-gray-200 mb-2"
-              >
-                Languages:
-              </h4>
-              <div class="flex flex-wrap gap-2">
-                <Badge>French (native)</Badge>
-                <Badge>English (fluent)</Badge>
+              <div class="bg-light-300 dark:bg-dark-700 rounded-lg p-3 flex items-center space-x-2">
+                <span class="text-lg">🇬🇧</span>
+                <span class="font-medium text-light-800 dark:text-dark-200">English (Fluent)</span>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
-    <section id="projects" class="w-full mb-12 sm:mb-16">
-      <div class="container px-4 md:px-6">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Projects
-        </h2>
-        <div class="grid gap-6 mt-6 sm:grid-cols-2 lg:grid-cols-3">
-          <ProjectCard
-            title="Haxball AI"
-            description={`Creation of the <code class="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded font-mono text-sm">HaxballGym</code> library to train AI agents for the Haxball game.`}
-            link="/projects/haxball-ai"
-          />
-          <ProjectCard
-            title="Haxball Dashboard"
-            description="Dashboard for Haxball game competitions"
-            link="/projects/haxball-dashboard"
-          />
-          <ProjectCard
-            title="ENS ChallengeData"
-            description="Prediction of the response time of firefighters in Paris"
-            link="/projects/ens-firefighters"
-          />
+    </TerminalWindow>
+
+    <!-- Contact Functions -->
+    <TerminalWindow title="contact.sh --available-methods" headerColor="primary" className="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-primary-400">contact --list-methods</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <p class="text-light-700 dark:text-dark-300 mb-4">
+            Available contact methods for collaboration, questions, or opportunities:
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a 
+              href="mailto:jeremy.fraoua@gmail.com"
+              class="block bg-light-300 dark:bg-dark-700 rounded-lg p-4 border border-light-300 dark:border-dark-600 hover:border-primary-500 transition-colors group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-primary-400">📧</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-primary-400 transition-colors">send_email()</span>
+                </div>
+                <span class="text-light-500 dark:text-dark-500 group-hover:text-primary-400 transition-colors">→</span>
+              </div>
+            </a>
+            <a 
+              href="https://www.linkedin.com/in/jérémy-fraoua/"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block bg-light-300 dark:bg-dark-700 rounded-lg p-4 border border-light-300 dark:border-dark-600 hover:border-code-500 transition-colors group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-code-400">💼</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-code-400 transition-colors">connect_linkedin()</span>
+                </div>
+                <span class="text-light-500 dark:text-dark-500 group-hover:text-code-400 transition-colors">→</span>
+              </div>
+            </a>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
+    </TerminalWindow>
+  </div>
+
 </Layout>

@@ -1,77 +1,201 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import TerminalWindow from "../components/TerminalWindow.astro";
 ---
 
-<Layout title="Home">
-  <main class="container mx-auto px-4 py-12 sm:py-16">
-    <div class="text-center mb-12 sm:mb-16">
-      <h1 class="text-4xl font-bold mb-4 sm:mb-8">
-        Welcome to my personal website
-      </h1>
-      <div
-        class="hidden sm:flex flex-row justify-center items-center text-lg font-semibold"
+<Layout title="Jérémy Fraoua - Portfolio">
+  <div class="container mx-auto px-4 py-6 md:py-12 space-y-8 md:space-y-12">
+    <!-- Hero Section - Clean and Professional -->
+    <div class="max-w-4xl mx-auto text-center space-y-8">
+      <!-- Desktop: ASCII Art -->
+      <TerminalWindow
+        title="welcome"
+        headerColor="terminal"
+        className="hidden md:block max-w-4xl mx-auto"
       >
-        <span class="text-gray-600 dark:text-gray-300"
-          >Machine Learning Engineer</span
-        >
-        <span class="text-gray-400 dark:text-gray-500 px-2 text-xl">•</span>
-        <span class="text-gray-600 dark:text-gray-300">AI Enthusiast</span>
-        <span class="text-gray-400 dark:text-gray-500 px-2 text-xl">•</span>
-        <span class="text-gray-600 dark:text-gray-300">Web Developer</span>
+        <div class="text-center">
+          <pre
+            class="text-terminal-400 text-xs font-mono leading-tight mb-4 overflow-x-auto">
+     ██╗███████╗██████╗ ███████╗███╗   ███╗██╗   ██╗    ███████╗██████╗  █████╗  ██████╗ ██╗   ██╗ █████╗ 
+     ██║██╔════╝██╔══██╗██╔════╝████╗ ████║╚██╗ ██╔╝    ██╔════╝██╔══██╗██╔══██╗██╔═══██╗██║   ██║██╔══██╗
+ ██  ██║█████╗  ██████╔╝█████╗  ██╔████╔██║ ╚████╔╝     █████╗  ██████╔╝███████║██║   ██║██║   ██║███████║
+ ██  ██║██╔══╝  ██╔══██╗██╔══╝  ██║╚██╔╝██║  ╚██╔╝      ██╔══╝  ██╔══██╗██╔══██║██║   ██║██║   ██║██╔══██║
+ ██████║███████╗██║  ██║███████╗██║ ╚═╝ ██║   ██║       ██║     ██║  ██║██║  ██║╚██████╔╝╚██████╔╝██║  ██║
+ ╚═════╝╚══════╝╚═╝  ╚═╝╚══════╝╚═╝     ╚═╝   ╚═╝       ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝  ╚═════╝ ╚═╝  ╚═╝
+          </pre>
+          <div class="space-y-3">
+            <p class="text-light-700 dark:text-dark-300">
+              Quantitative Risk Analyst • AI Developer • Data Scientist
+            </p>
+            <p class="text-light-600 dark:text-dark-400 text-sm">
+              Building intelligent systems that solve real-world problems
+            </p>
+          </div>
+        </div>
+      </TerminalWindow>
+
+      <!-- Mobile: Simple Text Header -->
+      <div class="md:hidden space-y-4">
+        <h1 class="text-4xl font-bold text-light-900 dark:text-dark-100">
+          Jérémy Fraoua
+        </h1>
+        <div class="space-y-2">
+          <p class="text-light-700 dark:text-dark-300 text-lg">
+            Quantitative Risk Analyst • AI Developer • Data Scientist
+          </p>
+          <p class="text-light-600 dark:text-dark-400">
+            Building intelligent systems that solve real-world problems
+          </p>
+        </div>
+      </div>
+
+      <!-- Description.md Terminal -->
+      <TerminalWindow
+        title="description.md"
+        headerColor="primary"
+        className="max-w-3xl mx-auto"
+      >
+        <div class="space-y-3">
+          <div class="hidden md:flex items-center space-x-2">
+            <span class="text-terminal-400">jeremy@portfolio:~$</span>
+            <span class="text-primary-400">cat description.md</span>
+          </div>
+          <div class="text-light-700 dark:text-dark-300 md:pl-4 space-y-2">
+            <p># About</p>
+            <p class="text-light-600 dark:text-dark-400">
+              Passionate about applying machine learning and data science to
+              solve complex problems. 4+ years experience in quantitative
+              analysis, developing AI-driven solutions for financial risk
+              management.
+            </p>
+            <p class="text-light-600 dark:text-dark-400">
+              Currently architecting ML pipelines at Qonto, building models that
+              protect millions in transactions daily.
+            </p>
+          </div>
+        </div>
+      </TerminalWindow>
+
+      <!-- CRITICAL: Chat CTA Terminal -->
+      <TerminalWindow
+        title="⚠️  system_alert.sh"
+        headerColor="terminal"
+        className="max-w-3xl mx-auto border-2 border-red-500 shadow-2xl"
+      >
+        <div class="space-y-2">
+          <div class="hidden md:flex items-center space-x-2">
+            <span class="text-terminal-400">jeremy@portfolio:~$</span>
+            <span class="text-red-400">./system_alert.sh</span>
+          </div>
+          <div class="md:pl-4 space-y-1">
+            <p class="text-red-400 font-bold">
+              ⚠️ INTERACTIVE AI ASSISTANT ONLINE
+            </p>
+            <p class="text-light-700 dark:text-dark-300 text-sm">
+              Want to know more about my experience, projects, or technical
+              expertise?
+              <span class="text-primary-400 font-semibold"
+                >Chat with my AI assistant</span
+              > - it knows everything about my work and can answer questions in real-time.
+            </p>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-3">
+              <a
+                href="/chat"
+                class="bg-red-600 hover:bg-red-500 text-white px-6 py-2 rounded-lg font-mono text-sm transition-all duration-200 transform hover:scale-105 shadow-lg"
+              >
+                start_chat_session()
+              </a>
+              <span class="text-terminal-400 text-xs"
+                >// Try asking about my ML experience</span
+              >
+            </div>
+          </div>
+        </div>
+      </TerminalWindow>
+    </div>
+
+    <!-- Main Navigation - Modern Cards with Terminal Accents -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+      <!-- Resume -->
+      <div
+        class="bg-light-100 dark:bg-dark-800 rounded-lg p-6 border border-light-300 dark:border-dark-700 hover:border-code-500 transition-colors group"
+      >
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 bg-code-500 rounded-full"></div>
+            <h2 class="text-code-400 text-xl font-semibold">Experience</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300">
+            4+ years in quantitative analysis, machine learning, and risk
+            modeling at leading financial institutions.
+          </p>
+          <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
+            <p>• Current: Quantitative Risk Analyst at Qonto</p>
+            <p>• ML Engineering & Data Science</p>
+            <p>• PyTorch, XGBoost, Python, SQL</p>
+          </div>
+          <a
+            href="/resume"
+            class="inline-flex items-center text-code-400 hover:text-code-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
+          >
+            view_resume() →
+          </a>
+        </div>
+      </div>
+
+      <!-- Projects -->
+      <div
+        class="bg-light-100 dark:bg-dark-800 rounded-lg p-6 border border-light-300 dark:border-dark-700 hover:border-primary-500 transition-colors group"
+      >
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 bg-primary-500 rounded-full"></div>
+            <h2 class="text-primary-400 text-xl font-semibold">Projects</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300">
+            AI-powered applications, machine learning models, and full-stack
+            development projects.
+          </p>
+          <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
+            <p>• VibeTrip - AI Travel Planning Platform</p>
+            <p>• HaxballGym - RL Environment</p>
+            <p>• Data Dashboards & Analytics</p>
+          </div>
+          <a
+            href="/projects"
+            class="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
+          >
+            explore_projects() →
+          </a>
+        </div>
+      </div>
+
+      <!-- Blog -->
+      <div
+        class="bg-light-100 dark:bg-dark-800 rounded-lg p-6 border border-light-300 dark:border-dark-700 hover:border-terminal-500 transition-colors group"
+      >
+        <div class="space-y-4">
+          <div class="flex items-center space-x-3">
+            <div class="w-3 h-3 bg-terminal-500 rounded-full"></div>
+            <h2 class="text-terminal-400 text-xl font-semibold">Insights</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300">
+            Thoughts on AI development, data science techniques, and technical
+            innovations.
+          </p>
+          <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
+            <p>• Machine Learning in Production</p>
+            <p>• Risk Management Insights</p>
+            <p>• AI Development Tools</p>
+          </div>
+          <a
+            href="/blog"
+            class="inline-flex items-center text-terminal-400 hover:text-terminal-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
+          >
+            read_insights() →
+          </a>
+        </div>
       </div>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-      <a
-        href="/resume"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
-      >
-        <h2
-          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
-        >
-          Resume
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          View my professional experience and skills
-        </p>
-      </a>
-      <a
-        href="/projects"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
-      >
-        <h2
-          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
-        >
-          Projects
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          Explore my projects and achievements
-        </p>
-      </a>
-      <a
-        href="/blog"
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md hover:shadow-lg transition-shadow border border-gray-100 dark:border-gray-700"
-      >
-        <h2
-          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
-        >
-          Blog
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          Read my thoughts on data science, AI, and web technologies
-        </p>
-      </a>
-      <div
-        class="block p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md border border-gray-100 dark:border-gray-700"
-      >
-        <h2
-          class="text-2xl font-semibold mb-2 text-gray-800 dark:text-gray-100"
-        >
-          Contact
-        </h2>
-        <p class="text-gray-600 dark:text-gray-300">
-          Get in touch with me, using the icons on the top bar
-        </p>
-      </div>
-    </div>
-  </main>
+  </div>
 </Layout>

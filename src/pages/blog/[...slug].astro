@@ -1,7 +1,7 @@
 ---
 import { getEntry } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-import Badge from "../../components/Badge.astro";
+import TerminalWindow from "../../components/TerminalWindow.astro";
 import { tagCategories } from "../../content/config";
 
 const { slug } = Astro.params;
@@ -19,41 +19,233 @@ if (!entry) {
 const { Content } = await entry.render();
 ---
 
-<Layout title={entry.data.title}>
-  <article
-    class="max-w-4xl mx-auto bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden"
-  >
-    <div class="p-8">
-      <div class="text-center mb-8">
-        <h1 class="text-4xl font-bold mb-4 text-gray-900 dark:text-white">
-          {entry.data.title}
-        </h1>
-        <p class="text-gray-600 dark:text-gray-400 mb-4">
-          {entry.data.pubDate.toLocaleDateString()}
-        </p>
-        <div class="flex justify-center gap-2 mb-6">
-          {
-            entry.data.tags
-              ?.filter((tag) => tagCategories.includes(tag as any))
-              .map((tag) => <Badge>{tag}</Badge>)
-          }
+<Layout title={`${entry.data.title} - Jérémy Fraoua`}>
+  <div class="container mx-auto px-4 py-8 space-y-8">
+    <!-- Article Header -->
+    <TerminalWindow
+      title={`${slug}.md`}
+      headerColor="primary"
+      className="max-w-5xl mx-auto"
+    >
+      <div class="space-y-4">
+        <div
+          class="flex flex-col sm:flex-row sm:items-center sm:justify-between"
+        >
+          <h1 class="text-3xl font-mono font-bold text-primary-300">
+            {entry.data.title}
+          </h1>
+          <span class="text-terminal-400 font-mono text-sm">
+            {entry.data.pubDate.toLocaleDateString()}
+          </span>
         </div>
+
+        {
+          entry.data.description && (
+            <p class="text-light-700 dark:text-dark-300 text-sm leading-relaxed italic">
+              {entry.data.description}
+            </p>
+          )
+        }
+
+        {
+          entry.data.tags && entry.data.tags.length > 0 && (
+            <div class="flex flex-wrap gap-2">
+              <span class="text-light-600 dark:text-dark-400 font-mono text-xs">tags:</span>
+              {entry.data.tags
+                .filter((tag) => tagCategories.includes(tag as any))
+                .map((tag) => (
+                  <span class="bg-light-300 dark:bg-dark-600 text-light-800 dark:text-dark-200 px-2 py-1 rounded font-mono text-xs">
+                    {tag}
+                  </span>
+                ))}
+            </div>
+          )
+        }
       </div>
-      <div class="prose dark:prose-invert max-w-none">
+    </TerminalWindow>
+
+    <!-- Article Content -->
+    <TerminalWindow
+      title="content.txt"
+      headerColor="default"
+      className="max-w-5xl mx-auto"
+    >
+      <div class="prose max-w-none">
+        <style>
+          /* Light mode prose styles */
+          .prose {
+            color: #3c4043;
+          }
+          .prose h1,
+          .prose h2,
+          .prose h3,
+          .prose h4,
+          .prose h5,
+          .prose h6 {
+            color: #15803d;
+            font-family: "JetBrains Mono", monospace;
+          }
+          .prose p {
+            color: #3c4043;
+            line-height: 1.6;
+            font-size: 1rem;
+          }
+          .prose a {
+            color: #d35400;
+            text-decoration: none;
+          }
+          .prose a:hover {
+            color: #a04300;
+            text-decoration: underline;
+          }
+          .prose code {
+            color: #1e40af;
+            background-color: #f1f3f4;
+            padding: 0.125rem 0.25rem;
+            border-radius: 0.25rem;
+            font-family: "JetBrains Mono", monospace;
+            font-size: 0.9rem;
+            border: 1px solid #e8eaed;
+          }
+          .prose pre {
+            background-color: #f8f9fa;
+            border: 1px solid #e8eaed;
+            border-radius: 0.5rem;
+            padding: 0.875rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+          }
+          .prose pre code {
+            background-color: transparent;
+            padding: 0;
+            color: #15803d;
+            font-size: 0.9rem;
+            border: none;
+          }
+          .prose blockquote {
+            border-left: 4px solid #d35400;
+            background-color: #f8f9fa;
+            padding: 1rem;
+            margin: 1rem 0;
+            font-style: italic;
+            border: 1px solid #e8eaed;
+            border-left: 4px solid #d35400;
+          }
+          .prose ul,
+          .prose ol {
+            color: #3c4043;
+          }
+          .prose li {
+            margin: 0.5rem 0;
+          }
+          .prose li::marker {
+            color: #15803d;
+          }
+          .prose strong {
+            color: #d35400;
+            font-weight: 600;
+          }
+          .prose em {
+            color: #1e40af;
+          }
+
+          /* Dark mode prose styles */
+          .dark .prose {
+            color: #cbd5e1;
+          }
+          .dark .prose h1,
+          .dark .prose h2,
+          .dark .prose h3,
+          .dark .prose h4,
+          .dark .prose h5,
+          .dark .prose h6 {
+            color: #22c55e;
+          }
+          .dark .prose p {
+            color: #cbd5e1;
+          }
+          .dark .prose a {
+            color: #f97316;
+          }
+          .dark .prose a:hover {
+            color: #fb923c;
+          }
+          .dark .prose code {
+            color: #3b82f6;
+            background-color: #334155;
+            border: 1px solid #475569;
+          }
+          .dark .prose pre {
+            background-color: #0f172a;
+            border: 1px solid #334155;
+          }
+          .dark .prose pre code {
+            background-color: transparent;
+            color: #22c55e;
+            border: none;
+          }
+          .dark .prose blockquote {
+            border-left: 4px solid #f97316;
+            background-color: #1e293b;
+            border: 1px solid #334155;
+          }
+          .dark .prose ul,
+          .dark .prose ol {
+            color: #cbd5e1;
+          }
+          .dark .prose li::marker {
+            color: #22c55e;
+          }
+          .dark .prose strong {
+            color: #f97316;
+          }
+          .dark .prose em {
+            color: #3b82f6;
+          }
+        </style>
         <Content />
       </div>
-    </div>
-  </article>
-</Layout>
+    </TerminalWindow>
 
-<script>
-  // This script attempts to maintain the theme when navigating between pages
-  document.addEventListener("astro:after-swap", () => {
-    const theme = localStorage.getItem("theme");
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
-  });
-</script>
+    <!-- Navigation -->
+    <div class="max-w-5xl mx-auto">
+      <div class="flex justify-between items-center">
+        <a
+          href="/blog"
+          class="bg-terminal-600 hover:bg-terminal-500 text-white px-4 py-2 rounded font-mono text-sm transition-colors flex items-center space-x-2"
+        >
+          <span>←</span>
+          <span>back_to_blog()</span>
+        </a>
+
+        <button
+          id="share-post"
+          class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded font-mono text-sm transition-colors"
+        >
+          share_post()
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const shareButton = document.getElementById("share-post");
+      if (shareButton) {
+        shareButton.addEventListener("click", () => {
+          if (navigator.share) {
+            navigator.share({
+              title: document.title,
+              url: window.location.href,
+            });
+          } else {
+            // Fallback: copy to clipboard
+            navigator.clipboard.writeText(window.location.href).then(() => {
+              alert("Link copied to clipboard!");
+            });
+          }
+        });
+      }
+    });
+  </script>
+</Layout>

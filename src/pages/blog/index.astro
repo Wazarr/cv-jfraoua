@@ -1,70 +1,171 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
+import TerminalWindow from "../../components/TerminalWindow.astro";
 import type { CollectionEntry } from "astro:content";
-import Badge from "../../components/Badge.astro";
 import { tagCategories } from "../../content/config";
 
 const posts: CollectionEntry<"blog">[] = await getCollection("blog");
 posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout title="Blog">
-  <main class="flex-1">
-    <section id="blog" class="w-full py-8 md:py-12 lg:py-16">
-      <div class="container px-4 md:px-6">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Blog
-        </h2>
-        <p
-          class="mt-4 text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400 w-full sm:w-3/4 mx-auto sm:mx-0 text-center sm:text-left"
-        >
-          Explore my thoughts and insights on various topics related to data
-          science, AI, and web technologies.
-        </p>
-        <div id="posts" class="mt-8">
-          {
-            posts.length === 0 ? (
-              <div class="text-center py-12">
-                <p class="text-2xl text-gray-600 dark:text-gray-300 mb-4">
-                  No blog posts available at the moment.
-                </p>
-                <p class="text-xl text-gray-500 dark:text-gray-400">
-                  Check back soon for exciting content!
+<Layout title="Blog - Jérémy Fraoua">
+  <div class="container mx-auto px-4 py-6 md:py-8 space-y-8">
+    <!-- Terminal Header -->
+    <TerminalWindow title="blog/" headerColor="terminal" className="max-w-4xl mx-auto">
+      <div class="space-y-3">
+        <div class="hidden md:flex items-center space-x-2">
+          <span class="text-terminal-400">jeremy@portfolio:~$</span>
+          <span class="text-terminal-400">cd blog/</span>
+        </div>
+        <div class="text-light-700 dark:text-dark-300 md:pl-4 space-y-2">
+          <p class="text-terminal-400 font-mono"># Technical Blog & Insights</p>
+          <p class="text-light-600 dark:text-dark-400 text-xs md:text-sm">
+            Exploring data science, AI, risk analysis, and web technologies.
+            Sharing experiences from quantitative analysis, machine learning 
+            projects, and technical innovations.
+          </p>
+          <div class="hidden md:block mt-3 space-y-1 font-mono text-sm">
+            <p><span class="text-terminal-400">total</span> <span class="text-light-600 dark:text-dark-400">{posts.length} articles</span></p>
+            <p><span class="text-code-400">ai-ml/</span> <span class="text-light-500 dark:text-dark-500"># AI & Machine Learning</span></p>
+            <p><span class="text-primary-400">risk-analysis/</span> <span class="text-light-500 dark:text-dark-500"># Risk & Finance</span></p>
+            <p><span class="text-terminal-400">tech-insights/</span> <span class="text-light-500 dark:text-dark-500"># Development & Tools</span></p>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- Blog Posts or Empty State -->
+    {
+      posts.length === 0 ? (
+        <TerminalWindow title="no_posts_found.sh" headerColor="primary" className="max-w-4xl mx-auto">
+          <div class="space-y-4">
+            <div class="flex items-center space-x-2">
+              <span class="text-terminal-400">jeremy@portfolio:~/blog$</span>
+              <span class="text-primary-400">./find_posts.sh --status=coming-soon</span>
+            </div>
+            <div class="pl-4 space-y-4">
+              <div class="space-y-2">
+                <p class="text-primary-400 font-mono"># Status: Articles in Development</p>
+                <p class="text-light-700 dark:text-dark-300 text-sm">
+                  Currently focused on building amazing projects and solving
+                  real-world problems. Working on articles about AI development,
+                  machine learning in production, and technical insights.
                 </p>
               </div>
-            ) : (
-              posts.map((post) => (
-                <div class="mb-8 bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
-                  <a href={`/blog/${post.slug}/`} class="block p-6">
-                    <div class="flex flex-col items-baseline">
-                      <h3 class="text-2xl font-semibold pr-2 text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400">
-                        {post.data.title}
-                      </h3>
-                      <span class="text-gray-500 italic">
-                        {post.data.pubDate.toLocaleDateString()}
-                      </span>
+
+              <div class="border-l-2 border-primary-500 pl-4 space-y-3">
+                <h3 class="text-lg font-semibold text-primary-400 font-mono">
+                  ## Upcoming Topics
+                </h3>
+                <div class="grid md:grid-cols-2 gap-4 text-left">
+                  <div class="space-y-2">
+                    <h4 class="text-primary-400 font-medium font-mono">
+                      📄 AI & Machine Learning
+                    </h4>
+                    <ul class="text-light-600 dark:text-dark-400 text-sm space-y-1 font-mono">
+                      <li>- ML models in production at Qonto</li>
+                      <li>- Building VibeTrip with AI</li>
+                      <li>- Reinforcement learning experiments</li>
+                    </ul>
+                  </div>
+                  <div class="space-y-2">
+                    <h4 class="text-code-400 font-medium font-mono">
+                      🔧 Development & Tools
+                    </h4>
+                    <ul class="text-light-600 dark:text-dark-400 text-sm space-y-1 font-mono">
+                      <li>- Claude Code development workflow</li>
+                      <li>- Risk modeling techniques</li>
+                      <li>- Data science best practices</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div class="flex flex-col sm:flex-row gap-3 pt-2">
+                <a
+                  href="mailto:jeremy.fraoua@gmail.com"
+                  class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  notify_me()
+                </a>
+                <a
+                  href="/projects"
+                  class="bg-dark-600 hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view_projects()
+                </a>
+              </div>
+            </div>
+          </div>
+        </TerminalWindow>
+      ) : (
+        <div class="space-y-6 max-w-4xl mx-auto">
+          {posts.map((post, index) => (
+            <TerminalWindow title={`article_${index + 1}.md`} headerColor="code" className="w-full">
+              <div class="space-y-3">
+                <div class="hidden md:flex items-center space-x-2">
+                  <span class="text-terminal-400">jeremy@portfolio:~/blog$</span>
+                  <span class="text-code-400">cat {post.slug}.md</span>
+                </div>
+                <div class="md:pl-4 space-y-2 md:space-y-3">
+                  <a
+                    href={`/blog/${post.slug}/`}
+                    class="block space-y-3 hover:opacity-90 transition-opacity"
+                  >
+                    <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
+                      <h2 class="text-lg md:text-xl font-bold text-code-400 hover:text-primary-400 transition-colors font-mono">
+                        # {post.data.title}
+                      </h2>
+                      <time class="text-light-600 dark:text-dark-400 text-xs md:text-sm font-mono">
+                        {post.data.pubDate.toLocaleDateString("en-US", {
+                          year: "numeric",
+                          month: "long",
+                          day: "numeric",
+                        })}
+                      </time>
                     </div>
-                    <p class="mt-2 text-gray-700 dark:text-gray-300 leading-relaxed italic">
+
+                    <p class="text-light-700 dark:text-dark-300 leading-relaxed text-xs md:text-sm">
                       {post.data.description}
                     </p>
-                    <div class="flex flex-row flex-wrap gap-2 items-baseline mt-4">
-                      <p class="font-mono text-sm text-slate-600 pl-2">Tags:</p>
-                      <div class="flex flex-wrap gap-1">
+
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex flex-wrap gap-2">
                         {post.data.tags
-                          ?.filter((tag) => tagCategories.includes(tag as any))
+                          .filter((tag) => tagCategories.includes(tag as any))
                           .map((tag) => (
-                            <Badge>{tag}</Badge>
+                            <span class="bg-primary-600 text-white px-2 py-1 rounded text-xs font-mono">
+                              {tag}
+                            </span>
                           ))}
                       </div>
+                    )}
+
+                    <div class="flex items-center text-primary-400 font-mono text-sm">
+                      <span>read_article()</span>
+                      <svg
+                        class="w-3 h-3 ml-2"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                      >
+                        <path
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                          stroke-width="2"
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
                     </div>
                   </a>
                 </div>
-              ))
-            )
-          }
+              </div>
+            </TerminalWindow>
+          ))}
         </div>
-      </div>
-    </section>
-  </main>
+      )
+    }
+
+  </div>
 </Layout>

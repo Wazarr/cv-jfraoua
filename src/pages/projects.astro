@@ -1,40 +1,291 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import ProjectCard from "../components/ProjectCard.astro";
+import TerminalWindow from "../components/TerminalWindow.astro";
+import Badge from "../components/Badge.astro";
 ---
 
-<Layout title="Projects">
-  <main class="flex-1">
-    <section id="projects" class="w-full py-8 md:py-12 lg:py-16">
-      <div class="container px-4 md:px-6">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-          Projects
-        </h2>
-        <p
-          class="mt-4 text-gray-500 md:text-lg/relaxed lg:text-base/relaxed xl:text-lg/relaxed dark:text-gray-400 w-full sm:w-3/4 mx-auto sm:mx-0 text-center sm:text-left"
-        >
-          Explore my latest projects and achievements in data science, AI, and
-          web technologies.
-        </p>
-        <div class="grid gap-6 mt-8 md:grid-cols-2 lg:grid-cols-3">
-          <ProjectCard
-            title="Haxball AI"
-            description={`Creation of the <code class="bg-gray-100 dark:bg-gray-700 px-1.5 py-0.5 rounded font-mono text-sm">HaxballGym</code> library to train AI agents for the Haxball game.`}
-            link="/projects/haxball-ai"
-          />
-          <ProjectCard
-            title="Haxball Dashboard"
-            description="Dashboard for Haxball game competitions"
-            link="/projects/haxball-dashboard"
-          />
-          <ProjectCard
-            title="ENS ChallengeData"
-            description="Prediction of the response time of firefighters in Paris"
-            link="/projects/ens-firefighters"
-          />
-          <!-- Add more ProjectCard components for any additional projects -->
+<Layout title="Projects - Jérémy Fraoua">
+  <div class="container mx-auto px-4 py-8 space-y-8">
+    <!-- Terminal Header -->
+    <TerminalWindow title="my_projects" headerColor="primary" className="max-w-6xl mx-auto">
+      <div class="space-y-3">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-primary-400">portfolio --show-projects</span>
+        </div>
+        <div class="text-light-700 dark:text-dark-300 pl-4 space-y-1 font-mono text-sm">
+          <p class="text-primary-300"># Projects Portfolio</p>
+          <p class="text-light-600 dark:text-dark-400"># AI, machine learning, and web development projects</p>
+          <p class="text-light-600 dark:text-dark-400"># Showcasing practical applications of data science</p>
+          <div class="mt-3 space-y-1">
+            <p><span class="text-terminal-400">project:</span> <span class="text-code-400">vibetrip</span> <span class="text-light-500 dark:text-dark-500"># AI travel planning platform</span></p>
+            <p><span class="text-terminal-400">project:</span> <span class="text-primary-400">haxball-ai</span> <span class="text-light-500 dark:text-dark-500"># RL environment & training</span></p>
+            <p><span class="text-terminal-400">project:</span> <span class="text-terminal-400">dashboard</span> <span class="text-light-500 dark:text-dark-500"># Real-time analytics</span></p>
+            <p><span class="text-terminal-400">project:</span> <span class="text-light-700 dark:text-dark-300">ens-challenge</span> <span class="text-light-500 dark:text-dark-500"># ML prediction model</span></p>
+          </div>
         </div>
       </div>
-    </section>
-  </main>
+    </TerminalWindow>
+
+    <!-- Featured Project - VibeTrip -->
+    <TerminalWindow title="vibetrip/ --readme" headerColor="code" className="max-w-6xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
+          <span class="text-code-400">cat vibetrip/README.md</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-3xl font-bold text-primary-400"># VibeTrip</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
+            AI-powered travel planning platform that creates personalized itineraries 
+            using machine learning and real-time data integration. Built with modern 
+            web technologies and advanced AI models.
+          </p>
+          
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-primary-300 mb-3">## Features</h3>
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>AI-powered itinerary generation with personalized recommendations</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Real-time integration with travel APIs and booking systems</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Interactive map visualization with location details</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Social collaboration features for group planning</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
+                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <p><span class="text-code-400">Frontend:</span> React, TypeScript</p>
+                  <p><span class="text-terminal-400">Backend:</span> Python, OpenAI API</p>
+                  <p><span class="text-primary-400">Database:</span> PostgreSQL</p>
+                  <p><span class="text-light-700 dark:text-dark-300">APIs:</span> Travel & Booking Services</p>
+                </div>
+              </div>
+              <div class="flex space-x-4 pt-4">
+                <a 
+                  href="/projects/vibetrip"
+                  class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view_details()
+                </a>
+                <a 
+                  href="https://github.com/Wazarr94"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  open_github()
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- HaxballGym AI Project -->
+    <TerminalWindow title="haxball-ai/ --readme" headerColor="terminal" className="max-w-6xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
+          <span class="text-terminal-400">cat haxball-ai/README.md</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-3xl font-bold text-terminal-400"># HaxballGym</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
+            Reinforcement Learning environment for training AI agents in the Haxball game. 
+            Custom OpenAI Gym environment with reward engineering and agent training pipeline.
+          </p>
+          
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-terminal-300 mb-3">## Features</h3>
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Custom RL environment implementation</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Agent training and evaluation pipeline</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Real-time game integration</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Reward engineering for gameplay optimization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
+                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <p><span class="text-terminal-400">Language:</span> Python</p>
+                  <p><span class="text-code-400">ML Framework:</span> PyTorch</p>
+                  <p><span class="text-primary-400">Environment:</span> OpenAI Gym</p>
+                  <p><span class="text-light-600 dark:text-dark-400">Training:</span> Reinforcement Learning</p>
+                </div>
+              </div>
+              <div class="flex space-x-4 pt-4">
+                <a 
+                  href="/projects/haxball-ai"
+                  class="bg-terminal-600 hover:bg-terminal-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view_details()
+                </a>
+                <a 
+                  href="https://github.com/Wazarr94"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  open_github()
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- ENS Firefighters Project -->
+    <TerminalWindow title="ens-firefighters/ --readme" headerColor="code" className="max-w-6xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
+          <span class="text-code-400">cat ens-firefighters/README.md</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-3xl font-bold text-code-400"># ENS Firefighter Challenge</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
+            Machine learning model to predict firefighter response times in Paris. 
+            Comprehensive data preprocessing, feature engineering, and XGBoost modeling approach.
+          </p>
+          
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-code-300 mb-3">## Methodology</h3>
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <li class="flex items-start space-x-3">
+                    <span class="text-code-400 mt-1">-</span>
+                    <span>Time series analysis and temporal feature extraction</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-code-400 mt-1">-</span>
+                    <span>Geographic and demographic feature engineering</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-code-400 mt-1">-</span>
+                    <span>Advanced predictive modeling with XGBoost</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-code-400 mt-1">-</span>
+                    <span>Model validation and performance optimization</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-terminal-300 mb-4">## Tech Stack</h3>
+                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <p><span class="text-terminal-400">Language:</span> Python</p>
+                  <p><span class="text-primary-400">ML Model:</span> XGBoost</p>
+                  <p><span class="text-code-400">Data Processing:</span> Pandas</p>
+                  <p><span class="text-light-600 dark:text-dark-400">Validation:</span> Scikit-learn</p>
+                </div>
+              </div>
+              <div class="flex space-x-4 pt-4">
+                <a 
+                  href="/projects/ens-firefighters"
+                  class="bg-code-600 hover:bg-code-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view_analysis()
+                </a>
+                <a 
+                  href="https://github.com/Wazarr94"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  open_github()
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- Contact Functions -->
+    <TerminalWindow title="contact.sh --collaboration" headerColor="primary" className="max-w-4xl mx-auto">
+      <div class="space-y-4">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
+          <span class="text-primary-400">contact --list-methods</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <p class="text-light-700 dark:text-dark-300 mb-4">
+            Let's discuss potential projects, collaborations, or technical challenges in AI and data science.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <a 
+              href="mailto:jeremy.fraoua@gmail.com"
+              class="block bg-light-300 dark:bg-dark-700 rounded-lg p-4 border border-light-300 dark:border-dark-600 hover:border-primary-500 transition-colors group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-primary-400">📧</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-primary-400 transition-colors">send_email()</span>
+                </div>
+                <span class="text-light-500 dark:text-dark-500 group-hover:text-primary-400 transition-colors">→</span>
+              </div>
+            </a>
+            <a 
+              href="https://github.com/Wazarr94"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="block bg-light-300 dark:bg-dark-700 rounded-lg p-4 border border-light-300 dark:border-dark-600 hover:border-code-500 transition-colors group"
+            >
+              <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3">
+                  <span class="text-code-400">💻</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-code-400 transition-colors">view_github()</span>
+                </div>
+                <span class="text-light-500 dark:text-dark-500 group-hover:text-code-400 transition-colors">→</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+  </div>
+
 </Layout>

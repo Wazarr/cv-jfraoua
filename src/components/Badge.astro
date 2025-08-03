@@ -1,5 +1,20 @@
-<div
-  class="cursor-default inline-flex items-center justify-center rounded-full border px-2 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-zinc-800 text-slate-300 hover:bg-zinc-700"
+---
+interface Props {
+	variant?: "default" | "primary" | "terminal" | "code";
+}
+
+const { variant = "default" } = Astro.props;
+
+const variants = {
+	default: "bg-light-300 dark:bg-dark-600 text-light-800 dark:text-dark-200 hover:bg-light-400 dark:hover:bg-dark-500",
+	primary: "bg-primary-600 text-white hover:bg-primary-500",
+	terminal: "bg-terminal-600 text-white hover:bg-terminal-500",
+	code: "bg-code-600 text-white hover:bg-code-500",
+};
+---
+
+<span
+  class={`inline-flex items-center justify-center rounded px-2 py-1 text-xs font-mono font-medium transition-colors cursor-default ${variants[variant]}`}
 >
   <slot />
-</div>
+</span>
