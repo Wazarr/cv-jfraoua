@@ -95,6 +95,7 @@ const currentItem = navItems.find(item => item.href === currentPath);
     let isOpen = false;
     
     function toggleDropdown() {
+      if (!dropdown || !arrow) return;
       isOpen = !isOpen;
       
       if (isOpen) {
@@ -109,6 +110,7 @@ const currentItem = navItems.find(item => item.href === currentPath);
     }
     
     function closeDropdown() {
+      if (!dropdown || !arrow) return;
       if (isOpen) {
         isOpen = false;
         dropdown.classList.add('opacity-0', 'invisible', 'scale-95');
@@ -125,7 +127,8 @@ const currentItem = navItems.find(item => item.href === currentPath);
     
     // Close on outside click
     document.addEventListener('click', (e) => {
-      if (!button.contains(e.target) && !dropdown.contains(e.target)) {
+      const target = e.target as Node;
+      if (!button.contains(target) && !dropdown.contains(target)) {
         closeDropdown();
       }
     });

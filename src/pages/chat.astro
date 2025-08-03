@@ -139,8 +139,8 @@ import Layout from "../layouts/Layout.astro";
 
   <script>
     // Streaming response simulation
-    function typeWriter(element, text, speed = 30) {
-      return new Promise((resolve) => {
+    function typeWriter(element: HTMLElement, text: string, speed: number = 30) {
+      return new Promise<void>((resolve) => {
         let i = 0;
         element.innerHTML = '';
         const timer = setInterval(() => {
@@ -155,8 +155,9 @@ import Layout from "../layouts/Layout.astro";
       });
     }
 
-    function addMessage(isUser, content, shouldStream = false) {
+    function addMessage(isUser: boolean, content: string, shouldStream: boolean = false) {
       const chatContainer = document.getElementById('chat-container');
+      if (!chatContainer) return;
       const messageDiv = document.createElement('div');
       messageDiv.className = 'flex items-start space-x-3';
 
@@ -203,7 +204,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     // Define responses for questions
-    const responses = {
+    const responses: Record<string, string> = {
       "What's your ML experience?": "I have 4+ years of experience in ML, working with PyTorch, XGBoost, and scikit-learn. At Qonto, I develop and optimize ML models for fraud detection and credit risk assessment, handling millions of transactions daily.",
       "What programming languages do you work with?": "My primary languages are Python and SQL for data science work, with additional experience in R for statistical analysis and JavaScript for web development. I'm particularly strong with PyTorch, pandas, and scikit-learn for ML workflows.",
       "Tell me about your projects": "I've built several exciting projects: VibeTrip (AI travel planning platform), HaxballGym (reinforcement learning environment), and various data dashboards. Each project combines machine learning with practical applications to solve real-world problems."
@@ -211,14 +212,16 @@ import Layout from "../layouts/Layout.astro";
 
     // Handle suggestion pills and input
     document.addEventListener('DOMContentLoaded', () => {
-      const chatInput = document.getElementById('chat-input');
-      const sendButton = document.getElementById('send-button');
+      const chatInput = document.getElementById('chat-input') as HTMLInputElement | null;
+      const sendButton = document.getElementById('send-button') as HTMLButtonElement | null;
       const suggestionPills = document.querySelectorAll('.suggestion-pill');
       
       // Suggestion pill handlers
       suggestionPills.forEach(pill => {
         pill.addEventListener('click', () => {
-          const text = pill.dataset.text;
+          if (!chatInput) return;
+          const pillElement = pill as HTMLElement;
+          const text = pillElement.dataset.text || '';
           chatInput.value = text;
           chatInput.focus();
         });
@@ -226,6 +229,7 @@ import Layout from "../layouts/Layout.astro";
 
       // Send button handler
       function handleSend() {
+        if (!chatInput) return;
         const message = chatInput.value.trim();
         if (message) {
           // Add user message
@@ -245,15 +249,19 @@ import Layout from "../layouts/Layout.astro";
       }
 
       // Send button click
-      sendButton.addEventListener('click', handleSend);
+      if (sendButton) {
+        sendButton.addEventListener('click', handleSend);
+      }
       
       // Enter key handler
-      chatInput.addEventListener('keypress', (e) => {
-        if (e.key === 'Enter') {
-          e.preventDefault();
-          handleSend();
-        }
-      });
+      if (chatInput) {
+        chatInput.addEventListener('keypress', (e) => {
+          if (e.key === 'Enter') {
+            e.preventDefault();
+            handleSend();
+          }
+        });
+      }
     });
   </script>
 </Layout>
