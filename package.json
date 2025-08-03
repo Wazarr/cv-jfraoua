@@ -28,5 +28,8 @@
 	"devDependencies": {
 		"@tailwindcss/typography": "^0.5.14",
 		"@types/bun": "^1.0.4"
+	},
+	"overrides": {
+		"rollup": "npm:rollup@latest"
 	}
 }
