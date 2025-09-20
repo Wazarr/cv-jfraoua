@@ -34,23 +34,23 @@ function getCurrentYear() {
       rel="stylesheet"
     />
     <script is:inline>
-      // Theme management with proper persistence
-      function initTheme() {
-        // Check for saved theme or default to dark
+      // Prevent flash of wrong theme - must run before any content renders
+      (function() {
+        // Get theme immediately from localStorage or system preference
         const savedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia(
-          "(prefers-color-scheme: dark)"
-        ).matches;
+        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
         const theme = savedTheme || (prefersDark ? "dark" : "light");
-
-        // Apply theme
-        document.documentElement.classList.toggle("dark", theme === "dark");
+        
+        // Apply theme immediately to prevent flash
+        if (theme === "dark") {
+          document.documentElement.classList.add("dark");
+        } else {
+          document.documentElement.classList.remove("dark");
+        }
+        
+        // Store theme
         localStorage.setItem("theme", theme);
-        return theme;
-      }
-
-      // Initialize theme immediately to prevent flash
-      initTheme();
+      })();
     </script>
   </head>
 
@@ -263,6 +263,15 @@ function getCurrentYear() {
         font-family: "Inter", system-ui, sans-serif;
         scroll-behavior: smooth;
         height: 100%;
+        /* Prevent flash of unstyled content */
+        background-color: #020617; /* dark-950 as fallback */
+        color: #f1f5f9; /* dark-100 as fallback */
+      }
+      
+      /* Light mode fallback colors */
+      html:not(.dark) {
+        background-color: #f9fafb; /* light-50 */
+        color: #111827; /* light-900 */
       }
 
       body {
@@ -273,6 +282,8 @@ function getCurrentYear() {
           "liga" 1,
           "kern" 1;
         text-rendering: optimizeLegibility;
+        /* Prevent flash during page transitions */
+        transition: background-color 0s, color 0s;
       }
 
       .wrapper {
@@ -344,8 +355,10 @@ function getCurrentYear() {
         border-bottom-color: #d35400 !important;
       }
 
-      /* Smooth transitions for better UX */
-      * {
+      /* Smooth transitions for better UX - but not for theme changes */
+      .nav-link,
+      button:not(#theme-toggle),
+      a:not(.nav-link) {
         transition:
           color 0.2s ease,
           border-color 0.2s ease,
@@ -406,15 +419,16 @@ function getCurrentYear() {
         setupNavigation();
       });
 
-      // Handle Astro page transitions
-      document.addEventListener("astro:after-swap", () => {
-        // Re-apply theme from localStorage
+      // Handle Astro page transitions - ensure theme is applied immediately
+      document.addEventListener("astro:before-swap", (e) => {
+        // Apply theme immediately to new document to prevent flash
         const savedTheme = localStorage.getItem("theme") || "dark";
-        document.documentElement.classList.toggle(
-          "dark",
-          savedTheme === "dark"
-        );
+        if (e.newDocument) {
+          e.newDocument.documentElement.classList.toggle("dark", savedTheme === "dark");
+        }
+      });
 
+      document.addEventListener("astro:after-swap", () => {
         // Re-setup functionality
         setupThemeToggle();
         setupNavigation();
