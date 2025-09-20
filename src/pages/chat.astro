@@ -33,14 +33,21 @@ import Layout from "../layouts/Layout.astro";
               </div>
               <span class="text-light-700 dark:text-dark-300 text-sm font-mono">chat_session.ai</span>
             </div>
-            <div class="flex items-center space-x-2">
-              <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
-              <span class="text-terminal-400 text-xs font-mono">ONLINE</span>
+            <div class="flex items-center space-x-3">
+              <!-- Model Selector -->
+              <select id="model-select" class="bg-light-100 dark:bg-dark-600 border border-light-300 dark:border-dark-500 rounded px-2 py-1 text-xs font-mono text-light-700 dark:text-dark-300">
+                <option value="moonshotai/kimi-k2-instruct-0905">Kimi K2</option>
+                <option value="qwen/qwen3-32b">Qwen 32B</option>
+              </select>
+              <div class="flex items-center space-x-2">
+                <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
+                <span class="text-terminal-400 text-xs font-mono">ONLINE</span>
+              </div>
             </div>
           </div>
 
           <!-- Chat Messages Area -->
-          <div id="chat-container" class="h-96 overflow-y-auto p-6 space-y-4 bg-light-50/30 dark:bg-dark-900/30">
+          <div id="chat-container" class="h-[600px] overflow-y-auto p-6 space-y-4 bg-light-50/30 dark:bg-dark-900/30">
             <!-- Initial System Message -->
             <div class="flex items-start space-x-3">
               <div class="w-8 h-8 bg-terminal-600 rounded-lg flex items-center justify-center">
@@ -49,7 +56,7 @@ import Layout from "../layouts/Layout.astro";
               <div class="flex-1">
                 <div class="bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600">
                   <p class="text-light-800 dark:text-dark-200 font-mono text-sm leading-relaxed">
-                    <span class="text-terminal-400">➜</span> AI Assistant initialized successfully<br>
+                    AI Assistant initialized successfully<br>
                     <span class="text-light-600 dark:text-dark-400">// Ready to answer questions about Jérémy's experience, projects, and expertise</span>
                   </p>
                 </div>
@@ -137,8 +144,27 @@ import Layout from "../layouts/Layout.astro";
     </div>
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
   <script>
-    // Streaming response simulation
+    // Simple markdown rendering using marked library
+    function renderMarkdown(text: string): string {
+      if (!text?.trim()) return '';
+      
+      try {
+        // Configure marked for better rendering
+        (window as any).marked.setOptions({
+          breaks: true,
+          gfm: true,
+        });
+        
+        return (window as any).marked.parse(text);
+      } catch (error) {
+        console.error('Markdown rendering error:', error);
+        return text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      }
+    }
+
+    // Typewriter effect for streaming responses
     function typeWriter(element: HTMLElement, text: string, speed: number = 30) {
       return new Promise<void>((resolve) => {
         let i = 0;
@@ -155,11 +181,14 @@ import Layout from "../layouts/Layout.astro";
       });
     }
 
-    function addMessage(isUser: boolean, content: string, shouldStream: boolean = false) {
+    // Add message to chat
+    function addMessage(isUser: boolean, content: string, shouldStream: boolean = false, messageId?: string) {
       const chatContainer = document.getElementById('chat-container');
-      if (!chatContainer) return;
+      if (!chatContainer) return null;
+
       const messageDiv = document.createElement('div');
       messageDiv.className = 'flex items-start space-x-3';
+      if (messageId) messageDiv.id = `message-${messageId}`;
 
       const avatar = document.createElement('div');
       avatar.className = `w-8 h-8 rounded-lg flex items-center justify-center ${
@@ -173,49 +202,91 @@ import Layout from "../layouts/Layout.astro";
       const messageBubble = document.createElement('div');
       messageBubble.className = `bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600`;
 
-      const messageText = document.createElement('p');
-      messageText.className = 'text-light-800 dark:text-dark-200 font-mono text-sm leading-relaxed';
+      const messageText = document.createElement('div');
+      messageText.className = 'text-light-800 dark:text-dark-200 text-sm leading-relaxed font-mono';
 
       if (shouldStream) {
-        messageText.innerHTML = '<span class="text-terminal-400">➜</span> <span class="animate-pulse">Thinking...</span>';
+        messageText.innerHTML = '<span class="animate-pulse">Thinking...</span>';
         messageBubble.appendChild(messageText);
         messageContent.appendChild(messageBubble);
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(messageContent);
         chatContainer.appendChild(messageDiv);
         chatContainer.scrollTop = chatContainer.scrollHeight;
-
-        // Simulate loading time
-        setTimeout(async () => {
-          messageText.innerHTML = '<span class="text-terminal-400">➜</span> ';
-          const contentSpan = document.createElement('span');
-          messageText.appendChild(contentSpan);
-          await typeWriter(contentSpan, content);
-        }, 1000);
+        return messageDiv;
       } else {
-        messageText.innerHTML = content;
+        // Use markdown rendering for AI messages, plain text for user messages
+        if (!isUser) {
+          messageText.innerHTML = renderMarkdown(content);
+        } else {
+          // Escape HTML for user messages
+          const escapedContent = content
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;')
+            .replace(/"/g, '&quot;')
+            .replace(/'/g, '&#39;');
+          messageText.innerHTML = escapedContent;
+        }
         messageBubble.appendChild(messageText);
         messageContent.appendChild(messageBubble);
         messageDiv.appendChild(avatar);
         messageDiv.appendChild(messageContent);
         chatContainer.appendChild(messageDiv);
         chatContainer.scrollTop = chatContainer.scrollHeight;
+        return messageDiv;
       }
     }
 
-    // Define responses for questions
-    const responses: Record<string, string> = {
-      "What's your ML experience?": "I have 4+ years of experience in ML, working with PyTorch, XGBoost, and scikit-learn. At Qonto, I develop and optimize ML models for fraud detection and credit risk assessment, handling millions of transactions daily.",
-      "What programming languages do you work with?": "My primary languages are Python and SQL for data science work, with additional experience in R for statistical analysis and JavaScript for web development. I'm particularly strong with PyTorch, pandas, and scikit-learn for ML workflows.",
-      "Tell me about your projects": "I've built several exciting projects: VibeTrip (AI travel planning platform), HaxballGym (reinforcement learning environment), and various data dashboards. Each project combines machine learning with practical applications to solve real-world problems."
+    // Generate unique message ID
+    function generateMessageId(): string {
+      return 'msg_' + Math.random().toString(36).substr(2, 9);
+    }
+
+    // Model configuration with thinking capabilities
+    const modelConfig: Record<string, { name: string; isThinking: boolean }> = {
+      'moonshotai/kimi-k2-instruct-0905': { 
+        name: 'Kimi K2', 
+        isThinking: false 
+      },
+      'qwen/qwen3-32b': { 
+        name: 'Qwen 32B', 
+        isThinking: true 
+      }
+      // Easy to add more models here:
+      // 'anthropic/claude-3-sonnet': { name: 'Claude 3 Sonnet', isThinking: false },
+      // 'openai/gpt-4o': { name: 'GPT-4o', isThinking: false }
     };
+
+    // Store conversation history and selected model
+    let conversationHistory: Array<{role: string, content: string}> = [];
+    let selectedModel: string = 'moonshotai/kimi-k2-instruct-0905';
+    
+    // Rate limiting and UI state management
+    let isProcessing = false;
+    let lastMessageTime = 0;
+    const MESSAGE_COOLDOWN = 2000; // 2 seconds between messages
+
+    // Initialize model selector
+    const modelSelect = document.getElementById('model-select') as HTMLSelectElement | null;
+    if (modelSelect) {
+      // Load saved model preference
+      const savedModel = localStorage.getItem('selectedModel') || 'moonshotai/kimi-k2-instruct-0905';
+      modelSelect.value = savedModel;
+      selectedModel = savedModel;
+
+      modelSelect.addEventListener('change', () => {
+        selectedModel = modelSelect.value;
+        localStorage.setItem('selectedModel', selectedModel);
+      });
+    }
 
     // Handle suggestion pills and input
     document.addEventListener('DOMContentLoaded', () => {
       const chatInput = document.getElementById('chat-input') as HTMLInputElement | null;
       const sendButton = document.getElementById('send-button') as HTMLButtonElement | null;
       const suggestionPills = document.querySelectorAll('.suggestion-pill');
-      
+
       // Suggestion pill handlers
       suggestionPills.forEach(pill => {
         pill.addEventListener('click', () => {
@@ -227,24 +298,256 @@ import Layout from "../layouts/Layout.astro";
         });
       });
 
+      // Send message to AI
+      async function sendMessage(message: string): Promise<void> {
+        if (!message.trim()) return;
+        
+        // Prevent sending if already processing
+        if (isProcessing) {
+          console.log('Message blocked: AI is still responding');
+          return;
+        }
+        
+        // Set processing state and disable input
+        isProcessing = true;
+        if (chatInput) {
+          chatInput.disabled = true;
+          chatInput.placeholder = 'AI is responding...';
+        }
+
+        // Add user message
+        const userMessageId = generateMessageId();
+        addMessage(true, message, false, userMessageId);
+        conversationHistory.push({ role: 'user', content: message });
+
+        // Clear input
+        if (chatInput) chatInput.value = '';
+
+        // Add AI placeholder message
+        const aiMessageId = generateMessageId();
+        const aiMessageDiv = addMessage(false, '', true, aiMessageId);
+        if (!aiMessageDiv) return;
+
+        try {
+          // Send request to API
+          const response = await fetch('/api/chat', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              message: message,
+              conversation: conversationHistory.slice(0, -1), // Exclude the current message
+              model: selectedModel
+            }),
+          });
+
+          if (!response.ok) {
+            const errorData = await response.json().catch(() => ({ error: 'Unknown error' }));
+            throw new Error(`API Error (${response.status}): ${errorData.error || errorData.details || 'Unknown error'}`);
+          }
+
+          // Handle streaming response
+          const reader = response.body?.getReader();
+          if (!reader) throw new Error('No response body');
+
+          const decoder = new TextDecoder();
+          const aiMessageText = aiMessageDiv.querySelector('div.text-light-800');
+          if (!aiMessageText) throw new Error('AI message element not found');
+
+          // Remove "Thinking..." text and setup containers
+          aiMessageText.innerHTML = '';
+          
+          // Create thinking indicator container (only for thinking models)
+          let thinkingContainer: HTMLElement | null = null;
+          let thinkingContent: HTMLElement | null = null;
+          if (modelConfig[selectedModel]?.isThinking) {
+            thinkingContainer = document.createElement('div');
+            thinkingContainer.className = 'mb-2 p-2 bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded cursor-pointer transition-all duration-200 hover:bg-yellow-100 dark:hover:bg-yellow-900/30';
+            
+            const thinkingHeader = document.createElement('div');
+            thinkingHeader.className = 'text-yellow-700 dark:text-yellow-300 text-xs font-medium flex items-center justify-between';
+            thinkingHeader.innerHTML = '<span>🤔 Thinking...</span><span class="text-xs opacity-50">Click to expand</span>';
+            
+            thinkingContent = document.createElement('div');
+            thinkingContent.className = 'text-yellow-600 dark:text-yellow-400 text-xs font-mono whitespace-pre-wrap max-h-24 overflow-y-auto mt-1';
+            
+            thinkingContainer.appendChild(thinkingHeader);
+            thinkingContainer.appendChild(thinkingContent);
+            aiMessageText.appendChild(thinkingContainer);
+          }
+          
+          const contentSpan = document.createElement('div');
+          aiMessageText.appendChild(contentSpan);
+
+          let fullResponse = '';
+          let buffer = '';
+          let displayBuffer = ''; // Separate buffer for display text
+          let thinkingContentBuffer = ''; // Buffer for thinking content
+          let insideThinking = false;
+          let thinkingBuffer = ''; // Buffer for incomplete thinking tags
+
+          const readStream = async () => {
+            const timeout = setTimeout(() => {
+              reader.cancel();
+              throw new Error('Request timeout - please try again');
+            }, 30000); // 30 second timeout
+
+            try {
+              while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                fullResponse += chunk;
+
+                // Handle thinking model filtering for streaming
+                if (modelConfig[selectedModel]?.isThinking) {
+                  let processedChunk = '';
+                  
+                  for (let i = 0; i < chunk.length; i++) {
+                    const char = chunk[i];
+                    
+                    if (!insideThinking) {
+                      // Check for start of thinking tag
+                      thinkingBuffer += char;
+                      if (thinkingBuffer.includes('<think>')) {
+                        // Found start tag, remove it from display and enter thinking mode
+                        const beforeThink = thinkingBuffer.substring(0, thinkingBuffer.indexOf('<think>'));
+                        processedChunk += beforeThink;
+                        insideThinking = true;
+                        thinkingBuffer = '';
+                      } else if (thinkingBuffer.length > 7) {
+                        // No thinking tag found, add to display
+                        processedChunk += thinkingBuffer[0];
+                        thinkingBuffer = thinkingBuffer.substring(1);
+                      }
+                    } else {
+                      // Inside thinking mode, collect thinking content and look for end tag
+                      thinkingBuffer += char;
+                      if (thinkingBuffer.includes('</think>')) {
+                        // Found end tag, add thinking content and exit thinking mode
+                        const thinkingText = thinkingBuffer.substring(0, thinkingBuffer.indexOf('</think>'));
+                        thinkingContentBuffer += thinkingText;
+                        
+                        // Update thinking display
+                        if (thinkingContent) {
+                          thinkingContent.textContent = thinkingContentBuffer;
+                        }
+                        
+                        insideThinking = false;
+                        thinkingBuffer = thinkingBuffer.substring(thinkingBuffer.indexOf('</think>') + 8);
+                        // Add any remaining content after the end tag
+                        processedChunk += thinkingBuffer;
+                        thinkingBuffer = '';
+                      } else {
+                        // Still inside thinking, update display with current content
+                        thinkingContentBuffer += char;
+                        if (thinkingContent) {
+                          thinkingContent.textContent = thinkingContentBuffer;
+                        }
+                      }
+                    }
+                  }
+                  
+                  // Add any remaining non-thinking content
+                  if (!insideThinking && thinkingBuffer.length <= 7) {
+                    processedChunk += thinkingBuffer;
+                    thinkingBuffer = '';
+                  }
+                  
+                  displayBuffer += processedChunk;
+                } else {
+                  // Non-thinking model, display everything
+                  displayBuffer += chunk;
+                }
+
+                // Update display with processed content
+                contentSpan.innerHTML = renderMarkdown(displayBuffer);
+                const chatContainer = document.getElementById('chat-container');
+                if (chatContainer) {
+                  chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+              }
+            } finally {
+              clearTimeout(timeout);
+            }
+          };
+
+          await readStream();
+          
+          // Make thinking container collapsible when done (for thinking models)
+          if (modelConfig[selectedModel]?.isThinking && thinkingContainer && thinkingContent) {
+            const thinkingHeader = thinkingContainer.querySelector('div');
+            if (thinkingHeader) {
+              thinkingHeader.innerHTML = '<span>🧠 Thinking Process</span><span class="text-xs opacity-60">Click to toggle</span>';
+            }
+            
+            // Initially collapse the thinking content
+            thinkingContent.style.display = 'none';
+            let isExpanded = false;
+            
+            // Add click handler to toggle
+            thinkingContainer.addEventListener('click', () => {
+              isExpanded = !isExpanded;
+              thinkingContent.style.display = isExpanded ? 'block' : 'none';
+              
+              const toggleText = thinkingContainer.querySelector('.opacity-60');
+              if (toggleText) {
+                toggleText.textContent = isExpanded ? 'Click to collapse' : 'Click to expand';
+              }
+              
+              // Add visual feedback
+              thinkingContainer.style.backgroundColor = isExpanded 
+                ? 'rgb(254 240 138 / 0.3)' 
+                : 'rgb(254 249 195 / 0.5)';
+            });
+          }
+          
+          // Add final response to conversation history (use display buffer for thinking models)
+          const finalResponse = modelConfig[selectedModel]?.isThinking ? displayBuffer : fullResponse;
+          conversationHistory.push({ role: 'assistant', content: finalResponse.trim() });
+          
+          // Reset processing state and re-enable input
+          isProcessing = false;
+          if (chatInput) {
+            chatInput.disabled = false;
+            chatInput.placeholder = 'What would you like to know?';
+            chatInput.focus();
+          }
+
+        } catch (error) {
+          console.error('Error sending message:', error);
+
+          // Update AI message with detailed error
+          const aiMessageText = aiMessageDiv.querySelector('div.text-light-800');
+          if (aiMessageText) {
+            const errorMessage = error instanceof Error ? error.message : 'Unknown error occurred';
+            aiMessageText.innerHTML = `
+              AI 
+              <span class="text-red-400">
+                <strong>Error:</strong> ${errorMessage}<br>
+                <small>Please check your API key and try again, or contact Jérémy directly.</small>
+              </span>
+            `;
+          }
+          
+          // Reset processing state on error and re-enable input
+          isProcessing = false;
+          if (chatInput) {
+            chatInput.disabled = false;
+            chatInput.placeholder = 'What would you like to know?';
+            chatInput.focus();
+          }
+        }
+      }
+
       // Send button handler
       function handleSend() {
         if (!chatInput) return;
         const message = chatInput.value.trim();
         if (message) {
-          // Add user message
-          addMessage(true, message);
-          
-          // Get response
-          const response = responses[message] || "I'm currently a demo AI assistant. For real conversations, please reach out via email or LinkedIn!";
-          
-          // Clear input
-          chatInput.value = '';
-          
-          // Add AI response with streaming
-          setTimeout(() => {
-            addMessage(false, response, true);
-          }, 500);
+          sendMessage(message);
         }
       }
 
@@ -252,7 +555,7 @@ import Layout from "../layouts/Layout.astro";
       if (sendButton) {
         sendButton.addEventListener('click', handleSend);
       }
-      
+
       // Enter key handler
       if (chatInput) {
         chatInput.addEventListener('keypress', (e) => {
@@ -264,4 +567,5 @@ import Layout from "../layouts/Layout.astro";
       }
     });
   </script>
+</Layout>
 </Layout>
