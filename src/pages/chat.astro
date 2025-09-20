@@ -302,8 +302,8 @@ import Layout from "../layouts/Layout.astro";
       });
     }
 
-    // Handle suggestion pills and input
-    document.addEventListener('DOMContentLoaded', () => {
+    // Initialize chat functionality
+    function initializeChat() {
       const chatInput = document.getElementById('chat-input') as HTMLInputElement | null;
       const sendButton = document.getElementById('send-button') as HTMLButtonElement | null;
       const suggestionPills = document.querySelectorAll('.suggestion-pill');
@@ -624,7 +624,12 @@ import Layout from "../layouts/Layout.astro";
           }
         });
       }
-    });
+    }
+
+    // Handle different page load scenarios for Astro View Transitions
+    document.addEventListener('DOMContentLoaded', initializeChat);
+    document.addEventListener('astro:page-load', initializeChat);
+    document.addEventListener('astro:after-swap', initializeChat);
   </script>
 </Layout>
 </Layout>
