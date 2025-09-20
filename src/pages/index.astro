@@ -75,39 +75,52 @@ import TerminalWindow from "../components/TerminalWindow.astro";
           </div>
         </div>
       </TerminalWindow>
+    </div>
 
-      <!-- CRITICAL: Chat CTA Terminal -->
+    <!-- FEATURED: AI Chat Assistant - 2nd Section -->
+    <div class="max-w-4xl mx-auto">
       <TerminalWindow
-        title="⚠️  system_alert.sh"
-        headerColor="terminal"
-        className="max-w-3xl mx-auto border-2 border-red-500 shadow-2xl"
+        title="🤖 ai_assistant.py --interactive"
+        headerColor="primary"
+        className="border-2 border-primary-500 shadow-2xl bg-gradient-to-br from-primary-50/50 to-code-50/50 dark:from-primary-900/50 dark:to-code-900/50"
       >
-        <div class="space-y-2">
+        <div class="space-y-4">
           <div class="hidden md:flex items-center space-x-2">
             <span class="text-terminal-400">jeremy@portfolio:~$</span>
-            <span class="text-red-400">./system_alert.sh</span>
+            <span class="text-primary-400">python ai_assistant.py --start</span>
           </div>
-          <div class="md:pl-4 space-y-1">
-            <p class="text-red-400 font-bold">
-              ⚠️ INTERACTIVE AI ASSISTANT ONLINE
+          <div class="md:pl-4 space-y-3">
+            <div class="flex items-center space-x-2">
+              <div class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
+              <p class="text-primary-400 font-bold text-lg">
+                🤖 AI Assistant Ready
+              </p>
+            </div>
+            <p class="text-light-700 dark:text-dark-300">
+              Have questions about my experience, projects, or technical expertise? 
+              My AI assistant has comprehensive knowledge about my work and can provide 
+              detailed insights in real-time.
             </p>
-            <p class="text-light-700 dark:text-dark-300 text-sm">
-              Want to know more about my experience, projects, or technical
-              expertise?
-              <span class="text-primary-400 font-semibold"
-                >Chat with my AI assistant</span
-              > - it knows everything about my work and can answer questions in real-time.
-            </p>
-            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4 mt-3">
+            <div class="bg-light-100/60 dark:bg-dark-800/60 rounded-lg p-3 border border-light-300 dark:border-dark-600">
+              <p class="text-light-600 dark:text-dark-400 text-sm font-mono">
+                <span class="text-terminal-400"># Example queries:</span><br>
+                <span class="text-code-400">• "What's your ML experience at Qonto?"</span><br>
+                <span class="text-code-400">• "Tell me about the HaxballGym project"</span><br>
+                <span class="text-code-400">• "How do you approach fraud detection?"</span>
+              </p>
+            </div>
+            <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mt-4">
               <a
                 href="/chat"
-                class="bg-red-600 hover:bg-red-500 text-white px-6 py-2 rounded-lg font-mono text-sm transition-all duration-200 transform hover:scale-105 shadow-lg"
+                class="bg-primary-600 hover:bg-primary-500 text-white px-8 py-3 rounded-lg font-mono text-sm transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center space-x-2"
               >
-                start_chat_session()
+                <span>💬</span>
+                <span>start_conversation()</span>
               </a>
-              <span class="text-terminal-400 text-xs"
-                >// Try asking about my ML experience</span
-              >
+              <div class="flex items-center space-x-2 text-xs text-light-600 dark:text-dark-400">
+                <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
+                <span class="font-mono">Powered by LLM guardrails</span>
+              </div>
             </div>
           </div>
         </div>

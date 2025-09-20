@@ -3,10 +3,10 @@ const currentPath = Astro.url.pathname;
 
 const navItems = [
   { href: '/', label: 'home', icon: '/', color: 'terminal' },
+  { href: '/chat', label: 'chat 🤖', icon: '/', color: 'primary', special: true },
   { href: '/resume', label: 'resume', icon: '/', color: 'code' },
   { href: '/projects', label: 'projects', icon: '/', color: 'primary' },
-  { href: '/blog', label: 'blog', icon: '/', color: 'light' },
-  { href: '/chat', label: 'chat', icon: '/', color: 'primary' }
+  { href: '/blog', label: 'blog', icon: '/', color: 'light' }
 ];
 
 const currentItem = navItems.find(item => item.href === currentPath);
@@ -48,9 +48,12 @@ const currentItem = navItems.find(item => item.href === currentPath);
           href={item.href}
           class={`
             block w-full text-left px-4 py-3 rounded-md text-sm font-mono transition-all duration-150 group
+            ${item.special ? 'bg-gradient-to-r from-primary-500/20 to-code-500/20 border border-primary-300 dark:border-primary-600' : ''}
             ${currentPath === item.href 
               ? `bg-${item.color}-500/10 text-${item.color}-400 border-l-2 border-${item.color}-400` 
-              : 'text-light-700 dark:text-dark-300 hover:bg-light-200 dark:hover:bg-dark-700 hover:text-primary-400'
+              : item.special 
+                ? 'text-primary-600 dark:text-primary-400 hover:bg-primary-500/30' 
+                : 'text-light-700 dark:text-dark-300 hover:bg-light-200 dark:hover:bg-dark-700 hover:text-primary-400'
             }
           `}
         >
@@ -62,6 +65,9 @@ const currentItem = navItems.find(item => item.href === currentPath);
               <span class="group-hover:translate-x-1 transition-transform duration-150">
                 {item.label}
               </span>
+              {item.special && (
+                <span class="text-xs bg-primary-500 text-white px-1.5 py-0.5 rounded-full">AI</span>
+              )}
             </div>
             {currentPath === item.href && (
               <div class="flex space-x-1">
