@@ -67,14 +67,20 @@ import Layout from "../layouts/Layout.astro";
           <!-- Suggestion Pills -->
           <div class="px-4 md:px-6 py-3 border-t border-light-300 dark:border-dark-600 bg-light-150/60 dark:bg-dark-750/60">
             <div class="flex flex-wrap gap-2">
-              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-primary-100 dark:hover:bg-primary-900 border border-light-300 dark:border-dark-600 hover:border-primary-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-text="What's your ML experience?">
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-primary-100 dark:hover:bg-primary-900 border border-light-300 dark:border-dark-600 hover:border-primary-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-primary-600 dark:hover:text-primary-400 transition-colors" data-text="What's Jérémy's ML experience?">
                 💡 ML experience
               </button>
-              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-code-100 dark:hover:bg-code-900 border border-light-300 dark:border-dark-600 hover:border-code-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-code-600 dark:hover:text-code-400 transition-colors" data-text="What programming languages do you work with?">
-                💻 Programming
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-code-100 dark:hover:bg-code-900 border border-light-300 dark:border-dark-600 hover:border-code-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-code-600 dark:hover:text-code-400 transition-colors" data-text="What technologies does Jérémy work with?">
+                💻 Technologies
               </button>
-              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-terminal-100 dark:hover:bg-terminal-900 border border-light-300 dark:border-dark-600 hover:border-terminal-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-terminal-600 dark:hover:text-terminal-400 transition-colors" data-text="Tell me about your projects">
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-terminal-100 dark:hover:bg-terminal-900 border border-light-300 dark:border-dark-600 hover:border-terminal-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-terminal-600 dark:hover:text-terminal-400 transition-colors" data-text="Tell me about Jérémy's projects">
                 🚀 Projects
+              </button>
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-yellow-100 dark:hover:bg-yellow-900 border border-light-300 dark:border-dark-600 hover:border-yellow-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-yellow-600 dark:hover:text-yellow-400 transition-colors" data-text="How can I contact Jérémy?">
+                📧 Contact
+              </button>
+              <button class="suggestion-pill bg-light-200 dark:bg-dark-700 hover:bg-green-100 dark:hover:bg-green-900 border border-light-300 dark:border-dark-600 hover:border-green-400 rounded-full px-3 py-1 text-xs font-mono text-light-700 dark:text-dark-300 hover:text-green-600 dark:hover:text-green-400 transition-colors" data-text="What's Jérémy's work at Qonto?">
+                🏦 Qonto work
               </button>
             </div>
           </div>
@@ -182,7 +188,7 @@ import Layout from "../layouts/Layout.astro";
     }
 
     // Add message to chat
-    function addMessage(isUser: boolean, content: string, shouldStream: boolean = false, messageId?: string) {
+    function addMessage(isUser: boolean, content: string, shouldStream: boolean = false, messageId?: string, isGuardrailMessage: boolean = false) {
       const chatContainer = document.getElementById('chat-container');
       if (!chatContainer) return null;
 
@@ -191,19 +197,34 @@ import Layout from "../layouts/Layout.astro";
       if (messageId) messageDiv.id = `message-${messageId}`;
 
       const avatar = document.createElement('div');
-      avatar.className = `w-8 h-8 rounded-lg flex items-center justify-center ${
-        isUser ? 'bg-primary-600' : 'bg-terminal-600'
-      }`;
-      avatar.innerHTML = `<span class="text-white text-sm font-mono">${isUser ? 'YOU' : 'AI'}</span>`;
+      
+      // Special styling for guardrail messages
+      if (isGuardrailMessage) {
+        avatar.className = 'w-8 h-8 rounded-lg flex items-center justify-center bg-yellow-600';
+        avatar.innerHTML = '<span class="text-white text-sm font-mono">⚠️</span>';
+      } else {
+        avatar.className = `w-8 h-8 rounded-lg flex items-center justify-center ${
+          isUser ? 'bg-primary-600' : 'bg-terminal-600'
+        }`;
+        avatar.innerHTML = `<span class="text-white text-sm font-mono">${isUser ? 'YOU' : 'AI'}</span>`;
+      }
 
       const messageContent = document.createElement('div');
       messageContent.className = 'flex-1';
 
       const messageBubble = document.createElement('div');
-      messageBubble.className = `bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600`;
+      
+      // Special styling for guardrail messages
+      if (isGuardrailMessage) {
+        messageBubble.className = 'bg-yellow-50/80 dark:bg-yellow-900/20 rounded-lg p-4 border border-yellow-300 dark:border-yellow-700';
+      } else {
+        messageBubble.className = 'bg-light-200/60 dark:bg-dark-700/60 rounded-lg p-4 border border-light-300 dark:border-dark-600';
+      }
 
       const messageText = document.createElement('div');
-      messageText.className = 'text-light-800 dark:text-dark-200 text-sm leading-relaxed font-mono';
+      messageText.className = isGuardrailMessage 
+        ? 'text-yellow-800 dark:text-yellow-200 text-sm leading-relaxed font-mono'
+        : 'text-light-800 dark:text-dark-200 text-sm leading-relaxed font-mono';
 
       if (shouldStream) {
         messageText.innerHTML = '<span class="animate-pulse">Thinking...</span>';
@@ -352,7 +373,7 @@ import Layout from "../layouts/Layout.astro";
           if (!reader) throw new Error('No response body');
 
           const decoder = new TextDecoder();
-          const aiMessageText = aiMessageDiv.querySelector('div.text-light-800');
+          let aiMessageText = aiMessageDiv.querySelector('div.text-light-800, div.text-yellow-800');
           if (!aiMessageText) throw new Error('AI message element not found');
 
           // Remove "Thinking..." text and setup containers
@@ -386,6 +407,7 @@ import Layout from "../layouts/Layout.astro";
           let thinkingContentBuffer = ''; // Buffer for thinking content
           let insideThinking = false;
           let thinkingBuffer = ''; // Buffer for incomplete thinking tags
+          let isGuardrailResponse = false; // Track if this is a guardrail response
 
           const readStream = async () => {
             const timeout = setTimeout(() => {
@@ -400,6 +422,43 @@ import Layout from "../layouts/Layout.astro";
 
                 const chunk = decoder.decode(value, { stream: true });
                 fullResponse += chunk;
+
+                // Detect if this is a guardrail response (early detection)
+                if (!isGuardrailResponse && fullResponse.length > 20) {
+                  const guardrailKeywords = [
+                    'I\'m here to discuss Jérémy',
+                    'Ask me about his',
+                    'specifically designed to discuss Jérémy',
+                    'questions about Jérémy',
+                    'Try asking about his work'
+                  ];
+                  
+                  if (guardrailKeywords.some(keyword => fullResponse.includes(keyword))) {
+                    isGuardrailResponse = true;
+                    
+                    // Update the message styling to guardrail style
+                    const messageDiv = aiMessageDiv;
+                    if (messageDiv) {
+                      // Update avatar
+                      const avatar = messageDiv.querySelector('div.bg-terminal-600');
+                      if (avatar) {
+                        avatar.className = 'w-8 h-8 rounded-lg flex items-center justify-center bg-yellow-600';
+                        avatar.innerHTML = '<span class="text-white text-sm font-mono">⚠️</span>';
+                      }
+                      
+                      // Update message bubble
+                      const bubble = messageDiv.querySelector('div.bg-light-200\\/60');
+                      if (bubble) {
+                        bubble.className = 'bg-yellow-50/80 dark:bg-yellow-900/20 rounded-lg p-4 border border-yellow-300 dark:border-yellow-700';
+                      }
+                      
+                      // Update text styling
+                      if (aiMessageText) {
+                        aiMessageText.className = 'text-yellow-800 dark:text-yellow-200 text-sm leading-relaxed font-mono';
+                      }
+                    }
+                  }
+                }
 
                 // Handle thinking model filtering for streaming
                 if (modelConfig[selectedModel]?.isThinking) {

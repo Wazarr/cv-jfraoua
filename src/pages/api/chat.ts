@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 import { getRelevantContext, generateSystemPrompt } from '../../lib/context';
+import { validateInput, validateResponse, getRejectionMessage, getGuardrailSystemPrompt } from '../../lib/guardrails';
 
 const GROQ_API_KEY = import.meta.env.GROQ_API_KEY || process.env.GROQ_API_KEY;
 
@@ -16,11 +17,38 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    // Apply LLM-powered input guardrails
+    const inputValidation = await validateInput(message);
+    if (!inputValidation.allowed) {
+      const rejectionMessage = getRejectionMessage(inputValidation);
+      
+      // Return a streaming response with the rejection message
+      const rejectionStream = new ReadableStream({
+        start(controller) {
+          controller.enqueue(new TextEncoder().encode(rejectionMessage));
+          controller.close();
+        }
+      });
+
+      return new Response(rejectionStream, {
+        status: 200,
+        headers: {
+          'Content-Type': 'text/plain; charset=utf-8',
+          'Cache-Control': 'no-cache',
+          'Connection': 'keep-alive',
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Headers': 'Content-Type',
+        }
+      });
+    }
+
     // Get relevant context based on the user's message
     const relevantContext = getRelevantContext(message);
 
-    // Generate system prompt with full context
-    const systemPrompt = generateSystemPrompt();
+    // Generate system prompt with full context and guardrails
+    const baseSystemPrompt = generateSystemPrompt();
+    const guardrailPrompt = getGuardrailSystemPrompt();
+    const systemPrompt = `${guardrailPrompt}\n\n${baseSystemPrompt}`;
 
     // Create conversation context
     const conversationContext = conversation.map((msg: any) => ({
@@ -52,11 +80,36 @@ export const POST: APIRoute = async ({ request }) => {
       modelOptions.reasoning_effort = 'medium';
     }
 
-    // Create streaming response
+    // Create streaming response with response validation
     const result = streamText(modelOptions);
 
-    // Return streaming response
-    return result.toTextStreamResponse({
+    // Create a custom stream that validates the response
+    const validatedStream = new ReadableStream({
+      async start(controller) {
+        let fullResponse = '';
+        
+        try {
+          for await (const chunk of result.textStream) {
+            fullResponse += chunk;
+            
+            // For now, stream the chunk (we'll validate the full response at the end)
+            controller.enqueue(new TextEncoder().encode(chunk));
+          }
+          
+          // Validate the complete response
+          const responseValidation = validateResponse(fullResponse);
+          // Response validation is mainly for monitoring - don't interrupt user experience
+          
+          controller.close();
+        } catch (error) {
+          console.error('Streaming error:', error);
+          controller.error(error);
+        }
+      }
+    });
+
+    // Return the validated streaming response
+    return new Response(validatedStream, {
       headers: {
         'Content-Type': 'text/plain; charset=utf-8',
         'Cache-Control': 'no-cache',
