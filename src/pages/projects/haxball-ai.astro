@@ -3,9 +3,9 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 ---
 
 <ProjectLayout title="HaxballGym - AI Training Framework">
-  <h1>HaxballGym AI Training Framework</h1>
+  <h1 class="text-gray-900 dark:text-gray-100">HaxballGym AI Training Framework</h1>
   
-  <div class="mb-6">
+  <div class="mb-4">
     <a
       href="https://github.com/HaxballGym"
       target="_blank"
@@ -32,75 +32,75 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
     </a>
   </div>
 
-  <h2>Overview</h2>
+  <h2 class="text-gray-900 dark:text-gray-100 mt-2">Overview</h2>
 
-  <p>A comprehensive reinforcement learning framework for training AI agents to play <a href="https://www.haxball.com">Haxball</a>, a popular online 2D soccer game. This project demonstrates advanced RL techniques applied to a real-time competitive environment.</p>
+  <p class="text-gray-800 dark:text-gray-200">A comprehensive reinforcement learning framework for training AI agents to play <a href="https://www.haxball.com" class="text-blue-600 hover:text-blue-800 dark:text-blue-400 dark:hover:text-blue-300">Haxball</a>, a popular online 2D soccer game. This project demonstrates advanced RL techniques applied to a real-time competitive environment.</p>
 
-  <p>The framework provides a complete ecosystem for developing and training AI agents, including a Python recreation of the game engine, OpenAI Gym environment with custom reward functions, and integration with state-of-the-art reinforcement learning algorithms.</p>
+  <p class="text-gray-800 dark:text-gray-200">The framework provides a complete ecosystem for developing and training AI agents, including a Python recreation of the game engine, OpenAI Gym environment with custom reward functions, and integration with state-of-the-art reinforcement learning algorithms.</p>
 
-  <h2>AI Performance Demo</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">AI Performance Demo</h2>
 
-  <video controls width="600" class="w-full mb-4 rounded-lg shadow-lg border border-dark-600">
+  <video controls width="600" class="w-full mb-4 rounded-lg shadow-lg">
     <source src="/ai_vs_chaser.mov" type="video/mp4" />
     Your browser does not support the video tag.
   </video>
 
-  <p><em>AI agent (red) defeating a simple chase bot 6-1, demonstrating game understanding and strategic play</em></p>
+  <p class="text-gray-700 dark:text-gray-300"><em>AI agent (red) defeating a simple chase bot 6-1, demonstrating game understanding and strategic play</em></p>
 
-  <h2>Architecture Components</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">Architecture Components</h2>
 
-  <h3>Ursinaxball</h3>
-  <p>Python recreation of Haxball using the Ursina game engine, reverse-engineered from deobfuscated JavaScript code of the original browser game.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Ursinaxball</h3>
+  <p class="text-gray-800 dark:text-gray-200">Python recreation of Haxball using the Ursina game engine, reverse-engineered from deobfuscated JavaScript code of the original browser game.</p>
 
-  <h3>HaxballGym Environment</h3>
-  <p>Custom OpenAI Gym environment implementing:</p>
-  <ul>
-    <li><strong>State space</strong>: Player positions, velocities, ball state</li>
-    <li><strong>Action space</strong>: Discrete movement and kick actions</li>
-    <li><strong>Reward functions</strong>: Goal scoring, ball possession, positioning</li>
-    <li><strong>Terminal conditions</strong>: Game completion, time limits</li>
+  <h3 class="text-gray-900 dark:text-gray-100">HaxballGym Environment</h3>
+  <p class="text-gray-800 dark:text-gray-200">Custom OpenAI Gym environment implementing:</p>
+  <ul class="text-gray-800 dark:text-gray-200">
+    <li><strong class="text-gray-900 dark:text-gray-100">State space</strong>: Player positions, velocities, ball state</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Action space</strong>: Discrete movement and kick actions</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Reward functions</strong>: Goal scoring, ball possession, positioning</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Terminal conditions</strong>: Game completion, time limits</li>
   </ul>
 
-  <h3>Training Pipeline</h3>
-  <p>Integration with Stable-Baselines3 implementing PPO (Proximal Policy Optimization) for agent training with custom reward shaping.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Training Pipeline</h3>
+  <p class="text-gray-800 dark:text-gray-200">Integration with Stable-Baselines3 implementing PPO (Proximal Policy Optimization) for agent training with custom reward shaping.</p>
 
-  <h3>WazBot Starter Kit</h3>
-  <p>Quick-start repository with documentation and examples for training custom Haxball AI agents.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">WazBot Starter Kit</h3>
+  <p class="text-gray-800 dark:text-gray-200">Quick-start repository with documentation and examples for training custom Haxball AI agents.</p>
 
-  <h2>Technical Stack</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">Technical Stack</h2>
 
-  <ul>
-    <li><strong>Python</strong> - Core implementation language</li>
-    <li><strong>Ursina Engine</strong> - 3D game engine for physics simulation</li>
-    <li><strong>OpenAI Gym</strong> - RL environment framework</li>
-    <li><strong>Stable-Baselines3</strong> - RL algorithm implementation</li>
-    <li><strong>PyTorch</strong> - Neural network backend</li>
+  <ul class="text-gray-800 dark:text-gray-200">
+    <li><strong class="text-gray-900 dark:text-gray-100">Python</strong> - Core implementation language</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Ursina Engine</strong> - 3D game engine for physics simulation</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">OpenAI Gym</strong> - RL environment framework</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Stable-Baselines3</strong> - RL algorithm implementation</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">PyTorch</strong> - Neural network backend</li>
   </ul>
 
-  <h2>Key Challenges</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">Key Challenges</h2>
 
-  <h3>Game Engine Recreation</h3>
-  <p>Deobfuscating and understanding the original JavaScript physics engine required extensive reverse engineering. Converting to Python while maintaining gameplay fidelity posed significant architectural challenges.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Game Engine Recreation</h3>
+  <p class="text-gray-800 dark:text-gray-200">Deobfuscating and understanding the original JavaScript physics engine required extensive reverse engineering. Converting to Python while maintaining gameplay fidelity posed significant architectural challenges.</p>
 
-  <h3>Reward Engineering</h3>
-  <p>Designing reward functions that encourage realistic soccer behavior without reward hacking. Balancing exploration vs exploitation in the competitive game environment.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Reward Engineering</h3>
+  <p class="text-gray-800 dark:text-gray-200">Designing reward functions that encourage realistic soccer behavior without reward hacking. Balancing exploration vs exploitation in the competitive game environment.</p>
 
-  <h3>Training Stability</h3>
-  <p>Achieving consistent training performance across different opponents and scenarios while preventing overfitting to specific game situations.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Training Stability</h3>
+  <p class="text-gray-800 dark:text-gray-200">Achieving consistent training performance across different opponents and scenarios while preventing overfitting to specific game situations.</p>
 
-  <h2>Performance Results</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">Performance Results</h2>
 
-  <p>The best-performing model (trained for 1 week) achieves:</p>
-  <ul>
-    <li><strong>Consistent wins</strong> against beginner-level players</li>
-    <li><strong>Strong defensive positioning</strong> and ball interception</li>
-    <li><strong>Basic tactical understanding</strong> of game flow</li>
-    <li><strong>Limitations</strong>: Struggles with precision shots and advanced techniques</li>
+  <p class="text-gray-800 dark:text-gray-200">The best-performing model (trained for 1 week) achieves:</p>
+  <ul class="text-gray-800 dark:text-gray-200">
+    <li><strong class="text-gray-900 dark:text-gray-100">Consistent wins</strong> against beginner-level players</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Strong defensive positioning</strong> and ball interception</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Basic tactical understanding</strong> of game flow</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Limitations</strong>: Struggles with precision shots and advanced techniques</li>
   </ul>
 
-  <p>Current performance suggests potential to challenge intermediate players with more diverse training scenarios.</p>
+  <p class="text-gray-800 dark:text-gray-200">Current performance suggests potential to challenge intermediate players with more diverse training scenarios.</p>
 
-  <h2>Community Impact</h2>
+  <h2 class="text-gray-900 dark:text-gray-100">Community Impact</h2>
 
-  <p>The framework has attracted interest from academic researchers and students, with several universities incorporating it into reinforcement learning coursework. The open-source nature has enabled collaborative improvements and extensions.</p>
+  <p class="text-gray-800 dark:text-gray-200">The framework has attracted interest from master students. The open-source nature has enabled collaborative improvements and extensions.</p>
 </ProjectLayout>
