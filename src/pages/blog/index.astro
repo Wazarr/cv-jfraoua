@@ -14,19 +14,16 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
     <!-- Terminal Header -->
     <TerminalWindow title="blog/" headerColor="terminal" className="max-w-4xl mx-auto">
       <div class="space-y-3">
-        <div class="hidden md:flex items-center space-x-2">
-          <span class="text-terminal-400">jeremy@portfolio:~$</span>
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
           <span class="text-terminal-400">cd blog/</span>
         </div>
-        <div class="text-light-700 dark:text-dark-300 md:pl-4 space-y-2">
-          <p class="text-terminal-400 font-mono"># Technical Blog & Insights</p>
-          <p class="text-light-600 dark:text-dark-400 text-xs md:text-sm">
-            Exploring data science, AI, risk analysis, and web technologies.
-            Sharing experiences from quantitative analysis, machine learning 
-            projects, and technical innovations.
-          </p>
-          <div class="hidden md:block mt-3 space-y-1 font-mono text-sm">
-            <p><span class="text-terminal-400">total</span> <span class="text-light-600 dark:text-dark-400">{posts.length} articles</span></p>
+        <div class="text-light-700 dark:text-dark-300 pl-4 space-y-1">
+          <p class="text-terminal-300"># Technical Blog & Insights</p>
+          <p class="text-light-600 dark:text-dark-400"># Exploring data science, AI, risk analysis, and web technologies</p>
+          <p class="text-light-600 dark:text-dark-400"># Sharing experiences from quantitative analysis, machine learning projects, and technical innovations</p>
+          <div class="mt-3 space-y-1">
+            <p><span class="text-terminal-400">total:</span> <span class="text-light-600 dark:text-dark-400">{posts.length} articles</span></p>
             <p><span class="text-code-400">ai-ml/</span> <span class="text-light-500 dark:text-dark-500"># AI & Machine Learning</span></p>
             <p><span class="text-primary-400">risk-analysis/</span> <span class="text-light-500 dark:text-dark-500"># Risk & Finance</span></p>
             <p><span class="text-terminal-400">tech-insights/</span> <span class="text-light-500 dark:text-dark-500"># Development & Tools</span></p>
@@ -41,7 +38,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
         <TerminalWindow title="no_posts_found.sh" headerColor="primary" className="max-w-4xl mx-auto">
           <div class="space-y-4">
             <div class="flex items-center space-x-2">
-              <span class="text-terminal-400">jeremy@portfolio:~/blog$</span>
+              <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/blog$</span>
               <span class="text-primary-400">./find_posts.sh --status=coming-soon</span>
             </div>
             <div class="pl-4 space-y-4">
@@ -104,20 +101,20 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
           {posts.map((post, index) => (
             <TerminalWindow title={`article_${index + 1}.md`} headerColor="code" className="w-full">
               <div class="space-y-3">
-                <div class="hidden md:flex items-center space-x-2">
-                  <span class="text-terminal-400">jeremy@portfolio:~/blog$</span>
+                <div class="flex items-center space-x-2">
+                  <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/blog$</span>
                   <span class="text-code-400">cat {post.slug}.md</span>
                 </div>
-                <div class="md:pl-4 space-y-2 md:space-y-3">
+                <div class="pl-4 space-y-3">
                   <a
                     href={`/blog/${post.slug}/`}
                     class="block space-y-3 hover:opacity-90 transition-opacity"
                   >
                     <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between">
-                      <h2 class="text-lg md:text-xl font-bold text-code-400 hover:text-primary-400 transition-colors font-mono">
+                      <h2 class="text-xl font-bold text-code-400 hover:text-primary-400 transition-colors font-mono">
                         # {post.data.title}
                       </h2>
-                      <time class="text-light-600 dark:text-dark-400 text-xs md:text-sm font-mono">
+                      <time class="text-light-600 dark:text-dark-400 text-sm font-mono">
                         {post.data.pubDate.toLocaleDateString("en-US", {
                           year: "numeric",
                           month: "long",
@@ -126,7 +123,7 @@ posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
                       </time>
                     </div>
 
-                    <p class="text-light-700 dark:text-dark-300 leading-relaxed text-xs md:text-sm">
+                    <p class="text-light-700 dark:text-dark-300 leading-relaxed">
                       {post.data.description}
                     </p>
 
