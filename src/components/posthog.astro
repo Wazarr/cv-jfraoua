@@ -1,0 +1,244 @@
+---
+const POSTHOG_API_KEY = import.meta.env.POSTHOG_API_KEY || process.env.POSTHOG_API_KEY || 'phc_u8b60h8okBATje9pb3KxilJL2xjLZXOpswXA4MQXcTy';
+---
+
+<script is:inline define:vars={{ POSTHOG_API_KEY }}>
+  
+  !(function(t, e) {
+    var o, n, p, r;
+    e.__SV ||
+      ((window.posthog = e),
+      (e._i = []),
+      (e.init = function(i, s, a) {
+        function g(t, e) {
+          var o = e.split('.');
+          2 == o.length && ((t = t[o[0]]), (e = o[1])),
+            (t[e] = function() {
+              t.push([e].concat(Array.prototype.slice.call(arguments, 0)));
+            });
+        }
+        ((p = t.createElement('script')).type = 'text/javascript'),
+          (p.crossOrigin = 'anonymous'),
+          (p.async = true),
+          (p.src = s.api_host + '/static/array.js'),
+          (r = t.getElementsByTagName('script')[0]).parentNode.insertBefore(p, r);
+        var u = e;
+        void 0 !== a ? (u = e[a] = []) : (a = 'posthog');
+        u.people = u.people || [];
+        u.toString = function(t) {
+          var e = 'posthog';
+          return 'posthog' !== a && (e += '.' + a), t || (e += ' (stub)'), e;
+        };
+        u.people.toString = function() {
+          return u.toString(1) + '.people (stub)';
+        };
+        o =
+          'capture identify alias people.set people.set_once set_config register register_once unregister opt_out_capturing has_opted_out_capturing opt_in_capturing reset isFeatureEnabled onFeatureFlags getFeatureFlag getFeatureFlagPayload reloadFeatureFlags group updateEarlyAccessFeatureEnrollment getEarlyAccessFeatures getActiveMatchingSurveys getSurveys getNextSurveyStep onSessionId'.split(
+            ' '
+          );
+        for (n = 0; n < o.length; n++) g(u, o[n]);
+        e._i.push([i, s, a]);
+      }),
+      (e.__SV = 1));
+  })(document, window.posthog || []);
+  
+  
+  posthog.init(POSTHOG_API_KEY, { 
+    api_host: 'https://eu.i.posthog.com',
+    // Enable session recordings to see exactly how recruiters navigate your site
+    session_recording: {
+      recordCrossOriginIframes: true,
+      recordCanvas: true,
+    },
+    // Enable heatmaps and click tracking
+    autocapture: true,
+    // Capture more detailed user interactions
+    capture_pageview: true,
+    capture_pageleave: true,
+    // Enable feature flags for A/B testing
+    loaded: function(posthog) {
+      
+      // Generate a unique user ID for this session
+      const userId = `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      posthog.identify(userId);
+      
+      // Identify users based on their behavior patterns
+      const userProperties = {
+        first_visit: new Date().toISOString(),
+        user_agent: navigator.userAgent,
+        screen_resolution: `${screen.width}x${screen.height}`,
+        timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        language: navigator.language,
+        referrer: document.referrer || 'direct',
+        page_url: window.location.href,
+      };
+      
+      // Set user properties for better segmentation
+      posthog.people.set(userProperties);
+      
+      // Track initial page load with context
+      posthog.capture('page_loaded', {
+        page: window.location.pathname,
+        title: document.title,
+        ...userProperties
+      });
+      
+      // Also capture standard pageview for analytics
+      posthog.capture('$pageview', {
+        $current_url: window.location.href,
+        $pathname: window.location.pathname,
+        $title: document.title
+      });
+      
+      
+      // Set up advanced tracking after PostHog is loaded
+      setTimeout(function() {
+        // Track time spent on page
+        let startTime = Date.now();
+        let maxScroll = 0;
+        
+        // Track scroll depth (important for recruiters reading your content)
+        function trackScrollDepth() {
+          const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+          if (scrollPercent > maxScroll) {
+            maxScroll = scrollPercent;
+            if (scrollPercent >= 25 && scrollPercent < 50) {
+              posthog.capture('scroll_depth_25');
+            } else if (scrollPercent >= 50 && scrollPercent < 75) {
+              posthog.capture('scroll_depth_50');
+            } else if (scrollPercent >= 75 && scrollPercent < 90) {
+              posthog.capture('scroll_depth_75');
+            } else if (scrollPercent >= 90) {
+              posthog.capture('scroll_depth_90');
+            }
+          }
+        }
+        
+        // Track contact attempts (key recruiter action!) - using event delegation
+        function trackContactAttempts() {
+          // Use event delegation to catch all clicks
+          document.addEventListener('click', (e) => {
+            const link = e.target.closest('a');
+            if (!link) return;
+            
+            const href = link.href;
+            
+            // Email clicks
+            if (href.startsWith('mailto:')) {
+              posthog.capture('contact_email_clicked', {
+                email: href.replace('mailto:', ''),
+                page: window.location.pathname,
+                link_text: link.textContent.trim()
+              });
+            }
+            
+            // LinkedIn clicks
+            if (href.includes('linkedin.com')) {
+              posthog.capture('linkedin_clicked', {
+                page: window.location.pathname,
+                link_text: link.textContent.trim(),
+                url: href
+              });
+            }
+            
+            // Resume/CV clicks
+            if (href.includes('/resume') || href.includes('/cv') || link.textContent.toLowerCase().includes('resume') || link.textContent.toLowerCase().includes('cv')) {
+              posthog.capture('resume_clicked', {
+                page: window.location.pathname,
+                link_text: link.textContent.trim(),
+                url: href
+              });
+            }
+            
+            // GitHub clicks
+            if (href.includes('github.com')) {
+              posthog.capture('github_clicked', {
+                page: window.location.pathname,
+                link_text: link.textContent.trim(),
+                url: href
+              });
+            }
+          });
+        }
+        
+        // Track project interest
+        function trackProjectInterest() {
+          document.querySelectorAll('a[href*="/projects/"]').forEach(link => {
+            link.addEventListener('click', () => {
+              posthog.capture('project_clicked', {
+                project: link.href.split('/').pop(),
+                page: window.location.pathname
+              });
+            });
+          });
+        }
+        
+        // Track navigation clicks
+        function trackNavigation() {
+          document.querySelectorAll('nav a, .nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+              posthog.capture('navigation_clicked', {
+                destination: link.href,
+                text: link.textContent.trim(),
+                page: window.location.pathname
+              });
+            });
+          });
+        }
+        
+        // Track theme toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        if (themeToggle) {
+          themeToggle.addEventListener('click', () => {
+            const isDark = document.documentElement.classList.contains('dark');
+            posthog.capture('theme_toggled', {
+              from: isDark ? 'dark' : 'light',
+              to: isDark ? 'light' : 'dark',
+              page: window.location.pathname
+            });
+          });
+        }
+        
+        // Track time on page when leaving
+        function trackTimeOnPage() {
+          const timeSpent = Math.round((Date.now() - startTime) / 1000);
+          posthog.capture('page_time_spent', {
+            page: window.location.pathname,
+            time_seconds: timeSpent,
+            max_scroll_percent: maxScroll
+          });
+        }
+        
+        // Set up event listeners
+        window.addEventListener('scroll', trackScrollDepth);
+        window.addEventListener('beforeunload', trackTimeOnPage);
+        document.addEventListener('visibilitychange', () => {
+          if (document.visibilityState === 'hidden') {
+            trackTimeOnPage();
+          }
+        });
+        
+        // Initialize tracking
+        trackContactAttempts();
+        trackProjectInterest();
+        trackNavigation();
+        
+        // Track if user seems like a recruiter (spending time on multiple pages)
+        let pageViews = parseInt(sessionStorage.getItem('pageViews') || '0') + 1;
+        sessionStorage.setItem('pageViews', pageViews.toString());
+        
+        if (pageViews >= 3) {
+          posthog.capture('potential_recruiter', {
+            pages_viewed: pageViews,
+            session_duration: Date.now() - parseInt(sessionStorage.getItem('sessionStart') || Date.now().toString())
+          });
+        }
+        
+        if (!sessionStorage.getItem('sessionStart')) {
+          sessionStorage.setItem('sessionStart', Date.now().toString());
+        }
+      }, 500); // Wait for DOM to be ready
+    }
+  });
+  
+</script>

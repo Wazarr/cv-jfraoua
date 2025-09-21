@@ -1,6 +1,7 @@
 ---
 import { ViewTransitions } from "astro:transitions";
 import MobileNav from "../components/MobileNav.astro";
+import PostHog from "../components/posthog.astro";
 
 interface Props {
   title: string;
@@ -17,6 +18,7 @@ function getCurrentYear() {
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta
       name="description"
       content="Jérémy Fraoua - Quantitative Risk Analyst & AI Developer. Explore my portfolio featuring VibeTrip, HaxballGym, and data science projects."
@@ -33,6 +35,9 @@ function getCurrentYear() {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    
+    <!-- PostHog Analytics -->
+    <PostHog />
     <script is:inline>
       // Prevent flash of wrong theme - must run before any content renders
       (function() {
@@ -52,6 +57,7 @@ function getCurrentYear() {
         localStorage.setItem("theme", theme);
       })();
     </script>
+    
   </head>
 
   <body
@@ -416,7 +422,10 @@ function getCurrentYear() {
         });
       }
 
-      // Initial setup
+      // Initial setup - run immediately and on DOM ready
+      setupThemeToggle();
+      setupNavigation();
+      
       document.addEventListener("DOMContentLoaded", () => {
         setupThemeToggle();
         setupNavigation();
@@ -432,13 +441,13 @@ function getCurrentYear() {
       });
 
       document.addEventListener("astro:after-swap", () => {
-        // Re-setup functionality
         setupThemeToggle();
         setupNavigation();
       });
 
       // Handle browser navigation (back/forward)
       document.addEventListener("astro:page-load", () => {
+        setupThemeToggle();
         setupNavigation();
       });
     </script>

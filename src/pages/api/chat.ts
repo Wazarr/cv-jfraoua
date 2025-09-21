@@ -5,6 +5,36 @@ import { getRelevantContext, generateSystemPrompt } from '../../lib/context';
 import { validateInput, validateResponse, getRejectionMessage, getGuardrailSystemPrompt } from '../../lib/guardrails';
 
 const GROQ_API_KEY = import.meta.env.GROQ_API_KEY || process.env.GROQ_API_KEY;
+const POSTHOG_API_KEY = import.meta.env.POSTHOG_API_KEY || process.env.POSTHOG_API_KEY;
+
+// PostHog logging function
+async function logToPostHog(event: string, properties: any) {
+  if (!POSTHOG_API_KEY) {
+    return;
+  }
+
+  const payload = {
+    api_key: POSTHOG_API_KEY,
+    event,
+    properties: {
+      ...properties,
+      timestamp: new Date().toISOString(),
+    },
+    distinct_id: `user_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`, // Generate unique user ID
+  };
+
+  try {
+    await fetch('https://eu.i.posthog.com/capture/', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(payload),
+    });
+  } catch (error) {
+    console.error('Failed to log to PostHog:', error);
+  }
+}
 
 export const POST: APIRoute = async ({ request }) => {
   try {
@@ -17,10 +47,28 @@ export const POST: APIRoute = async ({ request }) => {
       });
     }
 
+    // Log user message to PostHog
+    await logToPostHog('chat_message_sent', {
+      message: message,
+      message_length: message.length,
+      conversation_length: conversation.length,
+      model: model,
+      user_agent: request.headers.get('user-agent'),
+      ip: request.headers.get('x-forwarded-for') || request.headers.get('x-real-ip'),
+    });
+
     // Apply LLM-powered input guardrails
     const inputValidation = await validateInput(message);
     if (!inputValidation.allowed) {
       const rejectionMessage = getRejectionMessage(inputValidation);
+      
+      // Log guardrail trigger to PostHog
+      await logToPostHog('chat_guardrail_triggered', {
+        message: message,
+        rejection_reason: inputValidation.reason || 'unknown',
+        rejection_message: rejectionMessage,
+        model: model,
+      });
       
       // Return a streaming response with the rejection message
       const rejectionStream = new ReadableStream({
@@ -100,6 +148,15 @@ export const POST: APIRoute = async ({ request }) => {
           const responseValidation = validateResponse(fullResponse);
           // Response validation is mainly for monitoring - don't interrupt user experience
           
+          // Log successful AI response to PostHog
+          await logToPostHog('chat_response_generated', {
+            original_message: message,
+            response_length: fullResponse.length,
+            model: model,
+            conversation_length: conversation.length,
+            response_valid: responseValidation.allowed,
+          });
+          
           controller.close();
         } catch (error) {
           console.error('Streaming error:', error);
@@ -123,8 +180,16 @@ export const POST: APIRoute = async ({ request }) => {
     console.error('Chat API error:', error);
     console.error('Error stack:', error instanceof Error ? error.stack : 'No stack trace');
 
-    // More detailed error response
+    // Log error to PostHog
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
+    await logToPostHog('chat_api_error', {
+      error_message: errorMessage,
+      error_stack: error instanceof Error ? error.stack : 'No stack trace',
+      has_groq_key: !!GROQ_API_KEY,
+      has_posthog_key: !!POSTHOG_API_KEY,
+    });
+
+    // More detailed error response
     const errorDetails = {
       error: 'Internal server error',
       details: errorMessage,

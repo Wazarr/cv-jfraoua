@@ -341,6 +341,16 @@ import Layout from "../layouts/Layout.astro";
         addMessage(true, message, false, userMessageId);
         conversationHistory.push({ role: 'user', content: message });
 
+        // Track message with PostHog frontend
+        if (window.posthog) {
+          window.posthog.capture('chat_message_frontend', {
+            message: message,
+            message_length: message.length,
+            conversation_length: conversationHistory.length,
+            model: selectedModel
+          });
+        }
+
         // Clear input
         if (chatInput) chatInput.value = '';
 
@@ -631,5 +641,4 @@ import Layout from "../layouts/Layout.astro";
     document.addEventListener('astro:page-load', initializeChat);
     document.addEventListener('astro:after-swap', initializeChat);
   </script>
-</Layout>
 </Layout>

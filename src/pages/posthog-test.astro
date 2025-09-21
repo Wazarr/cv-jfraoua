@@ -1,0 +1,97 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="PostHog Test - Jérémy Fraoua">
+  <div class="container mx-auto px-4 py-8">
+    <div class="max-w-2xl mx-auto">
+      <h1 class="text-3xl font-bold mb-8">PostHog Test Page</h1>
+      
+      <div class="space-y-4">
+        <button 
+          id="test-event" 
+          class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        >
+          Send Test Event
+        </button>
+        
+        <button 
+          id="test-identify" 
+          class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700"
+        >
+          Test User Identification
+        </button>
+        
+        <div id="status" class="p-4 bg-gray-100 dark:bg-gray-800 rounded">
+          <p>PostHog Status: <span id="posthog-status">Checking...</span></p>
+          <p>API Key: <span id="api-key-status">Checking...</span></p>
+          <p>Events Sent: <span id="events-count">0</span></p>
+        </div>
+        
+        <div class="space-y-2">
+          <h3 class="font-bold">Test Links:</h3>
+          <a href="mailto:jeremy.fraoua@gmail.com" class="block text-blue-600 hover:underline">[EMAIL] Test Email Click</a>
+          <a href="https://linkedin.com/in/test" class="block text-blue-600 hover:underline">[LINKEDIN] Test LinkedIn Click</a>
+          <a href="/resume" class="block text-blue-600 hover:underline">[RESUME] Test Resume Click</a>
+          <a href="/projects/test" class="block text-blue-600 hover:underline">[PROJECT] Test Project Click</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    let eventCount = 0;
+    
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check PostHog status
+      const statusEl = document.getElementById('posthog-status');
+      const apiKeyEl = document.getElementById('api-key-status');
+      const eventsEl = document.getElementById('events-count');
+      
+      if (window.posthog) {
+        statusEl.textContent = '✅ Loaded';
+        statusEl.className = 'text-green-600';
+        
+        // Try to get the API key (it's not directly accessible, but we can check if it's working)
+        apiKeyEl.textContent = '✅ Configured';
+        apiKeyEl.className = 'text-green-600';
+      } else {
+        statusEl.textContent = '❌ Not Loaded';
+        statusEl.className = 'text-red-600';
+        apiKeyEl.textContent = '❌ Not Available';
+        apiKeyEl.className = 'text-red-600';
+      }
+      
+      // Test event button
+      document.getElementById('test-event').addEventListener('click', function() {
+        if (window.posthog) {
+          window.posthog.capture('test_button_clicked', {
+            timestamp: new Date().toISOString(),
+            test_type: 'manual_test'
+          });
+          eventCount++;
+          eventsEl.textContent = eventCount;
+          console.log('Test event sent!');
+        } else {
+          alert('PostHog not available!');
+        }
+      });
+      
+      // Test identify button
+      document.getElementById('test-identify').addEventListener('click', function() {
+        if (window.posthog) {
+          const testUserId = `test_user_${Date.now()}`;
+          window.posthog.identify(testUserId, {
+            test_user: true,
+            test_timestamp: new Date().toISOString()
+          });
+          eventCount++;
+          eventsEl.textContent = eventCount;
+          console.log('User identified:', testUserId);
+        } else {
+          alert('PostHog not available!');
+        }
+      });
+    });
+  </script>
+</Layout>
