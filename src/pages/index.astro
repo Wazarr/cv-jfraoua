@@ -1,10 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import TerminalWindow from "../components/TerminalWindow.astro";
+import ParticleField from "../components/ParticleField.astro";
 ---
 
 <Layout title="Jérémy Fraoua - Portfolio">
-    <div class="container mx-auto px-4 py-6 md:py-12 space-y-8 md:space-y-12">
+    <div class="relative overflow-hidden">
+      <ParticleField className="opacity-70" />
+      <div class="container mx-auto px-4 py-6 md:py-12 space-y-8 md:space-y-12 relative z-10">
       <!-- Hero Section - Clean and Professional -->
       <div class="max-w-4xl mx-auto text-center space-y-8">
         <!-- Desktop: ASCII Art -->
@@ -170,9 +173,9 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               development projects.
             </p>
             <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
-              <p>• VibeTrip - AI Travel Planning Platform</p>
-              <p>• HaxballGym - RL Environment</p>
-              <p>• Data Dashboards & Analytics</p>
+              <p>• VibeTrip - AI travel planning & deep research</p>
+              <p>• Saje Editions - AI-powered book exploration</p>
+              <p>• HaxballGym - RL environment</p>
             </div>
             <a
               href="/projects"

@@ -7,7 +7,7 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
   
   <div class="mb-4">
     <a
-      href="https://github.com/Wazarr"
+      href="https://vibetrip.app"
       target="_blank"
       rel="noopener noreferrer"
       class="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 font-mono font-semibold"
@@ -24,60 +24,85 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
         stroke-linejoin="round"
         class="w-5 h-5"
       >
-        <path
-          d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"
-        ></path>
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
       </svg>
-      <span>→ github.com/Wazarr</span>
+      <span>→ vibetrip.app</span>
     </a>
   </div>
 
   <h2 class="text-gray-900 dark:text-gray-100 mt-2">Overview</h2>
 
-  <p class="text-gray-800 dark:text-gray-200">VibeTrip is an innovative AI travel planning platform that leverages machine learning to create personalized travel experiences. The platform analyzes user preferences, travel history, and real-time data to generate custom itineraries that match individual travel styles and interests.</p>
-
-  <p class="text-gray-800 dark:text-gray-200">AI-powered travel planning platform that creates personalized itineraries based on user preferences, demonstrating the practical application of AI in the travel industry.</p>
+  <p class="text-gray-800 dark:text-gray-200">
+    VibeTrip is an AI travel planning platform that combines deep research with a polished consumer
+    experience. Users share their preferences, budget, and travel constraints, and the system returns
+    a personalized, day-by-day itinerary with local insights and bookable recommendations.
+  </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Key Features</h2>
 
-  <h3 class="text-gray-900 dark:text-gray-100">AI-Powered Itinerary Generation</h3>
-  <p class="text-gray-800 dark:text-gray-200">Advanced machine learning algorithms analyze user preferences and travel patterns to create personalized itineraries tailored to individual interests and travel styles.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Deep Research Engine</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    A multi-agent planning backend analyzes blogs, reviews, and local guides to surface the most
+    relevant experiences, including hidden gems that match a traveler's style.
+  </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Real-Time Integration</h3>
-  <p class="text-gray-800 dark:text-gray-200">Seamless integration with travel APIs and booking systems to provide up-to-date information on flights, accommodations, and local attractions.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Smart Itineraries</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Generates balanced itineraries with day-by-day pacing, bookable links, and practical local tips so
+    users can move from planning to action quickly.
+  </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Interactive Visualization</h3>
-  <p class="text-gray-800 dark:text-gray-200">Interactive map visualization with detailed location information, allowing users to explore destinations and customize their travel plans visually.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Group Planning</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Blends multiple traveler profiles to create a single plan that satisfies different interests and
+    budgets without overwhelming the group.
+  </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Social Collaboration</h3>
-  <p class="text-gray-800 dark:text-gray-200">Social sharing and collaboration features enable group planning and community-driven travel recommendations.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Multi-Agent Planning API</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    FastAPI services coordinate a CrewAI agent pipeline, enabling structured inputs, progress tracking,
+    and reliable plan generation at scale.
+  </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Technology Stack</h2>
 
   <ul class="text-gray-800 dark:text-gray-200">
-    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: React, Next.js, TypeScript</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: Python, FastAPI</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">AI/ML</strong>: OpenAI GPT, Custom recommendation algorithms</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Database</strong>: PostgreSQL</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Deployment</strong>: Vercel, Railway</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: Next.js 15, React 19, Tailwind CSS</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: FastAPI, CrewAI multi-agent workflows</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Data</strong>: Postgres (Supabase) with Drizzle ORM</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Infra</strong>: Better Auth, Upstash, AWS S3/SES, PostHog</li>
   </ul>
 
   <h2 class="text-gray-900 dark:text-gray-100">Key Challenges</h2>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Personalization Algorithm</h3>
-  <p class="text-gray-800 dark:text-gray-200">Developing sophisticated algorithms that can understand and interpret diverse user preferences while balancing personalization with discovery of new experiences.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Source Quality and Freshness</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Designing a research pipeline that surfaces reliable, current information while avoiding the noise
+    of generic travel lists.
+  </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Real-Time Data Integration</h3>
-  <p class="text-gray-800 dark:text-gray-200">Managing and synchronizing data from multiple travel APIs while ensuring accuracy and real-time updates for pricing and availability.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Long-Running Plan Generation</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Orchestrating multi-agent workflows while keeping the user experience responsive and transparent.
+  </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">User Experience Design</h3>
-  <p class="text-gray-800 dark:text-gray-200">Creating an intuitive interface that simplifies complex travel planning while providing comprehensive customization options.</p>
+  <h3 class="text-gray-900 dark:text-gray-100">Product Design at Scale</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Translating complex travel preferences into a simple, delightful planning flow with clear outputs.
+  </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Project Impact</h2>
 
-  <p class="text-gray-800 dark:text-gray-200">VibeTrip demonstrates the practical application of AI in the travel industry, showcasing how machine learning can enhance user experience and provide valuable, personalized services. The project highlights skills in full-stack development, AI integration, and product development.</p>
+  <p class="text-gray-800 dark:text-gray-200">
+    VibeTrip showcases end-to-end product engineering: from AI research orchestration to a consumer
+    interface that feels modern, calm, and actionable.
+  </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Future Development</h2>
 
-  <p class="text-gray-800 dark:text-gray-200">Planned enhancements include advanced predictive analytics for travel trends, integration with more travel service providers, and enhanced social features for community-driven travel planning.</p>
+  <p class="text-gray-800 dark:text-gray-200">
+    Next steps include richer itinerary editing, collaborative planning, and deeper integrations with
+    booking providers and local data sources.
+  </p>
 </ProjectLayout>

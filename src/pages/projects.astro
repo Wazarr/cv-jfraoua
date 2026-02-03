@@ -14,9 +14,10 @@ import TerminalWindow from "../components/TerminalWindow.astro";
         </div>
         <div class="text-light-700 dark:text-dark-300 pl-4 space-y-1 font-mono text-sm">
           <p class="text-primary-300"># Projects Portfolio</p>
-          <p class="text-light-600 dark:text-dark-400"># AI, machine learning, and web development projects</p>
-          <p class="text-light-600 dark:text-dark-400"># Showcasing practical applications of data science</p>
+          <p class="text-light-600 dark:text-dark-400"># AI products, machine learning, and full-stack systems</p>
+          <p class="text-light-600 dark:text-dark-400"># Focused on practical, user-facing applications</p>
           <div class="mt-3 space-y-1">
+            <p><span class="text-terminal-400">project:</span> <span class="text-primary-400">saje-editions</span> <span class="text-light-500 dark:text-dark-500"># AI reading & publishing platform</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-code-400">vibetrip</span> <span class="text-light-500 dark:text-dark-500"># AI travel planning platform</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-primary-400">haxball-ai</span> <span class="text-light-500 dark:text-dark-500"># RL environment & training</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-light-700 dark:text-dark-300">ens-challenge</span> <span class="text-light-500 dark:text-dark-500"># ML prediction model</span></p>
@@ -25,21 +26,20 @@ import TerminalWindow from "../components/TerminalWindow.astro";
       </div>
     </TerminalWindow>
 
-    <!-- Featured Project - VibeTrip -->
-    <TerminalWindow title="vibetrip/ --readme" headerColor="code" className="max-w-6xl mx-auto">
-      <div class="space-y-4">
+    <!-- Featured Project - Saje Editions -->
+    <TerminalWindow title="saje-editions/ --readme" headerColor="primary" className="max-w-6xl mx-auto relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary-500/10 before:via-transparent before:to-code-500/10 before:opacity-70">
+      <div class="space-y-4 relative z-10">
         <div class="flex items-center space-x-2">
           <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
-          <span class="text-code-400">cat vibetrip/README.md</span>
+          <span class="text-primary-400">cat saje-editions/README.md</span>
         </div>
         <div class="pl-4 space-y-4">
           <div class="flex items-center space-x-4">
-            <h2 class="text-3xl font-bold text-primary-400"># VibeTrip</h2>
+            <h2 class="text-3xl font-bold text-primary-400"># Saje Editions</h2>
           </div>
           <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
-            AI-powered travel planning platform that creates personalized itineraries 
-            using machine learning and real-time data integration. Built with modern 
-            web technologies and advanced AI models.
+            AI-powered reading and publishing platform that turns PDF/EPUB libraries into interactive tutors,
+            with grounded answers, summaries, and study tools.
           </p>
           
           <div class="grid lg:grid-cols-2 gap-8">
@@ -49,19 +49,15 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                 <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>AI-powered itinerary generation with personalized recommendations</span>
+                    <span>Chat with books with page-cited answers and streaming responses</span>
                   </li>
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Real-time integration with travel APIs and booking systems</span>
+                    <span>Hybrid retrieval (pgvector + BM25) for accurate grounding</span>
                   </li>
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Interactive map visualization with location details</span>
-                  </li>
-                  <li class="flex items-start space-x-3">
-                    <span class="text-primary-400 mt-1">-</span>
-                    <span>Social collaboration features for group planning</span>
+                    <span>Summaries, quizzes, and flashcards for study workflows</span>
                   </li>
                 </ul>
               </div>
@@ -70,10 +66,82 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               <div>
                 <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
                 <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
-                  <p><span class="text-code-400">Frontend:</span> React, TypeScript</p>
-                  <p><span class="text-terminal-400">Backend:</span> Python, OpenAI API</p>
-                  <p><span class="text-primary-400">Database:</span> PostgreSQL</p>
-                  <p><span class="text-light-700 dark:text-dark-300">APIs:</span> Travel & Booking Services</p>
+                  <p><span class="text-code-400">Frontend:</span> Next.js 16, Tailwind CSS</p>
+                  <p><span class="text-terminal-400">Backend:</span> FastAPI, Supabase (Postgres + pgvector)</p>
+                  <p><span class="text-primary-400">AI:</span> LiteLLM/OpenRouter, Gemini embeddings</p>
+                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Docker Compose, Supabase Storage</p>
+                </div>
+              </div>
+              <div class="flex space-x-4 pt-4">
+                <a 
+                  href="/projects/saje-editions"
+                  class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view_details()
+                </a>
+                <a 
+                  href="https://sajedition.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  visit_app()
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- Featured Project - VibeTrip -->
+    <TerminalWindow title="vibetrip/ --readme" headerColor="code" className="max-w-6xl mx-auto relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-code-500/10 before:via-transparent before:to-terminal-500/10 before:opacity-70">
+      <div class="space-y-4 relative z-10">
+        <div class="flex items-center space-x-2">
+          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
+          <span class="text-code-400">cat vibetrip/README.md</span>
+        </div>
+        <div class="pl-4 space-y-4">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-3xl font-bold text-primary-400"># VibeTrip</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
+            AI travel planning platform that blends deep research with a polished consumer
+            experience to deliver personalized itineraries, local insights, and bookable plans.
+          </p>
+          
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-primary-300 mb-3">## Features</h3>
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Deep AI research across blogs, reviews, and local guides</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Smart itineraries with day-by-day pacing and booking links</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Hidden gems and local insights tailored to preferences</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-primary-400 mt-1">-</span>
+                    <span>Group planning that balances multiple traveler profiles</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
+                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <p><span class="text-code-400">Frontend:</span> Next.js 15, React 19, Tailwind</p>
+                  <p><span class="text-terminal-400">Backend:</span> FastAPI + CrewAI multi-agent system</p>
+                  <p><span class="text-primary-400">Data:</span> Postgres (Supabase) + Drizzle ORM</p>
+                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Better Auth, Upstash, AWS S3/SES</p>
                 </div>
               </div>
               <div class="flex space-x-4 pt-4">
@@ -84,12 +152,12 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   view_details()
                 </a>
                 <a 
-                  href="https://github.com/Wazarr"
+                  href="https://vibetrip.app"
                   target="_blank"
                   rel="noopener noreferrer"
                   class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  open_github()
+                  visit_app()
                 </a>
               </div>
             </div>

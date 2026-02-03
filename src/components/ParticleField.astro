@@ -1,0 +1,132 @@
+---
+interface Props {
+  id?: string;
+  className?: string;
+}
+
+const { id = "particle-field", className = "" } = Astro.props;
+---
+
+<div class={`pointer-events-none absolute inset-0 ${className}`} aria-hidden="true">
+  <canvas id={id} class="block h-full w-full"></canvas>
+</div>
+
+<script is:inline>
+(() => {
+  const canvas = document.getElementById(${JSON.stringify(id)});
+  if (!(canvas instanceof HTMLCanvasElement)) return;
+
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (prefersReducedMotion) return;
+
+  const ctx = canvas.getContext("2d");
+  if (!ctx) return;
+
+  const palettes = {
+    light: {
+      dot: "rgba(217, 119, 6, 0.45)",
+      lineRgb: [13, 148, 136],
+      lineAlpha: 0.18,
+    },
+    dark: {
+      dot: "rgba(94, 234, 212, 0.5)",
+      lineRgb: [56, 189, 248],
+      lineAlpha: 0.2,
+    },
+  };
+
+  const getPalette = () =>
+    document.documentElement.classList.contains("dark") ? palettes.dark : palettes.light;
+
+  let palette = getPalette();
+  let width = 0;
+  let height = 0;
+  let dpr = window.devicePixelRatio || 1;
+  let particles = [];
+  let animationId = 0;
+
+  const maxParticles = () =>
+    Math.max(16, Math.min(48, Math.floor((width * height) / 38000)));
+
+  const maxDistance = () => (width < 640 ? 110 : 140);
+
+  const createParticles = () => {
+    const count = maxParticles();
+    const next = [];
+
+    for (let i = 0; i < count; i += 1) {
+      const speed = 0.25 + Math.random() * 0.35;
+      const angle = Math.random() * Math.PI * 2;
+      next.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: Math.cos(angle) * speed,
+        vy: Math.sin(angle) * speed,
+        r: 1.2 + Math.random() * 1.6,
+      });
+    }
+
+    return next;
+  };
+
+  const resize = () => {
+    width = canvas.clientWidth;
+    height = canvas.clientHeight;
+    dpr = window.devicePixelRatio || 1;
+    canvas.width = Math.max(1, Math.floor(width * dpr));
+    canvas.height = Math.max(1, Math.floor(height * dpr));
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    particles = createParticles();
+  };
+
+  const step = () => {
+    ctx.clearRect(0, 0, width, height);
+
+    for (const particle of particles) {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      if (particle.x < -20) particle.x = width + 20;
+      if (particle.x > width + 20) particle.x = -20;
+      if (particle.y < -20) particle.y = height + 20;
+      if (particle.y > height + 20) particle.y = -20;
+    }
+
+    const limit = maxDistance();
+    for (let i = 0; i < particles.length; i += 1) {
+      for (let j = i + 1; j < particles.length; j += 1) {
+        const dx = particles[i].x - particles[j].x;
+        const dy = particles[i].y - particles[j].y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < limit) {
+          const alpha = (1 - dist / limit) * 0.6 * palette.lineAlpha;
+          ctx.strokeStyle = `rgba(${palette.lineRgb[0]}, ${palette.lineRgb[1]}, ${palette.lineRgb[2]}, ${alpha})`;
+          ctx.beginPath();
+          ctx.moveTo(particles[i].x, particles[i].y);
+          ctx.lineTo(particles[j].x, particles[j].y);
+          ctx.stroke();
+        }
+      }
+    }
+
+    ctx.fillStyle = palette.dot;
+    for (const particle of particles) {
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+
+    animationId = window.requestAnimationFrame(step);
+  };
+
+  resize();
+  animationId = window.requestAnimationFrame(step);
+
+  window.addEventListener("resize", resize, { passive: true });
+
+  const observer = new MutationObserver(() => {
+    palette = getPalette();
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["class"] });
+})();
+</script>

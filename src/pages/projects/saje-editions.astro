@@ -1,0 +1,99 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout title="Saje Editions - AI Reading Platform">
+  <h1 class="text-gray-900 dark:text-gray-100">Saje Editions</h1>
+  
+  <div class="mb-4">
+    <a
+      href="https://sajedition.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 font-mono font-semibold"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+      >
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+      </svg>
+      <span>→ sajedition.com</span>
+    </a>
+  </div>
+
+  <h2 class="text-gray-900 dark:text-gray-100 mt-2">Overview</h2>
+
+  <p class="text-gray-800 dark:text-gray-200">
+    Saje Editions is an AI-powered reading and publishing platform that transforms PDF and EPUB
+    libraries into interactive tutors. Users can upload books, chat with the content, and receive
+    grounded answers with citations, summaries, and study aids.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Core Capabilities</h2>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Book Ingestion and Indexing</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    A backend pipeline parses PDF/EPUB files, chunks content, enriches context, and stores embeddings
+    in pgvector for fast semantic retrieval.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Hybrid Retrieval and RAG</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Combines vector similarity with BM25 lexical search and reciprocal rank fusion to deliver precise,
+    page-cited answers and streaming responses.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Learning Workflows</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Generates summaries, quizzes, and flashcards to help readers revise and retain knowledge without
+    leaving the reading flow.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Technology Stack</h2>
+
+  <ul class="text-gray-800 dark:text-gray-200">
+    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: Next.js 16, Tailwind CSS</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: FastAPI with Supabase Auth</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Data</strong>: Supabase Postgres + pgvector</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">AI</strong>: LiteLLM/OpenRouter, Gemini embeddings</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Infra</strong>: Docker Compose, Supabase Storage</li>
+  </ul>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Key Challenges</h2>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Retrieval Quality</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Ensuring accurate grounding required hybrid search, contextual chunking, and careful prompt
+    design to keep responses tightly aligned with sources.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Document Diversity</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Supporting a wide range of PDFs and EPUBs demanded robust parsing and validation to handle
+    formatting edge cases at scale.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Project Impact</h2>
+
+  <p class="text-gray-800 dark:text-gray-200">
+    Saje Editions demonstrates how RAG systems can turn static content into interactive learning
+    experiences, with a focus on trust, citations, and study utility.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Future Development</h2>
+
+  <p class="text-gray-800 dark:text-gray-200">
+    Planned improvements include conversation export, richer study modes, and deeper collaboration
+    features for classrooms and teams.
+  </p>
+</ProjectLayout>
