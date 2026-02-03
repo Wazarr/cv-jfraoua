@@ -43,7 +43,7 @@ async function validateWithLLM(message: string): Promise<GuardrailResult> {
 
     const prompt = `You are a content moderator for Jérémy Fraoua's professional chat assistant. 
 
-CONTEXT: Jérémy is a Machine Learning Engineer at Qonto specializing in fraud detection. The chat should focus on him personally and his work, but can go sideways as long as it's not being abused.
+CONTEXT: Jérémy is a Machine Learning Engineer at Qonto specializing in fraud detection. He also builds AI products like VibeTrip and Saje Editions. The chat should focus on him personally and his work, but can go sideways as long as it's not being abused.
 
 ALLOWED TOPICS (be permissive):
 - Questions about Jérémy personally, his work, experience, and career
@@ -136,7 +136,7 @@ function fallbackValidation(message: string): GuardrailResult {
   }
   
   // Allow if mentions his specific projects/companies
-  const jeremySpecific = ['qonto', 'haxball', 'vibetrip', 'ens', 'fraoua'];
+  const jeremySpecific = ['qonto', 'haxball', 'vibetrip', 'saje', 'sajedition', 'ens', 'fraoua'];
   if (jeremySpecific.some(term => lowerMessage.includes(term))) {
     return { allowed: true, confidence: 0.8 };
   }

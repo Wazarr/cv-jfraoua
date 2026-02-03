@@ -9,14 +9,9 @@ export const JEREMY_CONTEXT = {
     location: "France"
   },
 
-  professionalSummary: `Experienced Machine Learning Engineer with deep expertise in fraud detection
-  and financial risk management. Specialized in developing high-performance ML
-  systems with sub-50ms latency that have prevented over €100k in fraud,
-  delivering production-ready models that protect millions in transactions.
-
-  Currently working on ML initiatives in Qonto's Fraud Security Team, building
-  cutting-edge fraud detection systems and exploring Graph Neural Networks
-  while establishing ML development standards across teams.`,
+  professionalSummary: `Machine Learning Engineer focused on fraud detection and financial risk.
+  Builds production ML systems with low-latency inference, strong monitoring, and reliable deployment.
+  Also develops AI-driven products and tools that turn complex data or content into user-facing apps.`,
 
   experience: [
     {
@@ -26,7 +21,7 @@ export const JEREMY_CONTEXT = {
       achievements: [
         "Built fraud detection models with sub-50ms latency, preventing over €100k in fraud",
         "Redesigned credit eligibility system with multi-model deployment and enhanced reliability",
-        "Explored Graph Neural Networks for fraud detection and share cutting-edge AI tools with team"
+        "Explored Graph Neural Networks for fraud detection and shared AI tools with team"
       ],
       technologies: ["Python", "Machine Learning", "PyTorch", "CatBoost", "SQL", "MLOps", "AWS"]
     },
@@ -120,105 +115,104 @@ export const JEREMY_CONTEXT = {
 
   projects: [
     {
-      name: "HaxballGym AI Training Framework",
-      description: "A comprehensive reinforcement learning framework for training AI agents to play Haxball, a popular online 2D soccer game. Demonstrates advanced RL techniques applied to a real-time competitive environment.",
-      technologies: ["Python", "Ursina Engine", "OpenAI Gym", "Stable-Baselines3", "PyTorch"],
-      achievements: [
-        "Reverse-engineered and recreated Haxball physics engine from deobfuscated JavaScript",
-        "Built custom OpenAI Gym environment with state space (player positions, velocities, ball state)",
-        "Implemented PPO (Proximal Policy Optimization) with custom reward shaping",
-        "AI agent defeats simple chase bot 6-1, demonstrating game understanding and strategic play",
-        "Consistent wins against beginner-level players with strong defensive positioning",
-        "Framework adopted by academic researchers and universities for RL coursework",
-        "Open-source ecosystem with WazBot Starter Kit for custom agent training"
+      name: "Saje Editions",
+      description: "AI-powered reading and publishing platform that turns PDF/EPUB libraries into interactive tutors with grounded, cited answers, summaries, and study tools.",
+      technologies: [
+        "Next.js 16",
+        "Tailwind CSS",
+        "FastAPI",
+        "Supabase (Postgres + pgvector)",
+        "LiteLLM / OpenRouter",
+        "Gemini embeddings",
+        "Docker Compose"
       ],
-      challenges: [
-        "Game engine recreation: Deobfuscating JavaScript physics engine and converting to Python",
-        "Reward engineering: Designing functions that encourage realistic soccer behavior without reward hacking",
-        "Training stability: Achieving consistent performance across different opponents and scenarios"
+      features: [
+        "Upload and parse PDF/EPUB with a robust ingestion pipeline",
+        "Hybrid retrieval (pgvector + BM25 + RRF) for accurate grounding",
+        "Streaming chat with citations and page references",
+        "Summaries, quizzes, and flashcards to support study workflows"
       ],
       components: [
-        "Ursinaxball: Python recreation using Ursina game engine",
-        "HaxballGym Environment: Custom OpenAI Gym with discrete movement/kick actions",
-        "Training Pipeline: Stable-Baselines3 integration with PPO",
-        "WazBot Starter Kit: Documentation and examples for custom agents"
+        "Chunking and contextual enrichment for better retrieval",
+        "RAG services with vector + lexical search",
+        "Supabase storage for book files"
       ],
-      github: "https://github.com/HaxballGym",
-      demo: "/ai_vs_chaser.mov",
-      impact: "Community adoption by researchers and students, collaborative improvements and extensions"
+      website: "https://sajedition.com",
+      status: "Active development"
     },
     {
       name: "VibeTrip AI Travel Platform",
-      description: "AI-powered travel planning platform that leverages machine learning to create personalized travel experiences. Analyzes user preferences, travel history, and real-time data to generate custom itineraries.",
-      technologies: ["React", "Next.js", "TypeScript", "Python", "FastAPI", "OpenAI GPT", "PostgreSQL", "Vercel", "Railway"],
+      description: "AI travel planning platform that blends deep research with a polished consumer experience to deliver personalized itineraries, local insights, and group-friendly plans.",
+      technologies: [
+        "Next.js 15",
+        "React 19",
+        "Tailwind CSS",
+        "FastAPI",
+        "CrewAI multi-agent workflows",
+        "Postgres (Supabase)",
+        "Drizzle ORM",
+        "Better Auth",
+        "Upstash",
+        "AWS S3/SES",
+        "PostHog"
+      ],
       features: [
-        "AI-powered itinerary generation using OpenAI GPT",
-        "Personalized recommendations based on user preferences and travel history",
-        "Real-time integration with travel APIs for up-to-date information",
-        "Interactive map visualization for route planning",
-        "Social sharing and collaboration features for group travel"
+        "Deep AI research across blogs, reviews, and local guides",
+        "Smart day-by-day itineraries with clear pacing",
+        "Hidden-gem recommendations tailored to traveler preferences",
+        "Group planning that balances multiple traveler profiles"
       ],
+      components: [
+        "Multi-agent planning API with progress tracking",
+        "Modern marketing and onboarding experience"
+      ],
+      website: "https://vibetrip.app",
+      status: "Active development"
+    },
+    {
+      name: "HaxballGym AI Training Framework",
+      description: "Reinforcement learning framework for training AI agents to play Haxball, a real-time 2D soccer game.",
+      technologies: ["Python", "Ursina Engine", "OpenAI Gym", "Stable-Baselines3", "PyTorch"],
       achievements: [
-        "Full-stack development with modern React/Next.js frontend",
-        "Custom recommendation algorithms for personalized experiences",
-        "Real-time API integrations for dynamic travel data",
-        "Scalable backend architecture with FastAPI and PostgreSQL"
+        "Recreated Haxball physics in Python from deobfuscated JavaScript",
+        "Built a custom Gym environment with state/action design",
+        "Implemented PPO training with reward shaping"
       ],
-      impact: "Demonstrates practical AI application in travel industry, showcasing ML integration and product development skills",
-      status: "In development"
+      components: [
+        "Ursinaxball: Python recreation of the game engine",
+        "HaxballGym Environment: custom Gym API",
+        "Training pipeline with Stable-Baselines3"
+      ],
+      github: "https://github.com/HaxballGym",
+      demo: "/ai_vs_chaser.mov"
     },
     {
       name: "Haxball League Dashboard",
-      description: "User-friendly dashboard for tracking and displaying league statistics for Haxball. Built with SQL and Streamlit, offering easy-to-use interface for managing league data and enhancing player engagement.",
+      description: "Dashboard for tracking and displaying league statistics for Haxball with a simple admin workflow.",
       technologies: ["Python", "Streamlit", "SQL", "PostgreSQL", "Supabase", "Data Visualization"],
       features: [
-        "Interactive charts, graphs, and tables for league statistics",
-        "Competition calendars, stats, and team rosters visualization",
-        "Admin panel for league management tasks and schedule uploads",
-        "Efficient data processing and transformation pipeline",
-        "Real-time dashboard updates with responsive performance"
+        "Interactive charts, tables, and team stats",
+        "Competition calendars and roster visualization",
+        "Admin panel for schedule and data updates"
       ],
-      achievements: [
-        "Efficient database schema design optimized for league statistics",
-        "Interactive visualizations using Streamlit's powerful features",
-        "Data processing pipeline ensuring fast dashboard performance",
-        "Used by multiple Haxball leagues for operations management",
-        "Streamlined league operations and enhanced player experience"
-      ],
-      components: [
-        "SQL Database Design: PostgreSQL schema optimized for sports statistics",
-        "Streamlit Interface: User-friendly web interface with interactive elements",
-        "Data Processing: Efficient transformation before database ingestion",
-        "Admin Panel: Dedicated management section for league administrators"
-      ],
-      github: "https://github.com/Wazarr94/haxball-league-dashboard",
-      impact: "Enhanced experience for players and administrators across multiple leagues"
+      github: "https://github.com/Wazarr94/haxball-league-dashboard"
     },
     {
       name: "ENS ChallengeData - Firefighter Response Prediction",
-      description: "Machine learning project predicting firefighter response times in Paris. Applied complete ML pipeline including data cleaning, feature engineering, EDA, and model implementation, achieving top 10% ranking.",
-      technologies: ["Python", "scikit-learn", "pandas", "matplotlib", "XGBoost", "Machine Learning", "Clustering"],
+      description: "Machine learning project predicting firefighter response times in Paris. Applied a full ML pipeline with feature engineering, clustering, and model evaluation.",
+      technologies: ["Python", "scikit-learn", "pandas", "matplotlib", "XGBoost", "Clustering"],
       achievements: [
-        "Top 10% ranking in ENS ChallengeData competition (excellent for first ML project)",
-        "Innovative clustering approach to identify zones with similar response times",
-        "Comprehensive data cleaning identifying and removing impossible data points",
-        "Domain research on firefighting operations for better feature engineering",
-        "Model comparison: Linear Regression, Neural Networks, with XGBoost providing best results"
+        "Top 10% ranking in ENS ChallengeData competition",
+        "Clustering analysis for geographic response patterns",
+        "Model comparison with XGBoost as best performer"
       ],
       methodology: [
-        "Data cleaning and quality improvement by removing impossible data points",
-        "Exploratory data analysis (EDA) to understand firefighting patterns",
-        "Feature engineering based on domain knowledge of Paris firefighting operations",
-        "Clustering analysis to identify zones with similar response characteristics",
-        "Model experimentation and selection with XGBoost as final choice"
+        "Data cleaning and quality improvement",
+        "Exploratory data analysis (EDA)",
+        "Feature engineering informed by domain research",
+        "Model experimentation and evaluation"
       ],
-      challenges: [
-        "First ML project: Steep learning curve applying theoretical knowledge practically",
-        "Domain knowledge acquisition: Researching firefighting operations in Paris context",
-        "Data quality issues: Identifying and handling impossible/inconsistent data points"
-      ],
-      colab: "https://colab.research.google.com/drive/1hxfGWHfhmVgTBQtqmUxPn98GT9B7P4Ze",
-      impact: "Valuable introduction to practical ML pipeline in competitive environment, highlighting importance of domain knowledge"
+      colab: "https://colab.research.google.com/drive/1hxfGWHfhmVgTBQtqmUxPn98GT9B7P4Ze"
     }
   ],
 
@@ -289,13 +283,11 @@ ${project.features.map(f => `- ${f}`).join("\n")}` : ""}
 ${project.components ? `Components:
 ${project.components.map(c => `- ${c}`).join("\n")}` : ""}
 
-${project.challenges ? `Technical Challenges:
-${project.challenges.map(c => `- ${c}`).join("\n")}` : ""}
-
 ${project.methodology ? `Methodology:
 ${project.methodology.map(m => `- ${m}`).join("\n")}` : ""}
 
 ${project.github ? `GitHub: ${project.github}` : ""}
+${project.website ? `Website: ${project.website}` : ""}
 ${project.colab ? `Colab: ${project.colab}` : ""}
 ${project.demo ? `Demo: ${project.demo}` : ""}
 ${project.impact ? `Impact: ${project.impact}` : ""}
@@ -326,37 +318,70 @@ export function getRelevantContext(query: string): string {
   const relevantChunks: string[] = [];
 
   // Personal info for basic questions
-  if (queryLower.includes('who') || queryLower.includes('name') || queryLower.includes('jeremy')) {
+  if (queryLower.includes("who") || queryLower.includes("name") || queryLower.includes("jeremy")) {
     relevantChunks.push(CONTEXT_CHUNKS.personal);
   }
 
   // Experience questions
-  if (queryLower.includes('experience') || queryLower.includes('work') || queryLower.includes('job') ||
-      queryLower.includes('career') || queryLower.includes('qonto') || queryLower.includes('bnp')) {
+  if (
+    queryLower.includes("experience") ||
+    queryLower.includes("work") ||
+    queryLower.includes("job") ||
+    queryLower.includes("career") ||
+    queryLower.includes("qonto") ||
+    queryLower.includes("bnp")
+  ) {
     relevantChunks.push(CONTEXT_CHUNKS.experience);
   }
 
   // Skills questions
-  if (queryLower.includes('skills') || queryLower.includes('technologies') || queryLower.includes('programming') ||
-      queryLower.includes('python') || queryLower.includes('machine learning') || queryLower.includes('ml')) {
+  if (
+    queryLower.includes("skills") ||
+    queryLower.includes("technologies") ||
+    queryLower.includes("programming") ||
+    queryLower.includes("python") ||
+    queryLower.includes("machine learning") ||
+    queryLower.includes("ml")
+  ) {
     relevantChunks.push(CONTEXT_CHUNKS.skills);
   }
 
   // Projects questions
-  if (queryLower.includes('projects') || queryLower.includes('haxball') || queryLower.includes('vibetrip') ||
-      queryLower.includes('portfolio') || queryLower.includes('github')) {
+  if (
+    queryLower.includes("projects") ||
+    queryLower.includes("portfolio") ||
+    queryLower.includes("github") ||
+    queryLower.includes("haxball") ||
+    queryLower.includes("vibetrip") ||
+    queryLower.includes("travel") ||
+    queryLower.includes("saje") ||
+    queryLower.includes("sajedition") ||
+    queryLower.includes("reading") ||
+    queryLower.includes("books")
+  ) {
     relevantChunks.push(CONTEXT_CHUNKS.projects);
   }
 
   // Expertise questions
-  if (queryLower.includes('fraud') || queryLower.includes('risk') || queryLower.includes('financial') ||
-      queryLower.includes('detection') || queryLower.includes('expertise') || queryLower.includes('specialty')) {
+  if (
+    queryLower.includes("fraud") ||
+    queryLower.includes("risk") ||
+    queryLower.includes("financial") ||
+    queryLower.includes("detection") ||
+    queryLower.includes("expertise") ||
+    queryLower.includes("specialty")
+  ) {
     relevantChunks.push(CONTEXT_CHUNKS.expertise);
   }
 
   // Contact questions
-  if (queryLower.includes('contact') || queryLower.includes('email') || queryLower.includes('linkedin') ||
-      queryLower.includes('reach') || queryLower.includes('connect')) {
+  if (
+    queryLower.includes("contact") ||
+    queryLower.includes("email") ||
+    queryLower.includes("linkedin") ||
+    queryLower.includes("reach") ||
+    queryLower.includes("connect")
+  ) {
     relevantChunks.push(CONTEXT_CHUNKS.contact);
   }
 
@@ -366,37 +391,37 @@ export function getRelevantContext(query: string): string {
     relevantChunks.push(CONTEXT_CHUNKS.personal);
   }
 
-  return relevantChunks.join('\n\n');
+  return relevantChunks.join("\n\n");
 }
 
 // Generate system prompt for AI
 export function generateSystemPrompt(): string {
-  return `You are Jérémy Fraoua's AI assistant. Be helpful, conversational, but concise.
+  return `You are Jérémy Fraoua's AI assistant. Be helpful, conversational, and accurate.
 
 **RESPONSE STYLE:**
-- Be friendly and engaging while staying professional
-- Keep responses focused but don't be overly terse
+- Professional, friendly, concise
 - Use bullet points for lists and achievements
-- Bold key terms: **technologies**, **achievements**, **metrics**
-- Feel free to add context when it's helpful
-- Answer naturally - you can say "Jérémy" or refer to his work
+- Bold key terms like **technologies**, **achievements**, **metrics** when relevant
+- Prefer concrete details from the knowledge base
 
-**GUIDELINES:**
-- Aim for 2-6 sentences for simple questions
-- Provide more detail for complex topics
-- Use examples and specifics when available
-- If you don't know something, suggest contacting him directly
-- Be conversational but avoid unnecessary fluff
+**ACCURACY RULES:**
+- Do not invent metrics, timelines, or employers
+- If unsure, say you do not know and suggest contacting Jérémy
+- Do not claim features or results not explicitly in the knowledge base
+
+**WHEN ASKED ABOUT PROJECTS:**
+- Mention the project goal, stack, and 2-4 key capabilities
+- Provide the official website or repo link if available
 
 **EXAMPLES:**
-Q: "What's his ML experience?"
-A: Jérémy has **4+ years** of hands-on ML engineering experience, primarily at **Qonto** (fintech) and **ENS Firefighters**. He's built production **fraud detection** systems with **<50ms latency** that prevented **>€100k in losses**. His expertise spans **real-time inference**, **MLOps**, and **graph neural networks**.
-
 Q: "What projects has he worked on?"
-A: He's created some impressive projects! Here are the highlights:
-- **HaxballGym AI**: RL training framework for soccer AI with **10+ GitHub stars**
-- **VibeTrip**: Full-stack AI travel platform with **ML recommendation algorithms** 
-- **ENS Dashboard**: Real-time emergency response system with **clustering algorithms**
+A: Here are the highlights:
+- **Saje Editions**: AI reading platform with **hybrid retrieval** (pgvector + BM25) and **cited answers**. Website: sajedition.com
+- **VibeTrip**: AI travel planning app with **multi-agent research** and **personalized itineraries**. Website: vibetrip.app
+- **HaxballGym**: RL training framework for Haxball with a custom Gym environment
+
+Q: "What's his ML experience?"
+A: Jérémy is a **Machine Learning Engineer** focused on fraud detection and risk. At **Qonto**, he builds low-latency fraud models and production ML systems, and previously worked on credit risk modeling and analytics.
 
 **Knowledge Base:**
 ${CONTEXT_CHUNKS.summary}
