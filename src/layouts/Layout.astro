@@ -5,9 +5,13 @@ import PostHog from "../components/posthog.astro";
 
 interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Jérémy Fraoua — Senior Machine Learning Engineer building production fraud and LLM systems. Explore my portfolio featuring Locaperle, Saje Editions, VibeTrip, and more.",
+} = Astro.props;
 
 function getCurrentYear() {
   return new Date().getFullYear();
@@ -19,13 +23,18 @@ function getCurrentYear() {
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta
-      name="description"
-      content="Jérémy Fraoua - Quantitative Risk Analyst & AI Developer. Explore my portfolio featuring VibeTrip, Saje Editions, HaxballGym, and data science projects."
-    />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <!-- Open Graph / social cards -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={Astro.url} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
     <ViewTransitions />
     <title>{title}</title>
     <!-- Google Fonts for better typography -->
@@ -81,9 +90,9 @@ function getCurrentYear() {
               <div
                 class="hidden lg:flex items-center space-x-4 text-sm text-light-600 dark:text-dark-300"
               >
-                <span class="font-mono">Quantitative Risk Analyst</span>
+                <span class="font-mono">Senior ML Engineer</span>
                 <span class="text-light-500 dark:text-dark-600">•</span>
-                <span class="font-mono">AI Developer</span>
+                <span class="font-mono">AI Product Builder</span>
               </div>
             </div>
 
@@ -94,6 +103,7 @@ function getCurrentYear() {
                 id="theme-toggle"
                 class="p-2 rounded-lg bg-light-300 dark:bg-dark-800 hover:bg-light-400 dark:hover:bg-dark-700 transition-colors border border-light-400 dark:border-dark-600"
                 title="Toggle theme"
+                aria-label="Toggle theme"
               >
                 <!-- Sun icon (show in dark mode) -->
                 <svg
@@ -133,8 +143,9 @@ function getCurrentYear() {
                   href="https://www.linkedin.com/in/j%C3%A9r%C3%A9my-fraoua/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-dark-400 hover:text-code-400 transition-colors p-2"
+                  class="text-light-600 dark:text-dark-400 hover:text-code-400 transition-colors p-2"
                   title="LinkedIn"
+                  aria-label="LinkedIn profile"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -146,8 +157,9 @@ function getCurrentYear() {
                   href="https://github.com/Wazarr"
                   target="_blank"
                   rel="noopener noreferrer"
-                  class="text-dark-400 hover:text-terminal-400 transition-colors p-2"
+                  class="text-light-600 dark:text-dark-400 hover:text-terminal-400 transition-colors p-2"
                   title="GitHub"
+                  aria-label="GitHub profile"
                 >
                   <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                     <path
@@ -157,8 +169,9 @@ function getCurrentYear() {
                 </a>
                 <a
                   href="mailto:jeremy.fraoua@gmail.com"
-                  class="text-dark-400 hover:text-primary-400 transition-colors p-2"
+                  class="text-light-600 dark:text-dark-400 hover:text-primary-400 transition-colors p-2"
                   title="Email"
+                  aria-label="Send email"
                 >
                   <svg
                     class="w-5 h-5"
@@ -190,9 +203,9 @@ function getCurrentYear() {
               <!-- FEATURED: AI Chat - Prominent Styling -->
               <a
                 href="/chat"
-                class="nav-link chat-nav-special bg-gradient-to-r from-primary-500/10 to-code-500/10 dark:from-primary-400/20 dark:to-code-400/20 px-4 py-2 rounded-lg border border-primary-300 dark:border-primary-600 text-sm font-mono font-medium text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 transition-all duration-200 hover:shadow-lg hover:scale-105 flex items-center space-x-2"
+                class="nav-link chat-nav-special bg-gradient-to-r from-primary-500/10 to-code-500/10 dark:from-primary-400/20 dark:to-code-400/20 px-4 py-2 rounded-lg border border-primary-300 dark:border-primary-600 text-sm font-mono font-medium text-primary-600 dark:text-primary-400 hover:text-primary-500 dark:hover:text-primary-300 hover:border-primary-400 dark:hover:border-primary-500 hover:shadow-lg flex items-center space-x-2"
               >
-                <span class="animate-pulse">🤖</span>
+                <span aria-hidden="true">🤖</span>
                 <span><span class="text-primary-500">/</span>chat</span>
                 <span class="text-xs bg-primary-500 text-white px-1.5 py-0.5 rounded-full">AI</span>
               </a>
@@ -243,9 +256,8 @@ function getCurrentYear() {
             
             <!-- Desktop: Full footer -->
             <div class="hidden md:flex md:items-center md:justify-between md:w-full">
-              <div class="text-light-600 dark:text-dark-400 font-mono text-sm">
-                <span class="text-terminal-400">jeremy@portfolio:~$</span>
-                <span class="text-light-700 dark:text-dark-300"> Built with </span>
+              <div class="text-light-600 dark:text-dark-400 text-sm">
+                <span class="text-light-700 dark:text-dark-300">Built with </span>
                 <a
                   href="https://astro.build"
                   class="text-primary-400 hover:text-primary-300 transition-colors"
@@ -258,7 +270,7 @@ function getCurrentYear() {
                   >Tailwind</a
                 >
               </div>
-              <div class="text-light-600 dark:text-dark-400 font-mono text-sm">
+              <div class="text-light-600 dark:text-dark-400 text-sm">
                 © {getCurrentYear()} Jérémy Fraoua
               </div>
             </div>
@@ -291,8 +303,34 @@ function getCurrentYear() {
           "liga" 1,
           "kern" 1;
         text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
         /* Prevent flash during page transitions */
         transition: background-color 0s, color 0s;
+      }
+
+      /* Cleaner text wrapping: no widows in headings, no orphans in body copy */
+      h1, h2, h3, h4 {
+        text-wrap: balance;
+      }
+
+      p {
+        text-wrap: pretty;
+      }
+
+      h1[id], h2[id], h3[id] {
+        scroll-margin-top: 7rem;
+      }
+
+      ::selection {
+        background-color: rgba(230, 126, 34, 0.3);
+      }
+
+      /* Visible keyboard focus without rings on mouse clicks */
+      :focus-visible {
+        outline: 2px solid #e67e22;
+        outline-offset: 2px;
+        border-radius: 4px;
       }
 
       .wrapper {
@@ -371,7 +409,51 @@ function getCurrentYear() {
         transition:
           color 0.2s ease,
           border-color 0.2s ease,
-          background-color 0.2s ease;
+          background-color 0.2s ease,
+          box-shadow 0.2s ease,
+          transform 0.15s cubic-bezier(0.2, 0, 0, 1);
+      }
+
+      @media (prefers-reduced-motion: no-preference) {
+        /* Tactile press feedback on buttons and button-shaped links */
+        button:active,
+        a[class*="bg-primary-600"]:active,
+        a[class*="bg-terminal-600"]:active,
+        a[class*="bg-code-600"]:active,
+        a[class*="bg-light-600"]:active,
+        a[class*="bg-dark-600"]:active {
+          transform: scale(0.97);
+        }
+
+        /* Staggered page-load reveal for main content sections */
+        .reveal {
+          opacity: 0;
+          animation: reveal-up 0.55s cubic-bezier(0.2, 0, 0, 1) forwards;
+        }
+        .reveal-2 { animation-delay: 0.08s; }
+        .reveal-3 { animation-delay: 0.16s; }
+        .reveal-4 { animation-delay: 0.24s; }
+      }
+
+      @keyframes reveal-up {
+        from {
+          opacity: 0;
+          transform: translateY(12px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        *,
+        *::before,
+        *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
       }
 
       /* Code blocks styling */
