@@ -14,10 +14,8 @@ import Layout from "../layouts/Layout.astro";
             <h1 class="text-3xl font-bold text-light-900 dark:text-dark-100">AI Chat Assistant</h1>
             <div class="w-3 h-3 bg-primary-500 rounded-full animate-pulse"></div>
           </div>
-          <p class="text-light-600 dark:text-dark-400 font-mono text-sm">
-            <span class="text-terminal-400">jeremy@portfolio:~$</span> 
-            <span class="text-code-400">chat_assistant.py</span> 
-            <span class="text-light-600 dark:text-dark-400">--interactive</span>
+          <p class="text-light-600 dark:text-dark-400 text-sm">
+            Ask anything about my experience, projects, and how I work
           </p>
         </div>
 
@@ -36,8 +34,9 @@ import Layout from "../layouts/Layout.astro";
             <div class="flex items-center space-x-3">
               <!-- Model Selector -->
               <select id="model-select" class="bg-light-100 dark:bg-dark-600 border border-light-300 dark:border-dark-500 rounded px-2 py-1 text-xs font-mono text-light-700 dark:text-dark-300">
-                <option value="moonshotai/kimi-k2-instruct-0905">Kimi K2</option>
-                <option value="qwen/qwen3-32b">Qwen 32B</option>
+                <option value="openai/gpt-oss-120b">GPT-OSS 120B</option>
+                <option value="qwen/qwen3-32b">Qwen3 32B</option>
+                <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
               </select>
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
@@ -99,7 +98,7 @@ import Layout from "../layouts/Layout.astro";
                 id="send-button"
                 class="bg-primary-600 hover:bg-primary-500 text-white px-3 md:px-4 py-2 rounded-lg font-mono text-sm transition-colors flex-shrink-0 min-w-0"
               >
-                <span class="hidden sm:inline">send()</span>
+                <span class="hidden sm:inline">send</span>
                 <span class="sm:hidden">→</span>
               </button>
             </div>
@@ -119,7 +118,7 @@ import Layout from "../layouts/Layout.astro";
             >
               <div class="flex flex-col items-center space-y-2">
                 <span class="text-primary-400">📧</span>
-                <span class="text-primary-400 font-mono text-sm">send_email()</span>
+                <span class="text-primary-400 font-mono text-sm">email me</span>
               </div>
             </a>
 
@@ -131,7 +130,7 @@ import Layout from "../layouts/Layout.astro";
             >
               <div class="flex flex-col items-center space-y-2">
                 <span class="text-code-400">💼</span>
-                <span class="text-code-400 font-mono text-sm">connect_linkedin()</span>
+                <span class="text-code-400 font-mono text-sm">linkedin</span>
               </div>
             </a>
 
@@ -141,7 +140,7 @@ import Layout from "../layouts/Layout.astro";
             >
               <div class="flex flex-col items-center space-y-2">
                 <span class="text-terminal-400">📄</span>
-                <span class="text-terminal-400 font-mono text-sm">view_resume()</span>
+                <span class="text-terminal-400 font-mono text-sm">resume</span>
               </div>
             </a>
           </div>
@@ -264,24 +263,26 @@ import Layout from "../layouts/Layout.astro";
       return 'msg_' + Math.random().toString(36).substr(2, 9);
     }
 
-    // Model configuration with thinking capabilities
+    // Model configuration with thinking capabilities (mirrors src/lib/models.ts)
     const modelConfig: Record<string, { name: string; isThinking: boolean }> = {
-      'moonshotai/kimi-k2-instruct-0905': { 
-        name: 'Kimi K2', 
-        isThinking: false 
+      'openai/gpt-oss-120b': {
+        name: 'GPT-OSS 120B',
+        isThinking: false
       },
-      'qwen/qwen3-32b': { 
-        name: 'Qwen 32B', 
-        isThinking: true 
+      'qwen/qwen3-32b': {
+        name: 'Qwen3 32B',
+        isThinking: true
+      },
+      'llama-3.3-70b-versatile': {
+        name: 'Llama 3.3 70B',
+        isThinking: false
       }
-      // Easy to add more models here:
-      // 'anthropic/claude-3-sonnet': { name: 'Claude 3 Sonnet', isThinking: false },
-      // 'openai/gpt-4o': { name: 'GPT-4o', isThinking: false }
     };
+    const DEFAULT_MODEL = 'openai/gpt-oss-120b';
 
     // Store conversation history and selected model
     let conversationHistory: Array<{role: string, content: string}> = [];
-    let selectedModel: string = 'moonshotai/kimi-k2-instruct-0905';
+    let selectedModel: string = DEFAULT_MODEL;
     
     // Rate limiting and UI state management
     let isProcessing = false;
@@ -291,10 +292,10 @@ import Layout from "../layouts/Layout.astro";
     // Initialize model selector
     const modelSelect = document.getElementById('model-select') as HTMLSelectElement | null;
     if (modelSelect) {
-      // Load saved model preference
-      const savedModel = localStorage.getItem('selectedModel') || 'moonshotai/kimi-k2-instruct-0905';
-      modelSelect.value = savedModel;
-      selectedModel = savedModel;
+      // Load saved model preference; ignore stale ids from before the model refresh
+      const savedModel = localStorage.getItem('selectedModel');
+      selectedModel = savedModel && modelConfig[savedModel] ? savedModel : DEFAULT_MODEL;
+      modelSelect.value = selectedModel;
 
       modelSelect.addEventListener('change', () => {
         selectedModel = modelSelect.value;

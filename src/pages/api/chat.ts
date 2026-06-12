@@ -2,6 +2,7 @@ import type { APIRoute } from 'astro';
 import { streamText } from 'ai';
 import { createGroq } from '@ai-sdk/groq';
 import { getRelevantContext, generateSystemPrompt } from '../../lib/context';
+import { DEFAULT_MODEL_ID, getChatModel } from '../../lib/models';
 import { validateInput, validateResponse, getRejectionMessage, getGuardrailSystemPrompt } from '../../lib/guardrails';
 
 const GROQ_API_KEY = import.meta.env.GROQ_API_KEY || process.env.GROQ_API_KEY;
@@ -38,7 +39,7 @@ async function logToPostHog(event: string, properties: any) {
 
 export const POST: APIRoute = async ({ request }) => {
   try {
-    const { message, conversation = [], model = 'moonshotai/kimi-k2-instruct-0905' } = await request.json();
+    const { message, conversation = [], model: requestedModel = DEFAULT_MODEL_ID } = await request.json();
 
     if (!message || typeof message !== 'string') {
       return new Response(JSON.stringify({ error: 'Message is required' }), {
@@ -46,6 +47,11 @@ export const POST: APIRoute = async ({ request }) => {
         headers: { 'Content-Type': 'application/json' }
       });
     }
+
+    // Only allow models from the registry; unknown ids (including stale
+    // localStorage values from before the model refresh) fall back to default.
+    const chatModel = getChatModel(requestedModel) ?? getChatModel(DEFAULT_MODEL_ID)!;
+    const model = chatModel.id;
 
     // Log user message to PostHog
     await logToPostHog('chat_message_sent', {
@@ -111,25 +117,14 @@ export const POST: APIRoute = async ({ request }) => {
       { role: 'user', content: `Context: ${relevantContext}\n\nUser Question: ${message}` }
     ];
 
-    // Create Groq provider with API key
-    const groq = createGroq({
-      apiKey: GROQ_API_KEY,
-    });
+    const groq = createGroq({ apiKey: GROQ_API_KEY });
 
-    // Prepare model options with reasoning effort for OSS models
-    const modelOptions: any = {
+    // Create streaming response with response validation
+    const result = streamText({
       model: groq(model),
       messages,
       temperature: 0.7, // Balanced creativity and accuracy
-    };
-
-    // Add reasoning effort for thinking models
-    if (model.includes('gpt-oss') || model.includes('qwen3-32b')) {
-      modelOptions.reasoning_effort = 'medium';
-    }
-
-    // Create streaming response with response validation
-    const result = streamText(modelOptions);
+    });
 
     // Create a custom stream that validates the response
     const validatedStream = new ReadableStream({
