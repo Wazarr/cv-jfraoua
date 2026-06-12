@@ -17,10 +17,79 @@ import TerminalWindow from "../components/TerminalWindow.astro";
           <p class="text-light-600 dark:text-dark-400"># AI products, machine learning, and full-stack systems</p>
           <p class="text-light-600 dark:text-dark-400"># Focused on practical, user-facing applications</p>
           <div class="mt-3 space-y-1">
+            <p><span class="text-terminal-400">project:</span> <span class="text-terminal-400">locaperle</span> <span class="text-light-500 dark:text-dark-500"># LLM-scored tenant vetting SaaS</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-primary-400">saje-editions</span> <span class="text-light-500 dark:text-dark-500"># AI reading & publishing platform</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-code-400">vibetrip</span> <span class="text-light-500 dark:text-dark-500"># AI travel planning platform</span></p>
             <p><span class="text-terminal-400">project:</span> <span class="text-primary-400">haxball-ai</span> <span class="text-light-500 dark:text-dark-500"># RL environment & training</span></p>
-            <p><span class="text-terminal-400">project:</span> <span class="text-light-700 dark:text-dark-300">ens-challenge</span> <span class="text-light-500 dark:text-dark-500"># ML prediction model</span></p>
+          </div>
+        </div>
+      </div>
+    </TerminalWindow>
+
+    <!-- Featured Project - Locaperle -->
+    <TerminalWindow title="locaperle/ --readme" headerColor="terminal" className="max-w-6xl mx-auto relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-terminal-500/10 before:via-transparent before:to-primary-500/10 before:opacity-70">
+      <div class="space-y-4 relative z-10">
+        <div class="space-y-4">
+          <div class="flex items-center space-x-4">
+            <h2 class="text-3xl font-bold text-terminal-400"># Locaperle</h2>
+          </div>
+          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
+            AI candidate-triage assistant for landlords re-letting flats: a Chrome extension
+            captures messages from rental platforms and Gemini scores each candidate against a
+            versioned eligibility rubric, with ready-to-send AI reply drafts.
+          </p>
+
+          <div class="grid lg:grid-cols-2 gap-8">
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-terminal-300 mb-3">## Features</h3>
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 text-sm">
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Real-time message capture from LeBonCoin and Gens de Confiance</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>0-100 LLM scoring against versioned rubrics, with input-hash caching</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>Two-pass escalation with extended thinking for unclear cases</span>
+                  </li>
+                  <li class="flex items-start space-x-3">
+                    <span class="text-terminal-400 mt-1">-</span>
+                    <span>AI reply drafts (4 archetypes) sent back to the platform via the extension</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="space-y-4">
+              <div>
+                <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
+                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
+                  <p><span class="text-code-400">Frontend:</span> React 19, TanStack Router, Tailwind</p>
+                  <p><span class="text-terminal-400">Backend:</span> Convex (realtime)</p>
+                  <p><span class="text-primary-400">AI:</span> Gemini Flash, Chrome Extension (MV3)</p>
+                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Vercel, Stripe, Sentry, PostHog</p>
+                </div>
+              </div>
+              <div class="flex space-x-4 pt-4">
+                <a
+                  href="/projects/locaperle"
+                  class="bg-terminal-600 hover:bg-terminal-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  view details
+                </a>
+                <a
+                  href="https://locaperle.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
+                >
+                  visit app
+                </a>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -29,11 +98,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
     <!-- Featured Project - Saje Editions -->
     <TerminalWindow title="saje-editions/ --readme" headerColor="primary" className="max-w-6xl mx-auto relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-primary-500/10 before:via-transparent before:to-code-500/10 before:opacity-70">
       <div class="space-y-4 relative z-10">
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
-          <span class="text-primary-400">cat saje-editions/README.md</span>
-        </div>
-        <div class="pl-4 space-y-4">
+        <div class="space-y-4">
           <div class="flex items-center space-x-4">
             <h2 class="text-3xl font-bold text-primary-400"># Saje Editions</h2>
           </div>
@@ -46,7 +111,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
             <div class="space-y-4">
               <div>
                 <h3 class="text-lg font-semibold text-primary-300 mb-3">## Features</h3>
-                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 text-sm">
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
                     <span>Chat with books with page-cited answers and streaming responses</span>
@@ -66,10 +131,10 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               <div>
                 <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
                 <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
-                  <p><span class="text-code-400">Frontend:</span> Next.js 16, Tailwind CSS</p>
+                  <p><span class="text-code-400">Frontend:</span> Next.js 16, React 19, Tailwind CSS</p>
                   <p><span class="text-terminal-400">Backend:</span> FastAPI, Supabase (Postgres + pgvector)</p>
-                  <p><span class="text-primary-400">AI:</span> LiteLLM/OpenRouter, Gemini embeddings</p>
-                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Docker Compose, Supabase Storage</p>
+                  <p><span class="text-primary-400">AI:</span> Gemini via OpenRouter/LiteLLM, Jina reranker</p>
+                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Railway, Vercel, Stripe</p>
                 </div>
               </div>
               <div class="flex space-x-4 pt-4">
@@ -77,7 +142,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   href="/projects/saje-editions"
                   class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  view_details()
+                  view details
                 </a>
                 <a 
                   href="https://sajedition.com"
@@ -85,7 +150,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   rel="noopener noreferrer"
                   class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  visit_app()
+                  visit app
                 </a>
               </div>
             </div>
@@ -97,39 +162,36 @@ import TerminalWindow from "../components/TerminalWindow.astro";
     <!-- Featured Project - VibeTrip -->
     <TerminalWindow title="vibetrip/ --readme" headerColor="code" className="max-w-6xl mx-auto relative overflow-hidden before:content-[''] before:absolute before:inset-0 before:bg-gradient-to-br before:from-code-500/10 before:via-transparent before:to-terminal-500/10 before:opacity-70">
       <div class="space-y-4 relative z-10">
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
-          <span class="text-code-400">cat vibetrip/README.md</span>
-        </div>
-        <div class="pl-4 space-y-4">
+        <div class="space-y-4">
           <div class="flex items-center space-x-4">
             <h2 class="text-3xl font-bold text-primary-400"># VibeTrip</h2>
           </div>
           <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
-            AI travel planning platform that blends deep research with a polished consumer
-            experience to deliver personalized itineraries, local insights, and bookable plans.
+            AI travel planner that turns a short onboarding wizard into three complete,
+            day-by-day itineraries — accommodations, activities, and timed slots — researched
+            live by Gemini with Google Search grounding.
           </p>
-          
+
           <div class="grid lg:grid-cols-2 gap-8">
             <div class="space-y-4">
               <div>
                 <h3 class="text-lg font-semibold text-primary-300 mb-3">## Features</h3>
-                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 text-sm">
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Deep AI research across blogs, reviews, and local guides</span>
+                    <span>Resumable 7-step trip wizard (group, dates, budget, interests)</span>
                   </li>
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Smart itineraries with day-by-day pacing and booking links</span>
+                    <span>3 complete itineraries per credit, with timed daily slots</span>
                   </li>
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Hidden gems and local insights tailored to preferences</span>
+                    <span>Grounded AI research + pre-seeded knowledge base (~50 destinations)</span>
                   </li>
                   <li class="flex items-start space-x-3">
                     <span class="text-primary-400 mt-1">-</span>
-                    <span>Group planning that balances multiple traveler profiles</span>
+                    <span>Stale-job recovery and auto-refunds on failed generations</span>
                   </li>
                 </ul>
               </div>
@@ -138,10 +200,10 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               <div>
                 <h3 class="text-lg font-semibold text-code-300 mb-4">## Tech Stack</h3>
                 <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
-                  <p><span class="text-code-400">Frontend:</span> Next.js 15, React 19, Tailwind</p>
-                  <p><span class="text-terminal-400">Backend:</span> FastAPI + CrewAI multi-agent system</p>
-                  <p><span class="text-primary-400">Data:</span> Postgres (Supabase) + Drizzle ORM</p>
-                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Better Auth, Upstash, AWS S3/SES</p>
+                  <p><span class="text-code-400">Frontend:</span> React 19, TanStack Router, Tailwind</p>
+                  <p><span class="text-terminal-400">Backend:</span> Convex (realtime)</p>
+                  <p><span class="text-primary-400">AI:</span> Gemini Flash + Google Search grounding</p>
+                  <p><span class="text-light-700 dark:text-dark-300">Infra:</span> Vercel, Stripe credits, Resend</p>
                 </div>
               </div>
               <div class="flex space-x-4 pt-4">
@@ -149,7 +211,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   href="/projects/vibetrip"
                   class="bg-primary-600 hover:bg-primary-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  view_details()
+                  view details
                 </a>
                 <a 
                   href="https://vibetrip.app"
@@ -157,7 +219,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   rel="noopener noreferrer"
                   class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  visit_app()
+                  visit app
                 </a>
               </div>
             </div>
@@ -169,11 +231,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
     <!-- HaxballGym AI Project -->
     <TerminalWindow title="haxball-ai/ --readme" headerColor="terminal" className="max-w-6xl mx-auto">
       <div class="space-y-4">
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
-          <span class="text-terminal-400">cat haxball-ai/README.md</span>
-        </div>
-        <div class="pl-4 space-y-4">
+        <div class="space-y-4">
           <div class="flex items-center space-x-4">
             <h2 class="text-3xl font-bold text-terminal-400"># HaxballGym</h2>
           </div>
@@ -186,7 +244,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
             <div class="space-y-4">
               <div>
                 <h3 class="text-lg font-semibold text-terminal-300 mb-3">## Features</h3>
-                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
+                <ul class="space-y-2 text-light-700 dark:text-dark-300 text-sm">
                   <li class="flex items-start space-x-3">
                     <span class="text-terminal-400 mt-1">-</span>
                     <span>Custom RL environment implementation</span>
@@ -221,7 +279,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   href="/projects/haxball-ai"
                   class="bg-terminal-600 hover:bg-terminal-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  view_details()
+                  view details
                 </a>
                 <a 
                   href="https://github.com/Wazarr"
@@ -229,79 +287,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
                   rel="noopener noreferrer"
                   class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
                 >
-                  open_github()
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </TerminalWindow>
-
-    <!-- ENS Firefighters Project -->
-    <TerminalWindow title="ens-firefighters/ --readme" headerColor="code" className="max-w-6xl mx-auto">
-      <div class="space-y-4">
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~/projects$</span>
-          <span class="text-code-400">cat ens-firefighters/README.md</span>
-        </div>
-        <div class="pl-4 space-y-4">
-          <div class="flex items-center space-x-4">
-            <h2 class="text-3xl font-bold text-code-400"># ENS Firefighter Challenge</h2>
-          </div>
-          <p class="text-light-700 dark:text-dark-300 text-lg leading-relaxed">
-            Machine learning model to predict firefighter response times in Paris. 
-            Comprehensive data preprocessing, feature engineering, and XGBoost modeling approach.
-          </p>
-          
-          <div class="grid lg:grid-cols-2 gap-8">
-            <div class="space-y-4">
-              <div>
-                <h3 class="text-lg font-semibold text-code-300 mb-3">## Methodology</h3>
-                <ul class="space-y-2 text-light-700 dark:text-dark-300 font-mono text-sm">
-                  <li class="flex items-start space-x-3">
-                    <span class="text-code-400 mt-1">-</span>
-                    <span>Time series analysis and temporal feature extraction</span>
-                  </li>
-                  <li class="flex items-start space-x-3">
-                    <span class="text-code-400 mt-1">-</span>
-                    <span>Geographic and demographic feature engineering</span>
-                  </li>
-                  <li class="flex items-start space-x-3">
-                    <span class="text-code-400 mt-1">-</span>
-                    <span>Advanced predictive modeling with XGBoost</span>
-                  </li>
-                  <li class="flex items-start space-x-3">
-                    <span class="text-code-400 mt-1">-</span>
-                    <span>Model validation and performance optimization</span>
-                  </li>
-                </ul>
-              </div>
-            </div>
-            <div class="space-y-4">
-              <div>
-                <h3 class="text-lg font-semibold text-terminal-300 mb-4">## Tech Stack</h3>
-                <div class="space-y-3 text-light-700 dark:text-dark-300 font-mono text-sm">
-                  <p><span class="text-terminal-400">Language:</span> Python</p>
-                  <p><span class="text-primary-400">ML Model:</span> XGBoost</p>
-                  <p><span class="text-code-400">Data Processing:</span> Pandas</p>
-                  <p><span class="text-light-600 dark:text-dark-400">Validation:</span> Scikit-learn</p>
-                </div>
-              </div>
-              <div class="flex space-x-4 pt-4">
-                <a 
-                  href="/projects/ens-firefighters"
-                  class="bg-code-600 hover:bg-code-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
-                >
-                  view_analysis()
-                </a>
-                <a 
-                  href="https://github.com/Wazarr"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  class="bg-light-600 dark:bg-dark-600 hover:bg-light-500 dark:hover:bg-dark-500 text-white px-4 py-2 rounded-lg font-mono text-sm transition-colors"
-                >
-                  open_github()
+                  open github
                 </a>
               </div>
             </div>
@@ -313,11 +299,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
     <!-- Contact Functions -->
     <TerminalWindow title="contact.sh --collaboration" headerColor="primary" className="max-w-4xl mx-auto">
       <div class="space-y-4">
-        <div class="flex items-center space-x-2">
-          <span class="text-terminal-400 hidden md:inline">jeremy@portfolio:~$</span>
-          <span class="text-primary-400">contact --list-methods</span>
-        </div>
-        <div class="pl-4 space-y-4">
+        <div class="space-y-4">
           <p class="text-light-700 dark:text-dark-300 mb-4">
             Let's discuss potential projects, collaborations, or technical challenges in AI and data science.
           </p>
@@ -329,7 +311,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                   <span class="text-primary-400">📧</span>
-                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-primary-400 transition-colors">send_email()</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-primary-400 transition-colors">email me</span>
                 </div>
                 <span class="text-light-500 dark:text-dark-500 group-hover:text-primary-400 transition-colors">→</span>
               </div>
@@ -343,7 +325,7 @@ import TerminalWindow from "../components/TerminalWindow.astro";
               <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                   <span class="text-code-400">💻</span>
-                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-code-400 transition-colors">view_github()</span>
+                  <span class="text-light-800 dark:text-dark-200 font-mono text-sm group-hover:text-code-400 transition-colors">github</span>
                 </div>
                 <span class="text-light-500 dark:text-dark-500 group-hover:text-code-400 transition-colors">→</span>
               </div>

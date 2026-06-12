@@ -1,0 +1,107 @@
+---
+import ProjectLayout from "../../layouts/ProjectLayout.astro";
+---
+
+<ProjectLayout title="Locaperle - LLM-Scored Tenant Vetting">
+  <h1 class="text-gray-900 dark:text-gray-100">Locaperle</h1>
+
+  <div class="mb-4">
+    <a
+      href="https://locaperle.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="inline-flex items-center space-x-2 text-primary-400 hover:text-primary-300 font-mono font-semibold"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        class="w-5 h-5"
+      >
+        <path d="M5 12h14"></path>
+        <path d="m12 5 7 7-7 7"></path>
+      </svg>
+      <span>→ locaperle.com</span>
+    </a>
+  </div>
+
+  <h2 class="text-gray-900 dark:text-gray-100 mt-2">Overview</h2>
+
+  <p class="text-gray-800 dark:text-gray-200">
+    Locaperle is an AI candidate-triage assistant for landlords re-letting flats. A Chrome
+    extension captures incoming messages from rental platforms (LeBonCoin, Gens de Confiance),
+    Gemini scores each candidate against a versioned eligibility rubric, and the landlord works
+    from a ranked inbox — reviewing AI-drafted replies and sending them back to the platform
+    without leaving the flow.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Core Capabilities</h2>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Message Capture Extension</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    A Chrome extension (Manifest V3) scrapes candidate messages, profiles, and listing details
+    from rental platform messaging tabs in real time — no copy-pasting — and posts approved
+    replies back to the platform.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">LLM Scoring Against Versioned Rubrics</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Each candidate gets a 0–100 solvability score and an eligibility verdict from Gemini,
+    evaluated against versioned rubrics (short-term mobilité vs. classic long-term leases).
+    Analyses are cache-keyed by an input hash, so identical inputs never trigger a second
+    LLM call and rubric changes never silently rewrite past verdicts.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Two-Pass Escalation</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    When a verdict is unclear with low confidence, the case auto-escalates to a second pass with
+    extended thinking enabled — deliberative reasoning reserved for the cases that need it.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">AI Reply Drafts</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Replies are drafted from four archetypes — invite to visit, request missing documents,
+    polite refusal, or neutral — which the landlord picks, edits, and queues for sending,
+    including bulk polite refusals for non-eligible candidates.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Technology Stack</h2>
+
+  <ul class="text-gray-800 dark:text-gray-200">
+    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: React 19, TanStack Router, Tailwind CSS</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: Convex (realtime database and functions)</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Extension</strong>: Chrome Extension (Manifest V3)</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">AI</strong>: Gemini Flash via the AI SDK, with prompt caching</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Infra</strong>: Vercel, Stripe subscriptions, Resend, Sentry, PostHog</li>
+  </ul>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Key Challenges</h2>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Consistent, Explainable Scoring</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Scores must be trustworthy enough to base decisions on. Versioned rubrics, immutable
+    analyses, and input-hash caching keep every verdict reproducible and auditable as the
+    rubric evolves.
+  </p>
+
+  <h3 class="text-gray-900 dark:text-gray-100">Scraping Across Platforms</h3>
+  <p class="text-gray-800 dark:text-gray-200">
+    Rental platforms vary widely in markup and change without notice. Per-platform content
+    scripts plus sync-run tracking detect extraction drift before landlords notice missing
+    messages.
+  </p>
+
+  <h2 class="text-gray-900 dark:text-gray-100">Project Impact</h2>
+
+  <p class="text-gray-800 dark:text-gray-200">
+    Locaperle automates a real, repetitive screening workflow end to end — from raw platform
+    messages to a ranked, explainable shortlist with ready-to-send replies — packaged as a
+    focused freemium SaaS.
+  </p>
+</ProjectLayout>

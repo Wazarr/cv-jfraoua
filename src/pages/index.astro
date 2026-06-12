@@ -9,7 +9,7 @@ import ParticleField from "../components/ParticleField.astro";
       <ParticleField className="opacity-70" />
       <div class="container mx-auto px-4 py-6 md:py-12 space-y-8 md:space-y-12 relative z-10">
       <!-- Hero Section - Clean and Professional -->
-      <div class="max-w-4xl mx-auto text-center space-y-8">
+      <div class="max-w-4xl mx-auto text-center space-y-8 reveal">
         <!-- Desktop: ASCII Art -->
         <TerminalWindow
           title="welcome"
@@ -28,10 +28,10 @@ import ParticleField from "../components/ParticleField.astro";
             </pre>
             <div class="space-y-3">
               <p class="text-light-700 dark:text-dark-300">
-                ML Engineer • AI Developer • Data Scientist
+                Senior ML Engineer • LLM Systems • AI Products
               </p>
               <p class="text-light-600 dark:text-dark-400 text-sm">
-                Building intelligent systems that solve real-world problems
+                Building production fraud and LLM systems — and shipping AI products on the side
               </p>
             </div>
           </div>
@@ -44,10 +44,10 @@ import ParticleField from "../components/ParticleField.astro";
           </h1>
           <div class="space-y-2">
             <p class="text-light-700 dark:text-dark-300 text-lg">
-              ML Engineer • AI Developer • Data Scientist
+              Senior ML Engineer • LLM Systems • AI Products
             </p>
             <p class="text-light-600 dark:text-dark-400">
-              Building intelligent systems that solve real-world problems
+              Building production fraud and LLM systems — and shipping AI products on the side
             </p>
           </div>
         </div>
@@ -59,21 +59,17 @@ import ParticleField from "../components/ParticleField.astro";
           className="max-w-3xl mx-auto"
         >
           <div class="space-y-3">
-            <div class="hidden md:flex items-center space-x-2">
-              <span class="text-terminal-400">jeremy@portfolio:~$</span>
-              <span class="text-primary-400">cat description.md</span>
-            </div>
-            <div class="text-light-700 dark:text-dark-300 md:pl-4 space-y-2">
-              <p># About</p>
+            <div class="text-light-700 dark:text-dark-300 space-y-2">
+              <p class="font-mono text-sm text-primary-500 dark:text-primary-400"># About</p>
               <p class="text-light-600 dark:text-dark-400">
-                Passionate about applying machine learning and data science to
-                solve complex problems. 4+ years experience in quantitative
-                analysis, developing AI-driven solutions for financial risk
-                management.
+                Senior Machine Learning Engineer with 5+ years across fraud
+                detection, credit risk, and production LLM systems. My models
+                at Qonto run with sub-50ms latency and have prevented over
+                €100k in fraud.
               </p>
               <p class="text-light-600 dark:text-dark-400">
-                Currently architecting ML pipelines at Qonto, building models that
-                protect millions in transactions daily.
+                On the side, I build and ship full-stack AI products:
+                Locaperle, Saje Editions, and VibeTrip.
               </p>
             </div>
           </div>
@@ -81,22 +77,18 @@ import ParticleField from "../components/ParticleField.astro";
       </div>
 
       <!-- FEATURED: AI Chat Assistant - 2nd Section -->
-      <div class="max-w-4xl mx-auto">
+      <div class="max-w-4xl mx-auto reveal reveal-2">
         <TerminalWindow
-          title="🤖 ai_assistant.py --interactive"
+          title="ai-assistant"
           headerColor="primary"
           className="border-2 border-primary-500 shadow-2xl bg-gradient-to-br from-primary-50/50 to-code-50/50 dark:from-primary-900/50 dark:to-code-900/50"
         >
           <div class="space-y-4">
-            <div class="hidden md:flex items-center space-x-2">
-              <span class="text-terminal-400">jeremy@portfolio:~$</span>
-              <span class="text-primary-400">python ai_assistant.py --start</span>
-            </div>
-            <div class="md:pl-4 space-y-3">
+            <div class="space-y-3">
               <div class="flex items-center space-x-2">
                 <div class="w-2 h-2 bg-primary-500 rounded-full animate-pulse"></div>
-                <p class="text-primary-400 font-bold text-lg">
-                  🤖 AI Assistant Ready
+                <p class="text-primary-500 dark:text-primary-400 font-bold text-lg">
+                  Ask my AI assistant
                 </p>
               </div>
               <p class="text-light-700 dark:text-dark-300">
@@ -107,18 +99,18 @@ import ParticleField from "../components/ParticleField.astro";
               <div class="bg-light-100/60 dark:bg-dark-800/60 rounded-lg p-3 border border-light-300 dark:border-dark-600">
                 <p class="text-light-600 dark:text-dark-400 text-sm font-mono">
                   <span class="text-terminal-400"># Example queries:</span><br>
-                  <span class="text-code-400">• "What's your ML experience at Qonto?"</span><br>
-                  <span class="text-code-400">• "Tell me about the HaxballGym project"</span><br>
-                  <span class="text-code-400">• "How do you approach fraud detection?"</span>
+                  <span class="text-code-400">• "How does Jérémy use LLMs in fraud detection?"</span><br>
+                  <span class="text-code-400">• "Tell me about Locaperle"</span><br>
+                  <span class="text-code-400">• "What's his ML experience at Qonto?"</span>
                 </p>
               </div>
               <div class="flex flex-col sm:flex-row items-start sm:items-center space-y-3 sm:space-y-0 sm:space-x-4 mt-4">
                 <a
                   href="/chat"
-                  class="bg-primary-600 hover:bg-primary-500 text-white px-8 py-3 rounded-lg font-mono text-sm transition-all duration-200 transform hover:scale-105 shadow-lg flex items-center space-x-2"
+                  class="bg-primary-600 hover:bg-primary-500 text-white px-8 py-3 rounded-lg font-mono text-sm shadow-lg hover:shadow-xl flex items-center space-x-2"
                 >
-                  <span>💬</span>
-                  <span>start_conversation()</span>
+                  <span>Start a conversation</span>
+                  <span aria-hidden="true">→</span>
                 </a>
                 <div class="flex items-center space-x-2 text-xs text-light-600 dark:text-dark-400">
                   <div class="w-2 h-2 bg-terminal-500 rounded-full animate-pulse"></div>
@@ -131,7 +123,7 @@ import ParticleField from "../components/ParticleField.astro";
       </div>
 
       <!-- Main Navigation - Modern Cards with Terminal Accents -->
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto reveal reveal-3">
         <!-- Resume -->
         <div
           class="bg-light-100 dark:bg-dark-800 rounded-lg p-6 border border-light-300 dark:border-dark-700 hover:border-code-500 transition-colors group"
@@ -142,19 +134,19 @@ import ParticleField from "../components/ParticleField.astro";
               <h2 class="text-code-400 text-xl font-semibold">Experience</h2>
             </div>
             <p class="text-light-700 dark:text-dark-300">
-              4+ years in quantitative analysis, machine learning, and risk
-              modeling at leading financial institutions.
+              5+ years building ML and LLM systems in production across fraud,
+              credit risk, and climate analytics.
             </p>
             <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
-              <p>• Current: Quantitative Risk Analyst at Qonto</p>
-              <p>• ML Engineering & Data Science</p>
-              <p>• PyTorch, XGBoost, Python, SQL</p>
+              <p>• Current: Senior ML Engineer at Qonto</p>
+              <p>• Fraud detection & LLM-based triage</p>
+              <p>• CatBoost, LLMs, Python, SQL</p>
             </div>
             <a
               href="/resume"
               class="inline-flex items-center text-code-400 hover:text-code-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
             >
-              view_resume() →
+              view resume →
             </a>
           </div>
         </div>
@@ -173,15 +165,15 @@ import ParticleField from "../components/ParticleField.astro";
               development projects.
             </p>
             <div class="space-y-2 text-sm text-light-600 dark:text-dark-400">
-              <p>• VibeTrip - AI travel planning & deep research</p>
+              <p>• Locaperle - LLM-scored tenant vetting</p>
               <p>• Saje Editions - AI-powered book exploration</p>
-              <p>• HaxballGym - RL environment</p>
+              <p>• VibeTrip - AI travel planning & grounded research</p>
             </div>
             <a
               href="/projects"
               class="inline-flex items-center text-primary-400 hover:text-primary-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
             >
-              explore_projects() →
+              explore projects →
             </a>
           </div>
         </div>
@@ -208,7 +200,7 @@ import ParticleField from "../components/ParticleField.astro";
               href="/blog"
               class="inline-flex items-center text-terminal-400 hover:text-terminal-300 transition-colors text-sm font-mono group-hover:translate-x-1 transform duration-200"
             >
-              read_insights() →
+              read insights →
             </a>
           </div>
         </div>

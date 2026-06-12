@@ -1,29 +1,32 @@
 export const JEREMY_CONTEXT = {
   personal: {
     name: "Jérémy Fraoua",
-    title: "Machine Learning Engineer",
-    currentRole: "Machine Learning Engineer, Fraud Security Team at Qonto",
+    title: "Senior Machine Learning Engineer",
+    currentRole: "Senior Machine Learning Engineer, Fraud Security Team at Qonto",
     email: "jeremy.fraoua@gmail.com",
     linkedin: "https://www.linkedin.com/in/jérémy-fraoua/",
+    github: "https://github.com/Wazarr",
     languages: ["French (Native)", "English (Fluent)"],
-    location: "France"
+    location: "Paris, France"
   },
 
-  professionalSummary: `Machine Learning Engineer focused on fraud detection and financial risk.
-  Builds production ML systems with low-latency inference, strong monitoring, and reliable deployment.
-  Also develops AI-driven products and tools that turn complex data or content into user-facing apps.`,
+  professionalSummary: `Senior Machine Learning Engineer building production fraud and LLM systems
+  that prevented over €100k in fraud. Combines low-latency ML models with LLM-based workflows
+  (alert triage, case classification) in production. Also builds and ships full-stack SaaS
+  products on the side: Locaperle, Saje Editions, and VibeTrip.`,
 
   experience: [
     {
       company: "Qonto",
       period: "Oct. 2024 - Present",
-      role: "Machine Learning Engineer, Fraud Security Team",
+      role: "Senior Machine Learning Engineer, Fraud Security Team",
       achievements: [
         "Built fraud detection models with sub-50ms latency, preventing over €100k in fraud",
-        "Redesigned credit eligibility system with multi-model deployment and enhanced reliability",
-        "Explored Graph Neural Networks for fraud detection and shared AI tools with team"
+        "LLM-based alert triage filtering false positives on top of ML models to reduce alert volume",
+        "LLM fraud-case classification to build labelled datasets for future model training",
+        "Built and shipped an internal frontend tool for the ops team, now fully migrated to production"
       ],
-      technologies: ["Python", "Machine Learning", "PyTorch", "CatBoost", "SQL", "MLOps", "AWS"]
+      technologies: ["Python", "Machine Learning", "LLMs", "CatBoost", "SQL", "MLOps", "AWS"]
     },
     {
       company: "Qonto",
@@ -85,11 +88,11 @@ export const JEREMY_CONTEXT = {
       { name: "JavaScript", level: "Intermediate", icon: "🌐" }
     ],
     machineLearning: [
-      { name: "PyTorch", level: "Expert", icon: "🔥" },
       { name: "scikit-learn", level: "Expert", icon: "🧠" },
       { name: "XGBoost", level: "Expert", icon: "🚀" },
       { name: "CatBoost", level: "Expert", icon: "🐱" },
-      { name: "Hugging Face", level: "Intermediate", icon: "🤗" }
+      { name: "Hugging Face", level: "Intermediate", icon: "🤗" },
+      { name: "LLMs", level: "Expert", icon: "✨" }
     ],
     mlops: [
       { name: "MLflow", level: "Expert", icon: "⚙️" },
@@ -109,62 +112,96 @@ export const JEREMY_CONTEXT = {
       { name: "Claude Code", level: "Expert", icon: "🎯" },
       { name: "Cursor", level: "Expert", icon: "📝" },
       { name: "Codex", level: "Intermediate", icon: "💻" },
-      { name: "CrewAI", level: "Intermediate", icon: "👥" }
+      { name: "CrewAI", level: "Intermediate", icon: "👥" },
+      { name: "RAG", level: "Expert", icon: "📚" }
     ]
   },
 
   projects: [
     {
+      name: "Locaperle",
+      description: "AI candidate-triage assistant for landlords re-letting flats: a Chrome extension captures messages from rental platforms (LeBonCoin, Gens de Confiance) and Gemini scores each candidate against a versioned eligibility rubric, with ready-to-send AI reply drafts.",
+      technologies: [
+        "React 19",
+        "TypeScript",
+        "TanStack Router",
+        "Convex",
+        "Chrome Extension (MV3)",
+        "Gemini Flash (AI SDK)",
+        "Stripe",
+        "Vercel"
+      ],
+      features: [
+        "Real-time message capture from LeBonCoin and Gens de Confiance messaging tabs",
+        "0-100 LLM solvability scoring against versioned rubrics (mobilité / classique), cache-keyed by input hash",
+        "Two-pass escalation with extended thinking when a verdict is unclear",
+        "AI reply drafts with 4 archetypes (invite to visit, request documents, polite refusal, neutral), sent back via the extension",
+        "Ranked realtime inbox with freemium quotas and Stripe subscriptions"
+      ],
+      components: [
+        "Versioned eligibility rubrics with Gemini prompt caching",
+        "Analysis queue state machine with denormalised inbox reads",
+        "Sync-run tracking to detect scraper drift on rental platforms"
+      ],
+      website: "https://locaperle.com",
+      status: "Active development"
+    },
+    {
       name: "Saje Editions",
       description: "AI-powered reading and publishing platform that turns PDF/EPUB libraries into interactive tutors with grounded, cited answers, summaries, and study tools.",
       technologies: [
         "Next.js 16",
+        "React 19",
         "Tailwind CSS",
         "FastAPI",
         "Supabase (Postgres + pgvector)",
-        "LiteLLM / OpenRouter",
+        "Gemini via LiteLLM / OpenRouter",
         "Gemini embeddings",
-        "Docker Compose"
+        "Jina Reranker",
+        "Stripe",
+        "Railway"
       ],
       features: [
         "Upload and parse PDF/EPUB with a robust ingestion pipeline",
-        "Hybrid retrieval (pgvector + BM25 + RRF) for accurate grounding",
+        "Hybrid retrieval (pgvector + BM25 + weighted RRF + reranking) for accurate grounding",
         "Streaming chat with citations and page references",
-        "Summaries, quizzes, and flashcards to support study workflows"
+        "Multi-language support (FR/EN/ES/DE/IT/PT) with language-specific BM25 tokenization",
+        "Summaries, quizzes with AI grading, and spaced-repetition flashcards"
       ],
       components: [
-        "Chunking and contextual enrichment for better retrieval",
-        "RAG services with vector + lexical search",
-        "Supabase storage for book files"
+        "Contextual chunk enrichment (Anthropic-style) for better retrieval",
+        "Query optimization pipeline: language detection, HyDE, query expansion",
+        "Per-book BM25 index caching with TTL"
       ],
       website: "https://sajedition.com",
       status: "Active development"
     },
     {
       name: "VibeTrip AI Travel Platform",
-      description: "AI travel planning platform that blends deep research with a polished consumer experience to deliver personalized itineraries, local insights, and group-friendly plans.",
+      description: "AI travel planner that turns a short onboarding wizard into three complete, day-by-day itineraries (accommodations, activities, timed slots) per credit, researched live by Gemini with Google Search grounding. Rebuilt from a Next.js + FastAPI + CrewAI architecture onto Convex for simplicity and reliability.",
       technologies: [
-        "Next.js 15",
         "React 19",
+        "TanStack Router",
         "Tailwind CSS",
-        "FastAPI",
-        "CrewAI multi-agent workflows",
-        "Postgres (Supabase)",
-        "Drizzle ORM",
-        "Better Auth",
-        "Upstash",
-        "AWS S3/SES",
-        "PostHog"
+        "Astro 5 (marketing site)",
+        "Convex",
+        "Gemini Flash (AI SDK) + Google Search grounding",
+        "Stripe (credit packs)",
+        "Resend",
+        "Vercel",
+        "PostHog",
+        "Sentry"
       ],
       features: [
-        "Deep AI research across blogs, reviews, and local guides",
-        "Smart day-by-day itineraries with clear pacing",
-        "Hidden-gem recommendations tailored to traveler preferences",
-        "Group planning that balances multiple traveler profiles"
+        "Resumable 7-step trip wizard (group, dates, destination, budget, goals, interests)",
+        "3 complete itineraries per generation with timed daily slots",
+        "Grounded AI research plus a pre-seeded knowledge base of ~50 destinations",
+        "Real-time generation progress via Convex subscriptions"
       ],
       components: [
-        "Multi-agent planning API with progress tracking",
-        "Modern marketing and onboarding experience"
+        "Generation state machine with guardrails and cron-based stale-job recovery",
+        "Idempotent credit ledger with auto-refunds on failed generations",
+        "Schema-driven itinerary compilation from AI research"
       ],
       website: "https://vibetrip.app",
       status: "Active development"
@@ -196,23 +233,6 @@ export const JEREMY_CONTEXT = {
         "Admin panel for schedule and data updates"
       ],
       github: "https://github.com/Wazarr94/haxball-league-dashboard"
-    },
-    {
-      name: "ENS ChallengeData - Firefighter Response Prediction",
-      description: "Machine learning project predicting firefighter response times in Paris. Applied a full ML pipeline with feature engineering, clustering, and model evaluation.",
-      technologies: ["Python", "scikit-learn", "pandas", "matplotlib", "XGBoost", "Clustering"],
-      achievements: [
-        "Top 10% ranking in ENS ChallengeData competition",
-        "Clustering analysis for geographic response patterns",
-        "Model comparison with XGBoost as best performer"
-      ],
-      methodology: [
-        "Data cleaning and quality improvement",
-        "Exploratory data analysis (EDA)",
-        "Feature engineering informed by domain research",
-        "Model experimentation and evaluation"
-      ],
-      colab: "https://colab.research.google.com/drive/1hxfGWHfhmVgTBQtqmUxPn98GT9B7P4Ze"
     }
   ],
 
@@ -357,7 +377,11 @@ export function getRelevantContext(query: string): string {
     queryLower.includes("saje") ||
     queryLower.includes("sajedition") ||
     queryLower.includes("reading") ||
-    queryLower.includes("books")
+    queryLower.includes("books") ||
+    queryLower.includes("locaperle") ||
+    queryLower.includes("tenant") ||
+    queryLower.includes("landlord") ||
+    queryLower.includes("rental")
   ) {
     relevantChunks.push(CONTEXT_CHUNKS.projects);
   }
@@ -416,12 +440,13 @@ export function generateSystemPrompt(): string {
 **EXAMPLES:**
 Q: "What projects has he worked on?"
 A: Here are the highlights:
-- **Saje Editions**: AI reading platform with **hybrid retrieval** (pgvector + BM25) and **cited answers**. Website: sajedition.com
-- **VibeTrip**: AI travel planning app with **multi-agent research** and **personalized itineraries**. Website: vibetrip.app
+- **Locaperle**: AI assistant that **vets tenant candidates** for landlords with **LLM scoring** against versioned rubrics. Website: locaperle.com
+- **Saje Editions**: AI reading platform with **hybrid retrieval** (pgvector + BM25 + reranking) and **cited answers**. Website: sajedition.com
+- **VibeTrip**: AI travel planner generating **3 complete itineraries** per credit with **grounded Gemini research**. Website: vibetrip.app
 - **HaxballGym**: RL training framework for Haxball with a custom Gym environment
 
 Q: "What's his ML experience?"
-A: Jérémy is a **Machine Learning Engineer** focused on fraud detection and risk. At **Qonto**, he builds low-latency fraud models and production ML systems, and previously worked on credit risk modeling and analytics.
+A: Jérémy is a **Senior Machine Learning Engineer** focused on fraud detection and LLM systems. At **Qonto**, he builds low-latency fraud models, **LLM-based alert triage**, and fraud-case classification pipelines, and previously worked on credit risk modeling and analytics.
 
 **Knowledge Base:**
 ${CONTEXT_CHUNKS.summary}

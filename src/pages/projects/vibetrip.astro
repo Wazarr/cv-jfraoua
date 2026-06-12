@@ -4,7 +4,7 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
 
 <ProjectLayout title="VibeTrip - AI Travel Planning Platform">
   <h1 class="text-gray-900 dark:text-gray-100">VibeTrip</h1>
-  
+
   <div class="mb-4">
     <a
       href="https://vibetrip.app"
@@ -34,75 +34,76 @@ import ProjectLayout from "../../layouts/ProjectLayout.astro";
   <h2 class="text-gray-900 dark:text-gray-100 mt-2">Overview</h2>
 
   <p class="text-gray-800 dark:text-gray-200">
-    VibeTrip is an AI travel planning platform that combines deep research with a polished consumer
-    experience. Users share their preferences, budget, and travel constraints, and the system returns
-    a personalized, day-by-day itinerary with local insights and bookable recommendations.
+    VibeTrip is an AI travel planner that turns a short onboarding wizard — group, dates,
+    destination, budget, goals, interests — into three complete, day-by-day itineraries with
+    accommodations, activities, and timed slots, for a single credit. Research is powered by
+    Gemini with live Google Search grounding, so plans reflect current information rather than
+    generic travel lists.
   </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Key Features</h2>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Deep Research Engine</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Resumable Trip Wizard</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    A multi-agent planning backend analyzes blogs, reviews, and local guides to surface the most
-    relevant experiences, including hidden gems that match a traveler's style.
+    A seven-step onboarding flow that can be left and resumed at any point, capturing traveler
+    profiles and preferences before any credit is spent.
   </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Smart Itineraries</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Three Itineraries per Generation</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    Generates balanced itineraries with day-by-day pacing, bookable links, and practical local tips so
-    users can move from planning to action quickly.
+    Each generation produces three distinct, complete plans — accommodations, 8+ activities and
+    places each, with timed daily slots — so travelers compare real options instead of editing a
+    single guess.
   </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Group Planning</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Grounded AI Research</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    Blends multiple traveler profiles to create a single plan that satisfies different interests and
-    budgets without overwhelming the group.
+    Gemini Flash with Google Search grounding researches destinations live, layered on a
+    pre-seeded knowledge base of ~50 destinations that eliminates cold starts for popular places.
   </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Multi-Agent Planning API</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Real-Time Generation Progress</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    FastAPI services coordinate a CrewAI agent pipeline, enabling structured inputs, progress tracking,
-    and reliable plan generation at scale.
+    Convex realtime subscriptions stream generation progress to the UI, keeping a long-running
+    AI pipeline transparent instead of leaving users on a spinner.
   </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Technology Stack</h2>
 
   <ul class="text-gray-800 dark:text-gray-200">
-    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: Next.js 15, React 19, Tailwind CSS</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: FastAPI, CrewAI multi-agent workflows</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Data</strong>: Postgres (Supabase) with Drizzle ORM</li>
-    <li><strong class="text-gray-900 dark:text-gray-100">Infra</strong>: Better Auth, Upstash, AWS S3/SES, PostHog</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Frontend</strong>: React 19, TanStack Router (SPA), Tailwind CSS; Astro 5 marketing site</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Backend</strong>: Convex (realtime database and functions)</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">AI</strong>: Gemini Flash via the AI SDK, with Google Search grounding</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Payments</strong>: Stripe one-time credit packs with auto-refund on failure</li>
+    <li><strong class="text-gray-900 dark:text-gray-100">Infra</strong>: Vercel, Resend, PostHog, Sentry</li>
   </ul>
 
   <h2 class="text-gray-900 dark:text-gray-100">Key Challenges</h2>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Source Quality and Freshness</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Reliability of Long-Running Generations</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    Designing a research pipeline that surfaces reliable, current information while avoiding the noise
-    of generic travel lists.
+    A generation state machine with guardrails, cron-based stale-job recovery, and idempotent
+    auto-refunds ensures users never lose a credit to a failed or stuck pipeline.
   </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Long-Running Plan Generation</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Schema-Driven AI Output</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    Orchestrating multi-agent workflows while keeping the user experience responsive and transparent.
+    Itineraries are compiled against strict schemas so the model's research reliably becomes
+    structured plans — accommodations, activities, and timed slots — rather than free-form text.
   </p>
 
-  <h3 class="text-gray-900 dark:text-gray-100">Product Design at Scale</h3>
+  <h3 class="text-gray-900 dark:text-gray-100">Full-Product Rebuild</h3>
   <p class="text-gray-800 dark:text-gray-200">
-    Translating complex travel preferences into a simple, delightful planning flow with clear outputs.
+    VibeTrip started as a Next.js + FastAPI + CrewAI multi-agent system on AWS. It was rebuilt
+    from scratch on Convex and grounded Gemini — trading agent orchestration complexity for a
+    simpler, faster, more reliable production architecture.
   </p>
 
   <h2 class="text-gray-900 dark:text-gray-100">Project Impact</h2>
 
   <p class="text-gray-800 dark:text-gray-200">
-    VibeTrip showcases end-to-end product engineering: from AI research orchestration to a consumer
-    interface that feels modern, calm, and actionable.
-  </p>
-
-  <h2 class="text-gray-900 dark:text-gray-100">Future Development</h2>
-
-  <p class="text-gray-800 dark:text-gray-200">
-    Next steps include richer itinerary editing, collaborative planning, and deeper integrations with
-    booking providers and local data sources.
+    VibeTrip showcases end-to-end product engineering: payments with real money-back guarantees,
+    grounded AI research, realtime UX, and the judgment to rebuild on a simpler architecture when
+    the first one fought back.
   </p>
 </ProjectLayout>
