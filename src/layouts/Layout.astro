@@ -13,6 +13,29 @@ const {
   description = "Jérémy Fraoua — Senior Machine Learning Engineer building production fraud and LLM systems. Explore my portfolio featuring Locaperle, Saje Editions, VibeTrip, and more.",
 } = Astro.props;
 
+const canonicalURL = new URL(Astro.url.pathname, Astro.site ?? Astro.url);
+
+const personSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Jérémy Fraoua",
+  alternateName: "Jeremy Fraoua",
+  jobTitle: "Senior Machine Learning Engineer",
+  worksFor: { "@type": "Organization", name: "Qonto" },
+  url: Astro.site?.toString() ?? "https://jfraoua.vercel.app",
+  sameAs: [
+    "https://www.linkedin.com/in/j%C3%A9r%C3%A9my-fraoua/",
+    "https://github.com/Wazarr",
+  ],
+  knowsAbout: [
+    "Machine Learning",
+    "Fraud Detection",
+    "Large Language Models",
+    "RAG",
+    "MLOps",
+  ],
+});
+
 function getCurrentYear() {
   return new Date().getFullYear();
 }
@@ -27,14 +50,18 @@ function getCurrentYear() {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
+    <link rel="canonical" href={canonicalURL} />
     <!-- Open Graph / social cards -->
     <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Jérémy Fraoua" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={Astro.url} />
+    <meta property="og:url" content={canonicalURL} />
+    <meta property="og:locale" content="en_US" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    <script type="application/ld+json" set:html={personSchema} />
     <ViewTransitions />
     <title>{title}</title>
     <!-- Google Fonts for better typography -->

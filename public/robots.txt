@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /posthog-test
+
+Sitemap: https://jfraoua.vercel.app/sitemap.xml
