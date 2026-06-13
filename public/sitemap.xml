@@ -29,10 +29,6 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://jfraoua.vercel.app/projects/haxball-ai</loc>
-    <priority>0.6</priority>
-  </url>
-  <url>
     <loc>https://jfraoua.vercel.app/blog</loc>
     <priority>0.5</priority>
   </url>

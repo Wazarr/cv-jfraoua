@@ -4,12 +4,28 @@ import TerminalWindow from "../components/TerminalWindow.astro";
 
 interface Props {
   title: string;
+  description?: string;
+  noindex?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, description, noindex = false } = Astro.props;
+
+// Breadcrumb structured data — can surface a "Home › Projects › …" trail
+// in search results instead of the bare URL.
+const siteURL = Astro.site?.toString() ?? "https://jfraoua.vercel.app/";
+const breadcrumbSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteURL },
+    { "@type": "ListItem", position: 2, name: "Projects", item: `${siteURL}projects` },
+    { "@type": "ListItem", position: 3, name: title.split(" - ")[0].split(" — ")[0] },
+  ],
+});
 ---
 
-<Layout {title}>
+<Layout {title} description={description} {noindex}>
+  {!noindex && <script type="application/ld+json" set:html={breadcrumbSchema} is:inline />}
   <div class="container mx-auto px-4 py-8 space-y-8">
     <TerminalWindow
       title="project_details.md"
